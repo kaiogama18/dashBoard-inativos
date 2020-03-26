@@ -1,0 +1,25 @@
+{
+  "name": "dashBoard-inativos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaiogama18/dashBoard-inativos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaiogama18/dashBoard-inativos/issues"
+  },
+  "homepage": "https://github.com/kaiogama18/dashBoard-inativos#readme",
+  "dependencies": {
+    "next": "^9.3.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
