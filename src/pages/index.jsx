@@ -1,18 +1,31 @@
-function IndexPage() {
-    return (
-        <div className="container">
-            <h1>Index</h1>
-            <p>Let's explore different ways to style Next.js apps</p>
-            <style jsx>{`
-          .container {
-            margin: 50px;
-          }
-          p {
-            color: blue;
-          }
-        `}</style>
+import Layout from "../components/Layout";
+import Link from 'next/link'
+const Index = () => (
+  <Layout>
+    <div class="panel">
+      <img src="https://buritech.com.br/site/logo.png"></img>
+      <div class="formset">
+        <div class="form-group">
+          <lable class="form-label">Informe seu nome ou e-mail:</lable>
+          <input type="text" class="form-control" />
         </div>
-    )
-}
+        <div class="form-group">
+          <lable class="form-label">Informe sua senha:</lable>
+          <input type="password" class="form-control" />
+        </div>
+        <p id="plogintoregister">Esqueci minha senha</p>
+        <Link href="/home">
 
-export default IndexPage
+        <button class="btn">Conectar</button>
+        </Link>
+
+        <p class="at" id="textchange" onclick="register()">
+            
+        {" "}
+        Fazer o cadastro agora
+      </p>
+      </div>
+    </div>
+  </Layout>
+);
+export default Index;
