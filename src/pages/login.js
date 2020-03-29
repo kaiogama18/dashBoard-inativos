@@ -65,46 +65,9 @@ const Login = () => {
             Fazer o cadastro agora
           </a>
         </div>
-        {userData.error && <p className="error">Error: {userData.error} </p>}
+        {userData.error && <p className="text-red-700 self-center my-2">Error: {userData.error} </p>}
       </form>
     </div>
-
-    // <div className="login-page">
-    //   <div className="panel">
-    //     <img src="https://buritech.com.br/site/logo.png"></img>
-    //     <form className="formset" onSubmit={handleSubmit}>
-    //       <div className="form-group">
-    //         <lable className="form-label">Informe seu nome ou e-mail:</lable>
-    //         <input
-    //           type="text"
-    //           id="username"
-    //           name="username"
-    //           value={userData.username}
-    //           onChange={event =>
-    //             setUserData(
-    //               Object.assign({}, userData, { username: event.target.value })
-    //             )
-    //           }
-    //           className="form-control"
-    //         />
-    //       </div>
-    //       <div class="form-group">
-    //         <lable class="form-label">Informe sua senha:</lable>
-    //         <input type="password" class="form-control" />
-    //       </div>
-    //       <p id="plogintoregister">Esqueci minha senha</p>
-    //       <button type="submit" className="btn">
-    //         Conectar
-    //       </button>
-
-    //       <p class="at" id="textchange">
-    //         {" "}
-    //         Fazer o cadastro agora
-    //       </p>
-    //       {userData.error && <p className="error">Error: {userData.error} </p>}
-    //     </form>
-    //   </div>
-    // </div>
   );
 };
 
