@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "..components/Layout";
 import { Router } from "next/router";
 import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
@@ -9,7 +8,7 @@ import fetch from "isomorphic-unfetch";
 const Dash = props => {
   const { name, login, avatarUrl } = props.data;
   return (
-    <Layout>
+    <>
       <div class="area"></div>
       <img src={avatarUrl} alt="Avatar" />
       <h1>{name}</h1>
@@ -25,13 +24,13 @@ const Dash = props => {
           </li>
         </ul>
       </nav>
-    </Layout>
+    </>
   );
 };
 
 Dash.getInitialProps = async ctx => {
   const { token } = nextCookie(ctx);
-  const apiUrl = (getHost = getHost(ctx.req) + "api/profile");
+  const apiUrl = (getHost(ctx.req) + "api/profile");
   const redirectError = () =>
     typeof window !== "undefined"
       ? Router.push("/login")

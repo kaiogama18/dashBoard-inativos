@@ -6,7 +6,7 @@ import cookie from 'js-cookie'
 // import Router from "next/dist/next-server/lib/router/router";
 
 export const login = ({ token }) => {
-    cookie.set("token", token, { expire: 1 });
+    cookie.set("token", token, { expires: 1 });
     Router.push("/dash");
 };
 export const auth = ctx => {
@@ -31,7 +31,7 @@ export const logout = () => {
 
 export const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
-    const Wrapper = props => {
+    const syncLogout = props => {
       if (event.key === "logout") {
         console.log("[Leprs] -- Desconectado!");
         Router.push("/login");
