@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Link from "next/link";
 const Home = () => (
   <Layout>
     <div class="area"></div>
