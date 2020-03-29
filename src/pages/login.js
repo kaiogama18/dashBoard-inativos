@@ -41,41 +41,70 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <div className="panel">
-        <img src="https://buritech.com.br/site/logo.png"></img>
-        <form className="formset" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <lable className="form-label">Informe seu nome ou e-mail:</lable>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={userData.username}
-              onChange={event =>
-                setUserData(
-                  Object.assign({}, userData, { username: event.target.value })
-                )
-              }
-              className="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <lable class="form-label">Informe sua senha:</lable>
-            <input type="password" class="form-control" />
-          </div>
-          <p id="plogintoregister">Esqueci minha senha</p>
-          <button type="submit" className="btn">
+      <form className="card" onSubmit={handleSubmit}>
+        <img src="https://buritech.com.br/site/logo.png" />
+        <div className="flex flex-col px-6 py-4">
+          <lable>Informe seu nome ou e-mail:</lable>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={userData.username}
+            onChange={event =>
+              setUserData(
+                Object.assign({}, userData, { username: event.target.value })
+              )
+            }
+          />
+          <lable>Informe sua senha:</lable>
+          <input type="password" />
+          <button className="hover:bg-blue-700" type="submit">
             Conectar
           </button>
-
-          <p class="at" id="textchange">
-            {" "}
+          <a href="#"className="text-blue-600 hover:text-blue-700 self-center my-2">
             Fazer o cadastro agora
-          </p>
-          {userData.error && <p className="error">Error: {userData.error} </p>}
-        </form>
-      </div>
+          </a>
+        </div>
+        {userData.error && <p className="error">Error: {userData.error} </p>}
+      </form>
     </div>
+
+    // <div className="login-page">
+    //   <div className="panel">
+    //     <img src="https://buritech.com.br/site/logo.png"></img>
+    //     <form className="formset" onSubmit={handleSubmit}>
+    //       <div className="form-group">
+    //         <lable className="form-label">Informe seu nome ou e-mail:</lable>
+    //         <input
+    //           type="text"
+    //           id="username"
+    //           name="username"
+    //           value={userData.username}
+    //           onChange={event =>
+    //             setUserData(
+    //               Object.assign({}, userData, { username: event.target.value })
+    //             )
+    //           }
+    //           className="form-control"
+    //         />
+    //       </div>
+    //       <div class="form-group">
+    //         <lable class="form-label">Informe sua senha:</lable>
+    //         <input type="password" class="form-control" />
+    //       </div>
+    //       <p id="plogintoregister">Esqueci minha senha</p>
+    //       <button type="submit" className="btn">
+    //         Conectar
+    //       </button>
+
+    //       <p class="at" id="textchange">
+    //         {" "}
+    //         Fazer o cadastro agora
+    //       </p>
+    //       {userData.error && <p className="error">Error: {userData.error} </p>}
+    //     </form>
+    //   </div>
+    // </div>
   );
 };
 
