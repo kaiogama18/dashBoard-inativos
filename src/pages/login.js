@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <Layout>
+    <div className="login-page">
       <div className="panel">
         <img src="https://buritech.com.br/site/logo.png"></img>
         <form className="formset" onSubmit={handleSubmit}>
@@ -59,23 +59,23 @@ const Login = () => {
               className="form-control"
             />
           </div>
-          {/* <div class="form-group">
+          <div class="form-group">
             <lable class="form-label">Informe sua senha:</lable>
             <input type="password" class="form-control" />
-          </div> */}
+          </div>
           <p id="plogintoregister">Esqueci minha senha</p>
           <button type="submit" className="btn">
             Conectar
           </button>
 
-          {/* <p class="at" id="textchange" onclick="register()">
+          <p class="at" id="textchange">
             {" "}
             Fazer o cadastro agora
-          </p> */}
+          </p>
           {userData.error && <p className="error">Error: {userData.error} </p>}
         </form>
       </div>
-    </Layout>
+    </div>
   );
 };
 
