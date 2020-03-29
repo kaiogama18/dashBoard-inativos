@@ -1,25 +1,39 @@
-@import url(https://fonts.googleapis.com/css?family=Vibur);
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+@import "_vars.scss";
+
+
+
+html,
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.0625rem;
+  color: $text_color_default;
 }
+
+
+.login-page {
+  width: 100%;
+  height: 100%;
+  background-color: #e8e9ee;
+
+
+  img {
+    margin-top: 5%;
+    margin-bottom: 3%;
+    width: 50%;
+  }
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------
+
 .at {
   color: #0077ee;
 }
-img {
-  margin-top: 5%;
-  margin-bottom: 3%;
-  width: 50%;
-}
 
-body {
-  background-size: cover;
-  background-color: #e8e9ee;
-  font-family: arial;
-}
+
 
 .panel {
   max-width: 360px;
