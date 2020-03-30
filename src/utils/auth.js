@@ -42,7 +42,7 @@ export const withAuthSync = WrappedComponent => {
       window.addEventListener("storage", syncLogout);
       return () => {
         window.removeEventListener("storage", syncLogout);
-        window.localStorage.remove("logout");
+        window.localStorage.removeItem("logout");
       };
     }, []);
     return <WrappedComponent {...props} />;
