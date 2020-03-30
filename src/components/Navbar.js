@@ -7,7 +7,7 @@ const Navbar = ({ data }) => (
       <button class="shadow-md flex bg-blue-600 hover:bg-blue-700 rounded-full h-10 w-10 items-center justify-center">
         <i class="material-icons text-white">add</i>
       </button>
-      <p class="px-5 text-xl text-blue-600">Nova Safra</p>
+      <p class="px-5 text-base text-blue-600 uppercase">Nova Safra</p>
     </div>
     <div className="flex col-end-7 col-span-2 items-center justify-end">
       <button onClick={logout}>

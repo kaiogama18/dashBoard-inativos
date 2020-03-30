@@ -32,3 +32,15 @@ body {
     @apply bg-blue-600  text-white font-bold py-2 px-4 my-2 rounded;
   }
 }
+
+
+.metrics{
+  max-height: 10rem;
+}
+
+.bar-char{
+  canvas{
+    height: 20vh !important;
+
+  }
+}
