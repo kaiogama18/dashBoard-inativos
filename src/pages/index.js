@@ -14,7 +14,9 @@ const Index = props => {
     <Layout>
       <div className="bg-gray-100 w-full p-6">
         <Navbar data={avatarUrl} />
-        <div className="py-4">
+        <div className="grid grid-cols-3 gap-4 py-4">
+          <Graphic />
+          <Graphic />
           <Graphic />
         </div>
       </div>
