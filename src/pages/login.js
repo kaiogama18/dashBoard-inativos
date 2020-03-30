@@ -40,34 +40,34 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <form className="card" onSubmit={handleSubmit}>
-        <img src="https://buritech.com.br/site/logo.png" />
-        <div className="flex flex-col px-6 py-4">
-          <lable>Informe seu nome ou e-mail:</lable>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={userData.username}
-            onChange={event =>
-              setUserData(
-                Object.assign({}, userData, { username: event.target.value })
-              )
-            }
-          />
-          <lable>Informe sua senha:</lable>
-          <input type="password" />
-          <button className="hover:bg-blue-700" type="submit">
-            Conectar
+      <div className="login-page">
+        <form className="card" onSubmit={handleSubmit}>
+          <img src="/logo.png" />
+          <div className="flex flex-col px-6 py-4">
+            <lable>Informe seu nome ou e-mail:</lable>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={userData.username}
+              onChange={event =>
+                setUserData(
+                  Object.assign({}, userData, { username: event.target.value })
+                )
+              }
+            />
+            <lable>Informe sua senha:</lable>
+            <input type="password" disabled />
+            <button className="hover:bg-blue-700" type="submit">
+              Conectar
           </button>
-          <a href="#"className="text-blue-600 hover:text-blue-700 self-center my-2">
-            Fazer o cadastro agora
+            <a href="#" className="text-blue-600 hover:text-blue-700 self-center my-2" >
+              Fazer o cadastro agora
           </a>
-        </div>
-        {userData.error && <p className="text-red-700 self-center my-2">Error: {userData.error} </p>}
-      </form>
-    </div>
+          </div>
+          {userData.error && <p className="text-red-700 self-center my-2">Error: {userData.error} </p>}
+        </form>
+      </div>
   );
 };
 

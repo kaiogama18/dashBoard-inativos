@@ -4,33 +4,23 @@ import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
 import getHost from "../utils/get-host";
 import fetch from "isomorphic-unfetch";
+import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
 
 const Index = props => {
-  const { name, login, avatarUrl } = props.data;
+  const { avatarUrl } = props.data;
   return (
-    <>
-      <div class="area"></div>
-      <img src={avatarUrl} alt="Avatar" />
-      <h1>{name}</h1>
-      <p>{login}</p>
-
-      <nav class="main-menu">
-        <ul>
-          <li>
-            <a>
-              <i class="fa fa-home fa-2x"></i>
-              <span class="nav-text">Carteira </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <Layout>
+      <div className="bg-gray-100 w-full p-6 ">
+        <Navbar data={avatarUrl} />
+      </div>
+    </Layout>
   );
 };
 
 Index.getInitialProps = async ctx => {
   const { token } = nextCookie(ctx);
-  const apiUrl = (getHost(ctx.req) + "api/profile");
+  const apiUrl = getHost(ctx.req) + "api/profile";
   const redirectError = () =>
     typeof window !== "undefined"
       ? Router.push("/login")
