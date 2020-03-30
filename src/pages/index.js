@@ -6,13 +6,17 @@ import getHost from "../utils/get-host";
 import fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
+import Graphic from "../components/Graphic";
 
 const Index = props => {
   const { avatarUrl } = props.data;
   return (
     <Layout>
-      <div className="bg-gray-100 w-full p-6 ">
+      <div className="bg-gray-100 w-full p-6">
         <Navbar data={avatarUrl} />
+        <div className="py-4">
+          <Graphic />
+        </div>
       </div>
     </Layout>
   );
