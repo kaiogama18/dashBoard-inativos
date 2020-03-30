@@ -29,7 +29,7 @@ class HorizontalBarComponents extends Component {
       return (
         <div className="rounded-md overflow-hidden shadow bg-white p-6">
           <p className="text-base uppercase">{postDetail.menssage}</p>
-          <p className="text-sm">Safra: {postDetail.data[1].feature}</p>
+          <p className="text-sm font-bold">Safra: {postDetail.data[1].safra}</p>
           <HorizontalBar
             options={{
               legend: {
