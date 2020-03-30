@@ -18,9 +18,14 @@ const Index = props => {
         <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4">
           <Harvest />
           <div className="metrics rounded-md overflow-hidden shadow bg-white p-6 bg-blue-600 text-white">
-            <p className="text-xl uppercase">Melhores</p>
-            <p className="text-3xl font-bold text-center">Métricas: AUC e KS</p>
-
+            <p className="text-bae uppercase">Backtest 2018/02 - LGBM-Tuned-nf:</p>
+            <p className="text-2xl font-bold text-center"> AUC 74.03 e KS 37.61</p>
+            <p className="text-base my-2">
+              Treino com 3496 instância: 88.42% bons / 11.58 maus pagadores
+            </p>
+            <p className="text-base my-2">
+              Teste com 3718 instância: 90.02% bons / 9.98 maus pagadores
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4 ">
