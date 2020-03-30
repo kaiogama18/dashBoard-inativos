@@ -1,0 +1,98 @@
+[
+  {
+    "code": 200,
+    "menssage": "TOP FEATURES DO TREINO",
+    "data": [
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "idade",
+        "valor": 1
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "nivel_credito_bemol",
+        "valor": 2
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "perc_juros_06m",
+        "valor": 3
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "medalhas_soma_12m",
+        "valor": 4
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "vlr_compras_a_prazo_ate_data_base_60m",
+        "valor": 5
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "score_bh_12m",
+        "valor": 6
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "score_bh_5m",
+        "valor": 7
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "tempo_cliente",
+        "valor": 8
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "foto_cadastrada",
+        "valor": 9
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "score_bh_6m",
+        "valor": 10
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "score_bh_1m",
+        "valor": 11
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "score_bh_4m",
+        "valor": 12
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "soma_valor_nota_6m_a_prazo",
+        "valor": 13
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "total_juros_financ_6m",
+        "valor": 14
+      },
+      {
+        "chave": "01201802",
+        "safra": "201802",
+        "feature": "per_por_conta_12m",
+        "valor": 15
+      }
+    ]
+  }
+]

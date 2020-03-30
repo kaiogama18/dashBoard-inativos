@@ -1,0 +1,14 @@
+{
+  "code": 200,
+  "menssage": "Valores Matrix de Confusão",
+  "data": [
+    {
+      "chave": "02201802",
+      "safra": "201802",
+      "true_positive": 0.79,
+      "false_negative": 0.21,
+      "false_positive": 0.68,
+      "true_negative": 0.32
+    }
+  ]
+}

@@ -8,6 +8,8 @@ import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Graphic from "../components/Graphic";
 import Harvest from "../components/Harvest";
+import HorizontalBarComponents from "../components/HorizontalBar";
+import response_features from '../data/response_features.json'
 
 const Index = props => {
   const { avatarUrl } = props.data;
@@ -29,7 +31,10 @@ const Index = props => {
           </div>
         </div>
         <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4 ">
-          <Graphic />
+          <HorizontalBarComponents api={ response_features }/>
+          {/* {response_features.data.map((postDetail) =>{
+            return <h1>{ postDetail.feature}</h1>
+          })} */}
           <Graphic />
           <Graphic />
           <Graphic />
