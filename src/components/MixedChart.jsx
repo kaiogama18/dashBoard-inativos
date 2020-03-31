@@ -23,7 +23,7 @@ class MixedChart extends Component {
             type: "bar",
             backgroundColor: "rgba(49, 130, 206,0.8)",
             backgroundColorHover: "#3e95cd",
-            data: [0.00, 0.00, 1.50, 8.79, 19.06, 17.45, 15.19, 16.27, 17.52, 5.63]
+            data: [0.00, 0.00, 0.50, 8.79, 19.06, 17.45, 15.19, 16.27, 17.52, 5.63]
           }
         ]
       },
