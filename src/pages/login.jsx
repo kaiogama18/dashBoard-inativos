@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import { login } from "../utils/auth";
-import Layout from "../components/Layout";
 
 const Login = () => {
   const [userData, setUserData] = useState({ username: "", error: "" });
@@ -44,7 +43,7 @@ const Login = () => {
       <form className="card" onSubmit={handleSubmit}>
         <img src="/logo.png" />
         <div className="flex flex-col px-6 py-4">
-          <lable>Informe seu nome ou e-mail:</lable>
+          <lable>Informe seu usuário do github:</lable>
           <input
             type="text"
             id="username"
@@ -56,21 +55,27 @@ const Login = () => {
               )
             }
           />
-          <lable>Informe sua senha:</lable>
+          {/* <lable>Informe sua senha:</lable>
           <input type="password" disabled />
           <div className="my-2">
-            <input type="checkbox" defaultChecked/>
+            <input type="checkbox" defaultChecked />
             <lable className="mx-2">Esqueci minha senha</lable>
-          </div>
-
+          </div> */}
           <button className="hover:bg-blue-700" type="submit">
             Conectar
           </button>
-          <a href="#" className="text-blue-600 hover:text-blue-700 self-center my-2" >
+          <a
+            href="#"
+            className="text-blue-600 hover:text-blue-700 self-center my-2"
+          >
             Fazer o cadastro agora
           </a>
         </div>
-        {userData.error && <p className="text-red-700 self-center my-2">Error: {userData.error} </p>}
+        {userData.error && (
+          <p className="text-red-700 self-center my-2">
+            Error: {userData.error}{" "}
+          </p>
+        )}
       </form>
     </div>
   );

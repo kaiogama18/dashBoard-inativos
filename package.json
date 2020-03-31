@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/kaiogama18/dashBoard-inativos#readme",
   "dependencies": {
+    "@syncfusion/ej2-react-heatmap": "^17.4.51",
     "autoprefixer": "^9.7.5",
     "chart.js": "^2.9.3",
     "isomorphic-fetch": "^2.2.1",

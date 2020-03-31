@@ -6,6 +6,7 @@ const Layout = props => (
   <>
     <Head>
       <title>Dashboard Inativos</title>
+      <link rel="icon" href="/favicon.ico" />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
