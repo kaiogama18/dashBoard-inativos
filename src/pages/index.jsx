@@ -12,6 +12,7 @@ import HorizontalBarComponents from "../components/HorizontalBarComponents";
 import ConfusionMatrixComponents from "../components/ConfusionMatrixComponents";
 import response_features from "../data/response_features.json";
 import response_dados_safra from "../data/response_dados_safra";
+import MixedChart from "../components/MixedChart";
 
 const Index = props => {
   const { avatarUrl } = props.data;
@@ -47,7 +48,7 @@ const Index = props => {
         </div>
         <div className="grid grid-cols-2 gap-4 py-4 ">
           <ConfusionMatrixComponents api={response_features} />
-          <Graphic />
+          <MixedChart />
           
         </div>
       </div>
