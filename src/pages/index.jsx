@@ -18,17 +18,19 @@ const Index = props => {
   const safra = response_dados_safra.data[0];
   return (
     <Layout>
-      <div className="bg-gray-100 w-full p-6">
+      <div className="bg-gray-100 p-6">
         <Navbar data={avatarUrl} />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4">
           <Harvest />
-          <div className=" flex-col self-center  rounded-md overflow-hidden shadow bg-white p-6 bg-blue-600 text-white">
+          <div className="flex flex-col justify-center rounded-md overflow-hidden shadow bg-white p-6 bg-blue-600 text-white">
             <p className="text-base font-bold uppercase text-center">
               {response_dados_safra.menssage}
             </p>
-            <p className="text-base uppercase text-center">{safra.rotulo}</p>
-            <p className="text-2xl font-bold text-center">
-              AUC {safra.auc} e KS {safra.ks}
+            <p className="text-base uppercase text-center">
+              {safra.rotulo} <br />
+              <a className="text-2xl font-bold text-center">
+                AUC {safra.auc} e KS {safra.ks}
+              </a>
             </p>
             <p className="text-base my-2">
               Instância de Treino:{" "}
@@ -38,12 +40,15 @@ const Index = props => {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4 ">
+        <div className="grid grid-cols-3 gap-4 py-4 ">
           <HorizontalBarComponents api={response_features} />
           <Graphic />
           <Graphic />
+        </div>
+        <div className="grid grid-cols-2 gap-4 py-4 ">
           <ConfusionMatrixComponents api={response_features} />
           <Graphic />
+          
         </div>
       </div>
     </Layout>

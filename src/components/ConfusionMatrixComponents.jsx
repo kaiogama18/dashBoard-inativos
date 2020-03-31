@@ -18,7 +18,7 @@ class ConfusionMatrixComponents extends React.Component {
 
   render() {
     return (
-      <div className="rounded-md overflow-hidden shadow bg-white p-6">
+      <div className=" self-start rounded-md overflow-hidden shadow bg-white p-6 ">
         <p className="text-base uppercase">Valores Matrix de Confusão</p>
         <p className="text-sm font-bold">Safra: 201802</p>
         <HeatMapComponent

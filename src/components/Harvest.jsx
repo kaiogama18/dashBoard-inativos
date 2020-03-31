@@ -49,7 +49,7 @@ export default class Harvest extends Component {
 
   render() {
     return (
-      <div className="bar-char grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
         <div className="flex-col self-center">
           <p className="text-base uppercase">Selecione sua Safra</p>
           <p className="text-sm">
