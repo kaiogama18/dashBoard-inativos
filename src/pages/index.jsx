@@ -6,13 +6,14 @@ import getHost from "../utils/get-host";
 import fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
-import Graphic from "../components/Graphic";
+import KStatistic from "../components/KStatistic";
 import Harvest from "../components/Harvest";
 import HorizontalBarComponents from "../components/HorizontalBarComponents";
 import ConfusionMatrixComponents from "../components/ConfusionMatrixComponents";
 import response_features from "../data/response_features.json";
 import response_dados_safra from "../data/response_dados_safra";
 import MixedChart from "../components/MixedChart";
+import ROCcurves from "../components/ROCcurves";
 
 const Index = props => {
   const { avatarUrl } = props.data;
@@ -43,8 +44,8 @@ const Index = props => {
         </div>
         <div className="grid grid-cols-3 gap-4 py-4 ">
           <HorizontalBarComponents api={response_features} />
-          <Graphic />
-          <Graphic />
+          <KStatistic />
+          <ROCcurves />
         </div>
         <div className="grid grid-cols-2 gap-4 py-4 ">
           <ConfusionMatrixComponents api={response_features} />
