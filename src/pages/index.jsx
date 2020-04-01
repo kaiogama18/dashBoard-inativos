@@ -20,7 +20,7 @@ const Index = props => {
   const safra = response_dados_safra.data[0];
   return (
     <Layout>
-      <div className="w-screen  p-6">
+      <div className="w-screen p-6">
         <Navbar data={avatarUrl} />
 
         <div className="grid grid-cols-3 py-4 gap-4">
