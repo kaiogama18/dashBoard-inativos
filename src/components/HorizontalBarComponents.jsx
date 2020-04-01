@@ -18,7 +18,7 @@ class HorizontalBarComponents extends Component {
         labels: feature,
         datasets: [
           {
-            backgroundColor: "rgba(255,0,255,0.75)",
+            backgroundColor: "rgba(49, 130, 206,0.75)",
             data: valor
           }
         ]
