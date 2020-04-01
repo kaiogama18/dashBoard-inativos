@@ -13,13 +13,10 @@ const Layout = props => (
       />
       <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
     </Head>
-    <main className="flex ">
+    <main className="flex bg-gray-100">
       <NavBarLeft />
       {props.children}
     </main>
-
-
-
   </>
 );
 

@@ -20,37 +20,34 @@ const Index = props => {
   const safra = response_dados_safra.data[0];
   return (
     <Layout>
-      <div className="bg-gray-100 p-6">
+      <div className="w-screen  p-6">
         <Navbar data={avatarUrl} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 py-4">
+
+        <div className="grid grid-cols-3 py-4 gap-4">
           <Harvest />
-          <div className="flex flex-col justify-center rounded-md overflow-hidden shadow bg-white p-6 bg-blue-600 text-white">
-            <p className="text-base font-bold uppercase text-center">
+          <div className="self-start shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
+            <p className="text-base font-bold uppercase">
               {response_dados_safra.menssage}
             </p>
-            <p className="text-base uppercase text-center">
+            <p className="text-base">
               {safra.rotulo} <br />
-              <a className="text-2xl font-bold text-center">
+              <a className="text-2xl font-bold">
                 AUC {safra.auc} e KS {safra.ks}
               </a>
-            </p>
-            <p className="text-base my-2">
+              <br />
               Instância de Treino:{" "}
               <a className="font-bold">{safra.instancias_treino}</a> <br />
               Instância de Teste:{" "}
               <a className="font-bold">{safra.instancias_teste}</a>
             </p>
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-4 py-4 ">
-          <HorizontalBarComponents api={response_features} />
-          <KStatistic />
-          <ROCcurves />
-        </div>
-        <div className="grid grid-cols-2 gap-4 py-4 ">
+          <div className="grid grid-cols-2 col-span-2 gap-4">
+            <HorizontalBarComponents api={response_features} />
+            <KStatistic />
+            <ROCcurves />
+            <MixedChart />
+          </div>
           <ConfusionMatrixComponents api={response_features} />
-          <MixedChart />
-          
         </div>
       </div>
     </Layout>

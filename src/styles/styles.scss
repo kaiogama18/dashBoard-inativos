@@ -7,6 +7,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 0.0625rem;
   color: $text_color_default;
+  height: 100% !important;
+}
+
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  background-color: #f7fafc;
+}
+
+.navbar-left {
+  background: rgb(43, 108, 176);
+  background: linear-gradient(
+    180deg,
+    rgba(43, 108, 176, 1) 29%,
+    rgba(136, 173, 211, 1) 68%,
+    rgba(247, 250, 252, 1) 95%
+  );
 }
 
 .login-page {
@@ -33,9 +50,8 @@ body {
   }
 }
 
-.bar-char{
-  canvas{
+.bar-char {
+  canvas {
     height: 20vh !important;
-
   }
 }

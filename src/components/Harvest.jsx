@@ -49,16 +49,16 @@ export default class Harvest extends Component {
 
   render() {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
+      <div className="self-start grid grid-cols-1 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
         <div className="flex-col self-center">
-          <p className="text-base uppercase">Selecione sua Safra</p>
+          <p className="text-xl uppercase">Selecione sua Safra</p>
           <p className="text-sm">
             Delize o botão para selecionar o ano e <br />
             clique no mês correspondente
           </p>
         </div>
         <div className="col-span-2">
-          <Bar
+          {/* <Bar
             options={{
               legend: {
                 display: false
@@ -66,7 +66,7 @@ export default class Harvest extends Component {
               responsive: true
             }}
             data={this.getChartData}
-          />
+          /> */}
         </div>
       </div>
     );

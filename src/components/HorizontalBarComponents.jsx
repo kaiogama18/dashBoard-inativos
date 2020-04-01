@@ -27,7 +27,7 @@ class HorizontalBarComponents extends Component {
 
     return api.map(postDetail => {
       return (
-        <div className="rounded-md overflow-hidden shadow bg-white p-6">
+        <div className="rounded-md overflow-hidden shadow bg-white p-6 py-4">
           <p className="text-base uppercase">{postDetail.menssage}</p>
           <p className="text-sm font-bold">Safra: {postDetail.data[1].safra}</p>
           <HorizontalBar
