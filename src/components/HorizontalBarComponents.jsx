@@ -24,6 +24,7 @@ class HorizontalBarComponents extends Component {
         ]
       }
     };
+    
 
     return api.map(postDetail => {
       return (
