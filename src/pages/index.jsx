@@ -25,7 +25,7 @@ const Index = props => {
 
         <div className="grid grid-cols-3 py-4 gap-4">
           <Harvest />
-          <div className="self-start shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
+          <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
             <p className="text-base font-bold uppercase">
               {response_dados_safra.menssage}
             </p>
