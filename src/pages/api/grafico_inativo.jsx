@@ -1,13 +1,20 @@
 import fetch from "isomorphic-unfetch";
 
 export default (req, res) => {
-  const url = "https://inativos.appspot.com/home/safras";
+  const url = "https://inativos.appspot.com/home/safras/top_features";
   const request = async () => {
     try {
-      const response = await fetch(url);
-      if(response.ok) {
-      const json = await response.json();
-      return res.status(200).json(json);
+      const response = await fetch(
+        url,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ safra: "201803" }),
+        }
+      );
+      if (response.ok) {
+        const json = await response.json();
+        return res.status(200).json(json);
       } else {
         error.response = response;
         throw error;
@@ -21,3 +28,4 @@ export default (req, res) => {
   };
   request();
 };
+

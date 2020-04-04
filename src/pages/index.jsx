@@ -1,10 +1,10 @@
-import React from "react";
+import fetch from "node-fetch";
+import Layout from "../components/Layout";
+
 import { Router } from "next/router";
 import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
 import getHost from "../utils/get-host";
-import fetch from "isomorphic-unfetch";
-import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import KStatistic from "../components/KStatistic";
 import Harvest from "../components/Harvest";
@@ -15,13 +15,15 @@ import response_dados_safra from "../data/response_dados_safra";
 import MixedChart from "../components/MixedChart";
 import ROCcurves from "../components/ROCcurves";
 
-const Index = props => {
-  const { avatarUrl } = props.data;
+function Index({ props }) {
+  // const { avatarUrl } = props.data;
+  console.log("[LEPRS] ---> avatarUrl: ", props)
   const safra = response_dados_safra.data[0];
   return (
     <Layout>
       <div className="w-screen p-6">
-        <Navbar data={avatarUrl} />
+        {/* <Navbar data={avatarUrl} /> */}
+        <Navbar />
 
         <div className="grid grid-cols-3 py-4 gap-4">
           <Harvest />
@@ -42,7 +44,7 @@ const Index = props => {
             </p>
           </div>
           <div className="grid grid-cols-2 col-span-2 gap-4">
-            <HorizontalBarComponents api={response_features} />
+            <HorizontalBarComponents />
             <KStatistic />
             <ROCcurves />
             <MixedChart />
@@ -52,9 +54,9 @@ const Index = props => {
       </div>
     </Layout>
   );
-};
+}
 
-Index.getInitialProps = async ctx => {
+Index.getInitialProps = async (ctx) => {
   const { token } = nextCookie(ctx);
   const apiUrl = getHost(ctx.req) + "api/profile";
   const redirectError = () =>
@@ -66,13 +68,12 @@ Index.getInitialProps = async ctx => {
     const response = await fetch(apiUrl, {
       credentials: "include",
       headers: {
-        Authorization: JSON.stringify({ token })
-      }
+        Authorization: JSON.stringify({ token }),
+      },
     });
 
     if (response.ok) {
       const js = await response.json();
-      console.log("[Leprs] -- js: ", js);
       return js;
     } else {
       return await redirectError();

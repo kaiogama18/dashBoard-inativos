@@ -6,13 +6,13 @@ function fetcher(url) {
 
 function Harvest() {
   const { data, error } = useSWR("/api/inativo", fetcher);
-  console.log("[Leprs] -- json teste: ", data);
+  // console.log("[Leprs] -- json Harvest: ", data);
   let title = data?.menssage;
   let safra = [];
   data?.data.map(aux => {
     safra.push(aux.safra);
   });
-  console.log("[Leprs] -- safra teste: ", safra);
+  // console.log("[Leprs] -- safra teste: ", safra);
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
 
@@ -30,7 +30,7 @@ function Harvest() {
           return (
             <div className="m-1 flex flex-col items-center">
               <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
-              <button class="bg-blue-500 h-full w-4 rounded-md hover:bg-yellow-400" />
+              <button className="bg-blue-500 h-full w-4 rounded-md hover:bg-yellow-400" />
             </div>
           );
         })}
