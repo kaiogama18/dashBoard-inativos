@@ -14,6 +14,7 @@ import response_features from "../data/response_features.json";
 import response_dados_safra from "../data/response_dados_safra";
 import MixedChart from "../components/MixedChart";
 import ROCcurves from "../components/ROCcurves";
+import TrainingResults from "../components/trainingResults";
 
 function Index({ props }) {
   // const { avatarUrl } = props.data;
@@ -27,6 +28,8 @@ function Index({ props }) {
 
         <div className="grid grid-cols-3 py-4 gap-4">
           <Harvest />
+          {/* <TrainingResults /> */}
+
           <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
             <p className="text-base font-bold uppercase">
               {response_dados_safra.menssage}
