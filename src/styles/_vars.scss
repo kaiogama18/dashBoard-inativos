@@ -7,3 +7,8 @@
 $grey: #3e3e3e;
 $text_color_default: $grey;
 $btn_default: #4299e1;
+$blue_default: #342ead;
+
+.bg-blue-default {
+  background-color: $blue_default;
+}

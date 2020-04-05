@@ -7,7 +7,7 @@ function fetcher(url) {
 
 function HorizontalBarComponents() {
   const { data, error } = useSWR("/api/grafico_inativo", fetcher);
-  console.log("[Leprs] -- HorizontalBarComponents: ", data);
+  // console.log("[Leprs] -- HorizontalBarComponents: ", data);
 
   const feature = [];
   const valor = [];

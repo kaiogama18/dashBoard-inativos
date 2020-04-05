@@ -1,8 +1,10 @@
 import Head from "next/head";
 import NavBarLeft from "./NavBarLeft";
 import Navbar from "./Navbar";
+import PropTypes from 'prop-types'
 
-const Layout = props => (
+const Layout = ({ children }) => (
+  // const { avatarUrl } = props.data;
   <>
     <Head>
       <title>Dashboard Inativos</title>
@@ -15,9 +17,17 @@ const Layout = props => (
     </Head>
     <main className="flex bg-gray-100">
       <NavBarLeft />
-      {props.children}
+      <div className="w-screen p-6">
+        <Navbar />
+        {children}
+      </div>
     </main>
   </>
 );
+
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 export default Layout;
