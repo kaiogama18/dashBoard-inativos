@@ -5,10 +5,12 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function FeaturePlot() {
-  const { data, error } = useSWR("/api/grafico_inativo", fetcher);
-  // console.log("[Leprs] -- HorizontalBarComponents: ", data);
-
+function FeaturePlot({prop}) {
+  const route = "top_features";
+  const { data, error } = useSWR(
+    "/api/api_inativo?route=" + route + "&key=" + prop,
+    fetcher
+  );
   const feature = [];
   const valor = [];
   let title = data?.menssage;

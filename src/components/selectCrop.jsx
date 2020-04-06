@@ -26,6 +26,8 @@ function SelectCrop() {
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
 
+  let auxSafra = 201803;
+
   return (
     <div className="grid grid-cols-3 py-4 gap-4">
       <div className="grid grid-cols-1 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
@@ -51,14 +53,14 @@ function SelectCrop() {
           })}
         </div>
       </div>
-      <TrainingResults prop={"201803"} />
+      <TrainingResults prop={auxSafra} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
-        <FeaturePlot />
-        <KsPlot />
-        <ROCcurves />
-        <MixedChart />
+        <FeaturePlot prop={auxSafra} />
+        <KsPlot prop={auxSafra} />
+        <ROCcurves prop={auxSafra} />
+        <MixedChart prop={auxSafra} />
       </div>
-      <ConfusionPlot />
+      <ConfusionPlot prop={auxSafra} />
     </div>
   );
 }

@@ -5,11 +5,10 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function TrainingResults() {
+function TrainingResults({prop}) {
   const route = "result";
-  const key = "201803";
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + key,
+    "/api/api_inativo?route=" + route + "&key=" + prop,
     fetcher
   );
   console.log("[Leprs] -- TrainingResults: ", data);
@@ -17,11 +16,11 @@ function TrainingResults() {
   if (!data) title = "Carregando...";
   if (error) title = "sem internet";
   return (
-    <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
+    <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase">
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (
-          <p className="text-base">
+          <p className="text-base mb-2">
             {safra.rotulo} <br />
             <a className="text-2xl font-bold">
               AUC {safra.auc} e KS {safra.ks}
