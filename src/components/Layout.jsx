@@ -1,7 +1,7 @@
 import Head from "next/head";
 import NavBarLeft from "./NavBarLeft";
 import Navbar from "./Navbar";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const Layout = ({ children }) => (
   // const { avatarUrl } = props.data;
@@ -25,9 +25,8 @@ const Layout = ({ children }) => (
   </>
 );
 
-
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export default Layout;

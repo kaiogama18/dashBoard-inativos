@@ -14,20 +14,14 @@ function Plot(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-  const feature = [];
-  const valor = [];
   let title = data?.menssage;
   if (!data) title = "Carregando...";
   if (error) title = "TOP FEATURES DO TREINO";
   let objs = [];
 
-  console.log("dsddd:" + props.safra)
-
   data?.data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
-
-  console.log("Data Api: ==> " + objs.x_dist);
 
   const state = {
     data: {

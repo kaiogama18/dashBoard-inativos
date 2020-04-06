@@ -13,47 +13,54 @@ function Plot(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-
-  const feature = [];
-  const valor = [];
   let title = data?.menssage;
-  let ano = data?.data[0].safra;
   if (!data) title = "Carregando...";
-  if (error) title = "Sem Coneção";
+  if (error) title = "TOP FEATURES DO TREINO";
+  let objs = [];
+  data?.data.map((aux) => {
+    objs = JSON.parse(aux.json.replace(/'/g, '"'));
+  });
 
+  console.log("[Tilte]" + objs.x_ks);
 
-  const table = [];
-
-  // data?.data.map(aux => (table.push(JSON.parse(aux.json))));
-
-  // console.log("[Daniel Lepros ] ==> " + table)
-  // const obj = JSON.parse(table)
-  // console.log("[Saulo Lepros ] ==> " + obj.x_0)
-
-
-
-
-
-
-  console.log(" dataaaaaa " + data?.data.data);
-
-  data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
+  // let labels = [];
+  // data?.data.map((aux) => {
+  //   labels = JSON.parse(aux.json);
+  // });
+  // console.log("[Tilte]" + labels[0])
 
   const state = {
     data: {
       labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
       datasets: [
         {
+          label: "Taxa de Inadimplência",
           backgroundColor: "rgba(249, 142, 28,0.75)",
           borderColor: "#ea6227",
-          data: [0, 0, 12, 24, 100, 300],
+          data: objs.x_0,
+          lineTension: 0.9,
           fill: false,
         },
         {
-          type: "line",
-          borderColor: "#40a2cd1",
-          backgroundColor: "rgba(3, 45, 255,0.75)",
-          data: [0, 0, 60, 90, 150, 300],
+          label: "y_0",
+          borderColor: "#ff56ff",
+          data: objs.y_0,
+          borderDash: [8, 4],
+          lineTension: 0.9,
+          fill: false,
+        },
+        {
+          label: "x_1",
+          borderColor: "#1236f9",
+          borderDash: [8, 4],
+          data: objs.x_1,
+          lineTension: 0.9,
+          fill: false,
+        },
+        {
+          label: "y_1",
+          borderColor: "#62bb6d",
+          data: objs.y_1,
           lineTension: 0.9,
           fill: false,
         },
@@ -82,7 +89,7 @@ function Plot(props) {
   return (
     <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
       <p className="text-base uppercase">{title}</p>
-      <p className="text-sm font-bold">Safra: {ano}</p>
+      <p className="text-sm font-bold">Safra: {props.safra}</p>
 
       <br />
 

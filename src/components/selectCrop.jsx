@@ -12,7 +12,7 @@ function fetcher(url) {
 }
 
 function Crop() {
-  const [valuekey, setCount] = useState(0);
+  const [valuekey, setCount] = useState(201803);
 
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
@@ -22,10 +22,9 @@ function Crop() {
   });
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
-  const auxSafra = 201803;
   return (
     <div className="grid grid-cols-3 py-4 gap-4">
-      <div className="grid grid-cols-1 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
+      <div className="self-start grid grid-cols-1 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
         <div className="flex-col self-center">
           <p className="text-xl uppercase">{title}</p>
           <p className="text-sm">
@@ -39,7 +38,7 @@ function Crop() {
               <div className="m-1 flex flex-col items-center">
                 <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
                 <button
-                  className="bg-blue-default h-full overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
+                  className="bg-blue-default h-24 overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
                   onClick={() => setCount(name)}
                   value={name}
                 />
@@ -49,14 +48,14 @@ function Crop() {
         </div>
       </div>
 
-      <TrainingResults safra={auxSafra} />
+      <TrainingResults safra={valuekey} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
         <FeaturePlot safra={valuekey} />
-        <KsPlot safra={auxSafra} />
+        <KsPlot safra={valuekey} />
         <ROCcurves safra={valuekey} />
         <MixedChart safra={valuekey} />
       </div>
-      <ConfusionPlot safra={auxSafra} />
+      <ConfusionPlot safra={valuekey} />
     </div>
   );
 }
