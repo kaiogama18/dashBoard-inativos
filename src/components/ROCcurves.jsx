@@ -5,7 +5,6 @@ class ROCcurves extends Component {
 
   componentDidMount() {
     const ctx = this.chartRef.current.getContext("2d");
-
     new Chart(ctx, {
       type: "bar",
       data: {

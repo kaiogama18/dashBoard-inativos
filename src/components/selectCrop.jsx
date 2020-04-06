@@ -54,7 +54,7 @@ function Crop() {
         <FeaturePlot safra={valuekey} />
         <KsPlot safra={auxSafra} />
         <ROCcurves safra={auxSafra} />
-        <MixedChart safra={auxSafra} />
+        <MixedChart safra={valuekey} />
       </div>
       <ConfusionPlot safra={auxSafra} />
     </div>

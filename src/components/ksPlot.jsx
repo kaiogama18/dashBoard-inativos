@@ -8,17 +8,34 @@ function fetcher(url) {
 }
 
 function Plot(props) {
-  const route = "top_features";
+  const route = "ks_curve";
   const { data, error } = useSWR(
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
+
   const feature = [];
   const valor = [];
   let title = data?.menssage;
   let ano = data?.data[0].safra;
   if (!data) title = "Carregando...";
-  if (error) title = "TOP FEATURES DO TREINO";
+  if (error) title = "Sem Coneção";
+
+
+  const table = [];
+
+  // data?.data.map(aux => (table.push(JSON.parse(aux.json))));
+
+  // console.log("[Daniel Lepros ] ==> " + table)
+  // const obj = JSON.parse(table)
+  // console.log("[Saulo Lepros ] ==> " + obj.x_0)
+
+
+
+
+
+
+  console.log(" dataaaaaa " + data?.data.data);
 
   data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
 
@@ -34,7 +51,7 @@ function Plot(props) {
         },
         {
           type: "line",
-          borderColor: "#0a2cd1",
+          borderColor: "#40a2cd1",
           backgroundColor: "rgba(3, 45, 255,0.75)",
           data: [0, 0, 60, 90, 150, 300],
           lineTension: 0.9,
@@ -62,11 +79,9 @@ function Plot(props) {
     },
   };
 
-
-
   return (
     <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
-      <p className="text-base uppercase">KS Gráfico estatístico</p>
+      <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {ano}</p>
 
       <br />

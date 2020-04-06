@@ -1,52 +1,90 @@
 import { Component } from "react";
+import { HorizontalBar, Bar } from "react-chartjs-2";
+import useSWR from "swr";
+import PropTypes from "prop-types";
+import React from "react";
 
-class MixedChart extends Component {
-  chartRef = React.createRef();
+function fetcher(url) {
+  return fetch(url).then((r) => r.json());
+}
 
-  componentDidMount() {
-    const ctx = this.chartRef.current.getContext("2d");
+function Plot(props) {
+  const route = "score_distribution";
+  const { data, error } = useSWR(
+    "/api/api_inativo?route=" + route + "&key=" + props.safra,
+    fetcher
+  );
+  const feature = [];
+  const valor = [];
+  let title = data?.menssage;
+  if (!data) title = "Carregando...";
+  if (error) title = "TOP FEATURES DO TREINO";
+  let objs = [];
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["[0,10]", "[10,20]", "[20,30]", "[30,40]", "[40,50]", "[50,60]", "[60,70]", "[70,80]", "[80,90]", "[90,100]"],
-        datasets: [
-          {
-            label: "Africa",
-            type: "line",
-            borderColor: "#de1414",
-            borderDash: [8, 4],
-            data: [0.00, 0.00, 0.00, 2.49, 2.41, 17.45, 15.19, 16.27, 17.52, 5.63],
-          },
-          {
-            label: "Africa",
-            type: "bar",
-            backgroundColor: "rgba(49, 130, 206,0.8)",
-            backgroundColorHover: "#3e95cd",
-            data: [0.00, 0.00, 0.50, 8.79, 19.06, 17.45, 15.19, 16.27, 17.52, 5.63]
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: false
+  console.log("dsddd:" + props.safra)
+
+  data?.data.map((aux) => {
+    objs = JSON.parse(aux.json.replace(/'/g, '"'));
+  });
+
+  console.log("Data Api: ==> " + objs.x_dist);
+
+  const state = {
+    data: {
+      labels: [
+        "[0,10]",
+        "[10,20]",
+        "[20,30]",
+        "[30,40]",
+        "[40,50]",
+        "[50,60]",
+        "[60,70]",
+        "[70,80]",
+        "[80,90]",
+        "[90,100]",
+      ],
+      datasets: [
+        {
+          label: "Distribuição da População",
+          borderColor: "#e1aa10",
+          backgroundColor: "rgba(49, 130, 206,0.8)",
+          data: objs.x_dist,
         },
-        legend: { display: false }
-      }
-    });
-  }
+        {
+          label: "Taxa de Inadimplência",
+          type: "line",
+          borderColor: "#de1414",
+          borderDash: [8, 4],
+          data: objs.x_inad,
+        },
+      ],
+    },
+  };
 
+  return (
+    <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
+      <p className="text-base uppercase">{title}</p>
+      <p className="text-sm font-bold">Safra: {props.safra}</p>
+      <br />
+      <Bar
+        options={{
+        
+          responsive: true,
+        }}
+        data={state.data}
+      />
+    </div>
+  );
+}
+
+class MixedChart extends React.Component {
   render() {
-    return (
-      <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
-        <p className="text-base uppercase">Faixas de Scores</p>
-        <p className="text-sm font-bold">Safra: 201802</p>
-        <br/> 
-
-        <canvas id="myChart" ref={this.chartRef} />
-      </div>
-    );
+    return <Plot safra={this.props.safra} />;
   }
 }
+
+MixedChart.propTypes = {
+  props: PropTypes.string.isRequired,
+};
 
 export default MixedChart;
