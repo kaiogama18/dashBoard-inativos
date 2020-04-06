@@ -7,7 +7,7 @@ import {
   Adaptor
 } from "@syncfusion/ej2-react-heatmap";
 
-class ConfusionMatrixComponents extends React.Component {
+class ConfusionPlot extends React.Component {
   constructor() {
     super(...arguments);
     this.heatmapData = [
@@ -40,4 +40,4 @@ class ConfusionMatrixComponents extends React.Component {
   }
 }
 
-export default ConfusionMatrixComponents;
+export default ConfusionPlot;

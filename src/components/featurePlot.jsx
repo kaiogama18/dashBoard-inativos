@@ -5,7 +5,7 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function HorizontalBarComponents() {
+function FeaturePlot() {
   const { data, error } = useSWR("/api/grafico_inativo", fetcher);
   // console.log("[Leprs] -- HorizontalBarComponents: ", data);
 
@@ -46,4 +46,4 @@ function HorizontalBarComponents() {
   );
 }
 
-export default HorizontalBarComponents;
+export default FeaturePlot;

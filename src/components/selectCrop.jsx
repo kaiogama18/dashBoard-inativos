@@ -1,8 +1,8 @@
-import HorizontalBarComponents from "./HorizontalBarComponents";
-import KStatistic from "./KStatistic";
+import FeaturePlot from "./featurePlot";
+import KsPlot from "./ksPlot";
 import ROCcurves from "./ROCcurves";
 import MixedChart from "./MixedChart";
-import ConfusionMatrixComponents from "./ConfusionMatrixComponents";
+import ConfusionPlot from "./confusionPlot";
 import TrainingResults from "./trainingResults";
 
 import useSWR from "swr";
@@ -18,7 +18,8 @@ function handleInput(el) {
 
 
 
-function SelectCrop() {
+function  SelectCrop() {
+
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
   let safra = [];
@@ -57,12 +58,12 @@ function SelectCrop() {
       </div>
       <TrainingResults />
       <div className="grid grid-cols-2 col-span-2 gap-4">
-        <HorizontalBarComponents />
-        <KStatistic />
+        <FeaturePlot />
+        <KsPlot />
         <ROCcurves />
         <MixedChart />
       </div>
-      <ConfusionMatrixComponents />
+      <ConfusionPlot />
     </div>
   );
 }

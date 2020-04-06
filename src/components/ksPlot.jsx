@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class KStatistic extends Component {
+class KsPlot extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {
@@ -54,4 +54,4 @@ class KStatistic extends Component {
   }
 }
 
-export default KStatistic;
+export default KsPlot;

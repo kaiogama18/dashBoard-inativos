@@ -1,12 +1,25 @@
-import response_dados_safra from "../data/response_dados_safra";
+import useSWR from "swr";
 
-function TrainingResults({ posts }) {
-  const safra = response_dados_safra.data[0];
-  console.log(posts);
+function fetcher(url) {
+  return fetch(url).then((r) => r.json());
+}
+
+function TrainingResults() {
+  const route = "result";
+  const key = "201803";
+  const { data, error } = useSWR(
+    "/api/api_inativo?route=" + route + "&key=" + key,
+    fetcher
+  );
+  console.log("[Leprs] -- TrainingResults: ", data);
+  let title = data?.menssage;
+  let safra = data?.data[0]
+  if (!data) title, safra = "Carregando...";
+  if (error) title, safra = "sem internet";
   return (
     <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase mb-4">
       <p className="text-base font-bold uppercase">
-        {response_dados_safra.menssage}
+        {title}
       </p>
       <p className="text-base">
         {safra.rotulo} <br />
@@ -23,20 +36,4 @@ function TrainingResults({ posts }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(
-    "https://inativos.appspot.com/home/safras/top_features",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ safra: "201803" }),
-    }
-  );
-  const posts = await res.json();
-  return {
-    props: {
-      posts,
-    },
-  };
-}
 export default TrainingResults;
