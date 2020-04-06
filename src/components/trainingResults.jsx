@@ -1,4 +1,3 @@
-import response_dados_safra from "../data/response_dados_safra";
 import useSWR from "swr";
 
 function fetcher(url) {

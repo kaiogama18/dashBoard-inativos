@@ -4,12 +4,10 @@ import { Router } from "next/router";
 import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
 import getHost from "../utils/get-host";
-import response_dados_safra from "../data/response_dados_safra";
 import SelectCrop from "../components/selectCrop";
 
 function Index({ props }) {
   console.log("[LEPRS] ---> avatarUrl: ", props);
-  const safra = response_dados_safra.data[0];
   return (
     <Layout>
       <SelectCrop />
