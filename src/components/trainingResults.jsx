@@ -12,7 +12,7 @@ function Results(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-  console.log("[Leprs] -- TrainingResults: ", data);
+  // console.log("[Leprs] -- TrainingResults: ", data);
   let title = data?.menssage;
   if (!data) title = "Carregando...";
   if (error) title = "sem internet";

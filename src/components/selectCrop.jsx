@@ -4,21 +4,25 @@ import ROCcurves from "./ROCcurves";
 import MixedChart from "./MixedChart";
 import ConfusionPlot from "./confusionPlot";
 import TrainingResults from "./trainingResults";
-
 import useSWR from "swr";
-
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
-
 function handleInput(el) {
-  let key = el.target.value;
-  return (
-    <div>ddddddddd</div>
-  );
+  console.log("============ OnClick: ===> :", el.target.value);
+  const kay_safra = el.target.value;
+  return <div> {kay_safra}</div>;
 }
 
-function SelectCrop() {
+
+
+
+
+function shoot(el) {
+  alert("Safra: "+ el.target.value);
+}
+
+function Crop() {
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
   let safra = [];
@@ -27,9 +31,7 @@ function SelectCrop() {
   });
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
-
   const auxSafra = 201803;
-
   return (
     <div className="grid grid-cols-3 py-4 gap-4">
       <div className="grid grid-cols-1 xl:grid-cols-3 col-span-2 rounded-md overflow-hidden shadow bg-white p-6">
@@ -47,7 +49,8 @@ function SelectCrop() {
                 <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
                 <button
                   className="bg-blue-default h-full overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
-                  onClick={handleInput}
+                  // onClick={handleInput}
+                  onClick={shoot}
                   value={name}
                 />
               </div>
@@ -56,8 +59,7 @@ function SelectCrop() {
         </div>
       </div>
 
-
-      <TrainingResults  safra={auxSafra} />
+      <TrainingResults safra={auxSafra} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
         <FeaturePlot safra={auxSafra} />
         <KsPlot safra={auxSafra} />
@@ -67,6 +69,16 @@ function SelectCrop() {
       <ConfusionPlot safra={auxSafra} />
     </div>
   );
+}
+
+class SelectCrop extends React.Component {
+  // handleClick = () => {
+  //   this.props.onHeaderClick(this.props.value);
+  // };
+
+  render() {
+    return <Crop />;
+  }
 }
 
 export default SelectCrop;

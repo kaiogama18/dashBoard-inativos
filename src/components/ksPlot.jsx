@@ -16,6 +16,7 @@ function Plot(props) {
   const feature = [];
   const valor = [];
   let title = data?.menssage;
+  let ano = data?.data[0].safra;
   if (!data) title = "Carregando...";
   if (error) title = "TOP FEATURES DO TREINO";
 
@@ -65,7 +66,9 @@ function Plot(props) {
 
   return (
     <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
-      <p className="text-base uppercase">KS plot</p>
+      <p className="text-base uppercase">KS Gráfico estatístico</p>
+      <p className="text-sm font-bold">Safra: {ano}</p>
+
       <br />
 
       <Line
@@ -76,7 +79,6 @@ function Plot(props) {
           responsive: true,
         }}
         data={state.data}
-        // data={this.getChartData}
       />
     </div>
   );
