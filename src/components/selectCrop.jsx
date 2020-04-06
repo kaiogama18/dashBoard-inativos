@@ -5,24 +5,15 @@ import MixedChart from "./MixedChart";
 import ConfusionPlot from "./confusionPlot";
 import TrainingResults from "./trainingResults";
 import useSWR from "swr";
+import React, { useState } from "react";
+
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
-function handleInput(el) {
-  console.log("============ OnClick: ===> :", el.target.value);
-  const kay_safra = el.target.value;
-  return <div> {kay_safra}</div>;
-}
-
-
-
-
-
-function shoot(el) {
-  alert("Safra: "+ el.target.value);
-}
 
 function Crop() {
+  const [valuekey, setCount] = useState(0);
+
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
   let safra = [];
@@ -49,8 +40,7 @@ function Crop() {
                 <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
                 <button
                   className="bg-blue-default h-full overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
-                  // onClick={handleInput}
-                  onClick={shoot}
+                  onClick={() => setCount(name)}
                   value={name}
                 />
               </div>
@@ -61,7 +51,7 @@ function Crop() {
 
       <TrainingResults safra={auxSafra} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
-        <FeaturePlot safra={auxSafra} />
+        <FeaturePlot safra={valuekey} />
         <KsPlot safra={auxSafra} />
         <ROCcurves safra={auxSafra} />
         <MixedChart safra={auxSafra} />
@@ -72,10 +62,6 @@ function Crop() {
 }
 
 class SelectCrop extends React.Component {
-  // handleClick = () => {
-  //   this.props.onHeaderClick(this.props.value);
-  // };
-
   render() {
     return <Crop />;
   }
