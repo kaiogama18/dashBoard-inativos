@@ -11,15 +11,12 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-
 function handleInput(el) {
-  // console.log(el.target.value);
+  let key = el.target.value;
+  return key;
 }
 
-
-
-function  SelectCrop() {
-
+function SelectCrop() {
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
   let safra = [];
@@ -28,8 +25,6 @@ function  SelectCrop() {
   });
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
-
-
 
   return (
     <div className="grid grid-cols-3 py-4 gap-4">
@@ -56,7 +51,7 @@ function  SelectCrop() {
           })}
         </div>
       </div>
-      <TrainingResults />
+      <TrainingResults prop={"201803"} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
         <FeaturePlot />
         <KsPlot />
