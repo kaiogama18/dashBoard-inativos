@@ -41,6 +41,7 @@ class MixedChart extends Component {
       <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
         <p className="text-base uppercase">Faixas de Scores</p>
         <p className="text-sm font-bold">Safra: 201802</p>
+        <br/> 
 
         <canvas id="myChart" ref={this.chartRef} />
       </div>

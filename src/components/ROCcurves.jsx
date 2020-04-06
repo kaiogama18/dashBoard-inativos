@@ -61,6 +61,7 @@ class ROCcurves extends Component {
       <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
         <p className="text-base uppercase">AUC ROC Curves</p>
         <p className="text-sm font-bold">Safra: 201802</p>
+        <br/> 
 
         <canvas id="myChart" ref={this.chartRef} />
       </div>

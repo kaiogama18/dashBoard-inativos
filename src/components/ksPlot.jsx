@@ -1,56 +1,16 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import useSWR from "swr";
-import { HorizontalBar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-// chartRef = React.createRef();
-
-// function componentDidMount({ prop }) {
-//   const ctx = this.chartRef.current.getContext("2d");
-
-//   new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
-//       datasets: [
-//         {
-//           type: "line",
-//           borderColor: "#ded714",
-//           data: [0, 0, 12, 24, 100, 300],
-//           fill: false,
-//         },
-//         {
-//           type: "line",
-//           borderColor: "#5b9bd8",
-//           data: [0, 0, 60, 90, 150, 300],
-//           lineTension: 0.9,
-//           fill: false,
-//         },
-//         {
-//           type: "line",
-//           borderColor: "#000",
-//           data: [0, 0, 60, 0],
-//           borderDash: [8, 4],
-//           fill: false,
-//         },
-//       ],
-//     },
-//     options: {
-//       title: {
-//         display: false,
-//       },
-//       legend: { display: false },
-//     },
-//   });
-// }
-
-function KsPlot({ prop }) {
+function Plot(props) {
   const route = "top_features";
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + prop,
+    "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
   const feature = [];
@@ -63,7 +23,6 @@ function KsPlot({ prop }) {
 
   const state = {
     data: {
-      // labels: feature,
       labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
       datasets: [
         {
@@ -81,13 +40,34 @@ function KsPlot({ prop }) {
           fill: false,
         },
       ],
+      options: {
+        annotation: {
+          annotations: [
+            {
+              type: "line",
+              mode: "vertical",
+              scaleID: "x-axis-0",
+              value: "0.8",
+              borderColor: "red",
+              label: {
+                content: "TODAY",
+                enabled: true,
+                position: "top",
+              },
+            },
+          ],
+        },
+      },
     },
   };
 
+
+
   return (
     <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
-      <p className="text-base uppercase">{title}</p>
-      <p className="text-sm font-bold">Safra: {data?.data[1].safra}</p>
+      <p className="text-base uppercase">KS plot</p>
+      <br />
+
       <Line
         options={{
           legend: {
@@ -96,9 +76,20 @@ function KsPlot({ prop }) {
           responsive: true,
         }}
         data={state.data}
+        // data={this.getChartData}
       />
     </div>
   );
 }
+
+class KsPlot extends React.Component {
+  render() {
+    return <Plot safra={this.props.safra} />;
+  }
+}
+
+KsPlot.propTypes = {
+  props: PropTypes.string.isRequired,
+};
 
 export default KsPlot;

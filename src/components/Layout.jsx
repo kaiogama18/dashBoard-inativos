@@ -17,7 +17,7 @@ const Layout = ({ children }) => (
     </Head>
     <main className="flex bg-gray-100">
       <NavBarLeft />
-      <div className="w-screen p-6">
+      <div className="w-screen h-screen p-6">
         <Navbar />
         {children}
       </div>

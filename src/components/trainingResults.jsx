@@ -1,13 +1,15 @@
 import useSWR from "swr";
+import PropTypes from "prop-types";
+import React from 'react'
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function TrainingResults({prop}) {
+function Results(props) {
   const route = "result";
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + prop,
+    "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
   console.log("[Leprs] -- TrainingResults: ", data);
@@ -35,5 +37,15 @@ function TrainingResults({prop}) {
     </div>
   );
 }
+
+class TrainingResults extends React.Component {
+  render() {
+    return <Results safra={this.props.safra} />;
+  }
+}
+
+TrainingResults.propTypes = {
+  props: PropTypes.string.isRequired,
+};
 
 export default TrainingResults;

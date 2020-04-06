@@ -13,7 +13,9 @@ function fetcher(url) {
 
 function handleInput(el) {
   let key = el.target.value;
-  return key;
+  return (
+    <div>ddddddddd</div>
+  );
 }
 
 function SelectCrop() {
@@ -26,7 +28,7 @@ function SelectCrop() {
   if (!data) title = "Carregando...";
   if (error) title = "Selecione sua Safra";
 
-  let auxSafra = 201803;
+  const auxSafra = 201803;
 
   return (
     <div className="grid grid-cols-3 py-4 gap-4">
@@ -53,14 +55,16 @@ function SelectCrop() {
           })}
         </div>
       </div>
-      <TrainingResults prop={auxSafra} />
+
+
+      <TrainingResults  safra={auxSafra} />
       <div className="grid grid-cols-2 col-span-2 gap-4">
-        <FeaturePlot prop={auxSafra} />
-        <KsPlot prop={auxSafra} />
-        <ROCcurves prop={auxSafra} />
-        <MixedChart prop={auxSafra} />
+        <FeaturePlot safra={auxSafra} />
+        <KsPlot safra={auxSafra} />
+        <ROCcurves safra={auxSafra} />
+        <MixedChart safra={auxSafra} />
       </div>
-      <ConfusionPlot prop={auxSafra} />
+      <ConfusionPlot safra={auxSafra} />
     </div>
   );
 }
