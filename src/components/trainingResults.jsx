@@ -16,7 +16,7 @@ function TrainingResults({prop}) {
   if (!data) title = "Carregando...";
   if (error) title = "sem internet";
   return (
-    <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase">
+    <div className="shadow rounded-md p-6 bg-blue-default text-white uppercase">
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (

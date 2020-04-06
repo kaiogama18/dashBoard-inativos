@@ -24,7 +24,7 @@ function FeaturePlot({prop}) {
       labels: feature,
       datasets: [
         {
-          backgroundColor: "rgba(49, 130, 206,0.75)",
+          backgroundColor: "rgba(10, 44, 209,0.75)",
           data: valor,
         },
       ],

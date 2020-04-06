@@ -44,7 +44,7 @@ function SelectCrop() {
               <div className="m-1 flex flex-col items-center">
                 <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
                 <button
-                  className="bg-blue-500 h-full w-4 rounded-md hover:bg-yellow-400"
+                  className="bg-blue-default h-full overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
                   onClick={handleInput}
                   value={name}
                 />

@@ -4,10 +4,10 @@ const Navbar = () => (
   // const Navbar = ({ data }) => (
   <nav className="grid grid-cols-6 gap-4 rounded-md overflow-hidden shadow bg-white h-auto p-3 px-10">
     <div className="flex col-start-1 col-end-3 items-center">
-      <button className="material-icons text-white shadow-md flex bg-blue-600 hover:bg-blue-700 rounded-full h-10 w-10 items-center justify-center">
+      <button className="material-icons text-white shadow-md flex bg-blue-default hover:bg-blue-700 rounded-full h-10 w-10 items-center justify-center">
         add
       </button>
-      <p className="px-5 text-base text-blue-600 uppercase">Nova Safra</p>
+      <p className="px-5 text-base text-blue-800 uppercase">Nova Safra</p>
     </div>
     <div className="flex col-end-7 col-span-2 items-center justify-end">
       <button
