@@ -1,71 +1,94 @@
 import { Component } from "react";
+import { Line } from "react-chartjs-2";
+import useSWR from "swr";
+import PropTypes from "prop-types";
+import React from "react";
 
-class ROCcurves extends Component {
-  chartRef = React.createRef();
+function fetcher(url) {
+  return fetch(url).then((r) => r.json());
+}
 
-  componentDidMount() {
-    const ctx = this.chartRef.current.getContext("2d");
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
-        datasets: [
-          {
-            type: "line",
-            borderColor: "#000",
-            data: [0, 100, 200, 300, 400, 500],
-            borderDash: [8, 4],
-            fill: false
-          },
-          {
-            type: "line",
-            borderColor: "#ff56ff",
-            data: [0, 410, 450, 490, 499, 500],
-            lineTension: 0.9,
-            borderDash: [4],
-            fill: false
-          },
-          {
-            type: "line",
-            borderColor: "#1236f9",
-            data: [0, 310, 267, 464, 418, 500],
-            borderDash: [8, 4],
-            fill: false
-          },
-          {
-            type: "line",
-            borderColor: "#62bb6d",
-            data: [0, 320, 300, 444, 408, 500],
-            fill: false
-          },
-          {
-            type: "line",
-            borderColor: "#000",
-            data: [0, 290, 340, 444, 488, 500],
-            fill: false
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: false
+function Plot(props) {
+  const route = "roc_curve";
+  const { data, error } = useSWR(
+    "/api/api_inativo?route=" + route + "&key=" + props.safra,
+    fetcher
+  );
+  const feature = [];
+  const valor = [];
+  let title = data?.menssage;
+  if (!data) title = "Carregando...";
+  if (error) title = "TOP FEATURES DO TREINO";
+  let objs = [];
+  data?.data.map((aux) => {
+    objs = JSON.parse(aux.json.replace(/'/g, '"'));
+  });
+
+  const state = {
+    data: {
+      labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
+      datasets: [
+        {
+          label: "Taxa de Inadimplência",
+          backgroundColor: "rgba(249, 142, 28,0.75)",
+          borderColor: "#ea6227",
+          data: objs.x_0,
+          lineTension: 0.9,
+          fill: false,
         },
-        legend: { display: false }
-      }
-    });
-  }
+        {
+          label: "y_0",
+          borderColor: "#ff56ff",
+          data: objs.y_0,
+          borderDash: [8, 4],
+          lineTension: 0.9,
+          fill: false,
+        },
+        {
+          label: "x_1",
+          borderColor: "#1236f9",
+          borderDash: [8, 4],
+          data: objs.x_1,
+          lineTension: 0.9,
+          fill: false,
+        },
+        {
+          label: "y_1",
+          borderColor: "#62bb6d",
+          data: objs.y_1,
+          lineTension: 0.9,
+          fill: false,
+        },
+      ],
+    },
+  };
 
+  return (
+    <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
+      <p className="text-base uppercase">{title}</p>
+      <p className="text-sm font-bold">Safra: {props.safra}</p>
+      <br />
+      <Line
+        options={{
+          legend: {
+            display: false,
+          },
+          responsive: true,
+        }}
+        data={state.data}
+      />
+    </div>
+  );
+}
+
+class ROCcurves extends React.Component {
   render() {
-    return (
-      <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
-        <p className="text-base uppercase">AUC ROC Curves</p>
-        <p className="text-sm font-bold">Safra: 201802</p>
-        <br/> 
-
-        <canvas id="myChart" ref={this.chartRef} />
-      </div>
-    );
+    return <Plot safra={this.props.safra} />;
   }
 }
+
+ROCcurves.propTypes = {
+  props: PropTypes.string.isRequired,
+};
 
 export default ROCcurves;

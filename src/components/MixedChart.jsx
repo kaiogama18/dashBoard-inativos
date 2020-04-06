@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { HorizontalBar, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import useSWR from "swr";
 import PropTypes from "prop-types";
 import React from "react";
@@ -45,6 +45,7 @@ function Plot(props) {
       ],
       datasets: [
         {
+          type: "bar",
           label: "Distribuição da População",
           borderColor: "#e1aa10",
           backgroundColor: "rgba(49, 130, 206,0.8)",
@@ -52,7 +53,6 @@ function Plot(props) {
         },
         {
           label: "Taxa de Inadimplência",
-          type: "line",
           borderColor: "#de1414",
           borderDash: [8, 4],
           data: objs.x_inad,
@@ -66,7 +66,7 @@ function Plot(props) {
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {props.safra}</p>
       <br />
-      <Bar
+      <Line
         options={{
         
           responsive: true,

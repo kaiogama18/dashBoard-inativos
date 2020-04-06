@@ -53,7 +53,7 @@ function Crop() {
       <div className="grid grid-cols-2 col-span-2 gap-4">
         <FeaturePlot safra={valuekey} />
         <KsPlot safra={auxSafra} />
-        <ROCcurves safra={auxSafra} />
+        <ROCcurves safra={valuekey} />
         <MixedChart safra={valuekey} />
       </div>
       <ConfusionPlot safra={auxSafra} />
