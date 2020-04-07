@@ -62,7 +62,6 @@ function Plot(props) {
       <br />
       <Line
         options={{
-        
           responsive: true,
         }}
         data={state.data}

@@ -13,25 +13,109 @@ function Plot(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-  const feature = [];
-  const valor = [];
+  let feature = [];
+  let valor = [];
   let title = data?.menssage;
   if (!data) title = "Carregando...";
   if (error) title = "TOP FEATURES DO TREINO";
-
   data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
 
-  const state = {
+  let dataArray = valor;
+  let dataIndexes = dataArray.map((d, i) => i);
+  dataIndexes.sort((a, b) => {
+    return dataArray[a] - dataArray[b];
+  });
+  dataArray.sort((a, b) => a - b);
+  let newMeta = [];
+  let newLabels = [];
+  data?.data.forEach((bar, i) => {
+    let newIndex = dataIndexes.indexOf(i);
+    newMeta[newIndex] = bar;
+    newLabels[newIndex] = feature[i];
+  });
+  feature = newLabels;
+
+  function randomColorFactor() {
+    return Math.round(Math.random() * 255);
+  }
+  function randomColor(opacity) {
+    return (
+      "rgba(" +
+      randomColorFactor() +
+      "," +
+      randomColorFactor() +
+      "," +
+      randomColorFactor() +
+      "," +
+      (opacity || ".3") +
+      ")"
+    );
+  }
+  var config = {
+    type: "line",
     data: {
-      labels: feature,
+      labels: feature.reverse(),
       datasets: [
         {
-          backgroundColor: "rgba(10, 44, 209,0.75)",
-          data: valor,
+          label:"Importância",
+          data: valor.reverse(),
+          fill: false,
+          borderDash: [5, 5],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.75)",
+            "rgba(54, 162, 235, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(153, 102, 255, 0.75)",
+            "rgba(255, 159, 64, 0.75)",
+            "rgba(255, 99, 132, 0.75)",
+            "rgba(54, 162, 235, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(153, 102, 255, 0.75)",
+            "rgba(255, 159, 64, 0.75)",
+            "rgba(196, 37, 125, 0.75)",
+            "rgba(48, 255, 210, 0.75)",
+            "rgba(255, 91, 25, 0.75)",
+          ],
         },
       ],
     },
+
+    options: {
+      animation: {
+        easing: "easeInOutBack",
+      },
+      responsive: true,
+      title: {
+        display: true,
+        text: "Chart.js Time Scale",
+      },
+      pan: {
+        enabled: true,
+        mode: "x",
+        speed: 10,
+        threshold: 10,
+      },
+      zoom: {
+        enabled: true,
+        drag: false,
+        mode: "xy",
+        limits: {
+          max: 10,
+          min: 0.5,
+        },
+      },
+    },
   };
+
+  config.data.datasets.forEach(function (dataset) {
+    dataset.borderColor = randomColor(1);
+    // dataset.backgroundColor = randomColor(0.75);
+    dataset.pointBorderColor = randomColor(0.7);
+    dataset.pointBackgroundColor = randomColor(0.5);
+    dataset.pointBorderWidth = 1;
+  });
 
   return (
     <div className="rounded-md overflow-hidden shadow bg-white p-6 py-4">
@@ -40,12 +124,9 @@ function Plot(props) {
       <br />
       <HorizontalBar
         options={{
-          legend: {
-            display: false,
-          },
           responsive: true,
         }}
-        data={state.data}
+        data={config.data}
       />
     </div>
   );
