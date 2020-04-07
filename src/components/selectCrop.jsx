@@ -31,8 +31,8 @@ function Crop() {
         <div className="flex-col self-center">
           <p className="text-xl uppercase">{title}</p>
           <p className="text-sm">
-            Delize o botão para selecionar o ano e <br />
-            clique no mês correspondente
+            Clique o botão para selecionar o ano e <br />
+            mês correspondente
           </p>
         </div>
         <div className="grid grid-cols-12 flex justify-center m-1 col-span-2 ">
