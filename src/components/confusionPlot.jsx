@@ -52,6 +52,14 @@ function Plot(props) {
           valueType: "Category",
           labels: ["1", "0"],
         }}
+        // paletteSettings={{
+        //   palette: [
+        //     { color: "#C06C84" },
+        //     { color: "#6C5B7B" },
+        //     { color: "#355C7D" },
+        //   ],
+        //   type: "Gradient",
+        // }}
         dataSource={[
           [true_n, false_p],
           [false_n, true_p],

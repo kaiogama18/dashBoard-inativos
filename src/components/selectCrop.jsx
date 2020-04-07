@@ -15,7 +15,7 @@ function Crop() {
   const [valuekey, setCount] = useState(201803);
 
   // Chart.defaults.scale.gridLines.display = false;
-  Chart.defaults.global.animation.duration = 2000;
+  // Chart.defaults.global.animation.duration = 2000;
 
   const { data, error } = useSWR("/api/inativo", fetcher);
   let title = data?.menssage;
@@ -41,7 +41,7 @@ function Crop() {
               <div className="m-1 flex flex-col items-center">
                 <p className="text-xs text-blue-800 font-bold mb-3">{name}</p>
                 <button
-                  className="bg-blue-default h-24 overflow-hidden shadow-lg w-4 rounded-md hover:bg-yellow-400"
+                  className="bg-blue-default h-24 overflow-hidden shadow-lg w-6 rounded-md hover:bg-yellow-400"
                   onClick={() => setCount(name)}
                   value={name}
                 />

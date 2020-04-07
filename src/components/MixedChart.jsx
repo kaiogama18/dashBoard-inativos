@@ -46,10 +46,14 @@ function Plot(props) {
           data: objs.x_dist,
         },
         {
+          fill: true,
           label: "Taxa de Inadimplência",
-          borderColor: "#de1414",
-          borderDash: [8, 4],
+          backgroundColor: "rgba(244, 144, 128, 0.8)",
           data: objs.x_inad,
+          borderDash: [8, 8],
+          borderColor: "#de1414",
+        
+
         },
       ],
     },
