@@ -76,8 +76,8 @@ class MixedChart extends React.Component {
   }
 }
 
-MixedChart.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// MixedChart.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default MixedChart;

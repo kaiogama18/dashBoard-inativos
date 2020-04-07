@@ -51,32 +51,40 @@ function Plot(props) {
       ")"
     );
   }
+
+  var canvas = document.createElement("canvas");
+  window.ctx = canvas.getContext("2d");
+
+  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+  gradientStroke.addColorStop(0, "#80b6f4");
+  gradientStroke.addColorStop(1, "#f49080");
+
   var config = {
     type: "line",
     data: {
       labels: feature.reverse(),
       datasets: [
         {
-          label:"Importância",
+          label: "Importância",
           data: valor.reverse(),
           fill: false,
           borderDash: [5, 5],
           backgroundColor: [
-            "rgba(255, 99, 132, 0.75)",
-            "rgba(54, 162, 235, 0.75)",
-            "rgba(255, 206, 86, 0.75)",
-            "rgba(75, 192, 192, 0.75)",
-            "rgba(153, 102, 255, 0.75)",
-            "rgba(255, 159, 64, 0.75)",
-            "rgba(255, 99, 132, 0.75)",
-            "rgba(54, 162, 235, 0.75)",
-            "rgba(255, 206, 86, 0.75)",
-            "rgba(75, 192, 192, 0.75)",
-            "rgba(153, 102, 255, 0.75)",
-            "rgba(255, 159, 64, 0.75)",
             "rgba(196, 37, 125, 0.75)",
-            "rgba(48, 255, 210, 0.75)",
+            "rgba(255, 99, 132, 100)",
             "rgba(255, 91, 25, 0.75)",
+            "rgba(54, 162, 235, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(153, 102, 255, 0.75)",
+            "rgba(255, 159, 64, 0.75)",
+            "rgba(255, 99, 132, 0.75)",
+            "rgba(54, 162, 235, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(153, 102, 255, 0.75)",
+            "rgba(255, 159, 64, 0.75)",
+            "rgba(48, 255, 210, 0.75)",
           ],
         },
       ],
@@ -111,7 +119,7 @@ function Plot(props) {
 
   config.data.datasets.forEach(function (dataset) {
     dataset.borderColor = randomColor(1);
-    // dataset.backgroundColor = randomColor(0.75);
+    // dataset.backgroundColor = gradientStroke;
     dataset.pointBorderColor = randomColor(0.7);
     dataset.pointBackgroundColor = randomColor(0.5);
     dataset.pointBorderWidth = 1;
@@ -138,8 +146,8 @@ class FeaturePlot extends React.Component {
   }
 }
 
-FeaturePlot.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// FeaturePlot.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default FeaturePlot;

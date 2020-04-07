@@ -7,7 +7,7 @@ import getHost from "../utils/get-host";
 import SelectCrop from "../components/selectCrop";
 
 function Index({ props }) {
-  console.log("[LEPRS] ---> avatarUrl: ", props);
+  // console.log("[LEPRS] ---> avatarUrl: ", props);
   return (
     <Layout>
       <SelectCrop />

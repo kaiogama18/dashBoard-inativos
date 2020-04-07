@@ -69,8 +69,8 @@ class ConfusionPlot extends React.Component {
   }
 }
 
-ConfusionPlot.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// ConfusionPlot.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default ConfusionPlot;

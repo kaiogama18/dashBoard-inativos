@@ -12,12 +12,11 @@ function Results(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-  // console.log("[Leprs] -- TrainingResults: ", data);
   let title = data?.menssage;
   if (!data) title = "Carregando...";
   if (error) title = "sem internet";
   return (
-    <div className="shadow rounded-md p-6 bg-blue-default text-white uppercase">
+    <div className="shadow rounded-md p-6 bg-blue-600 text-white uppercase">
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (
@@ -44,8 +43,8 @@ class TrainingResults extends React.Component {
   }
 }
 
-TrainingResults.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// TrainingResults.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default TrainingResults;

@@ -21,7 +21,7 @@ function Plot(props) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  console.log("[Tilte]" + objs.x_ks);
+  // console.log("[Tilte]" + objs.x_ks);
 
   // let labels = [];
   // data?.data.map((aux) => {
@@ -112,8 +112,8 @@ class KsPlot extends React.Component {
   }
 }
 
-KsPlot.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// KsPlot.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default KsPlot;

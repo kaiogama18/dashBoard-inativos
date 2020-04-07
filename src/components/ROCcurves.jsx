@@ -87,8 +87,8 @@ class ROCcurves extends React.Component {
   }
 }
 
-ROCcurves.propTypes = {
-  props: PropTypes.string.isRequired,
-};
+// ROCcurves.propTypes = {
+//   props: PropTypes.string.isRequired,
+// };
 
 export default ROCcurves;
