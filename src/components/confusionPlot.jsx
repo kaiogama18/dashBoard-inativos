@@ -37,7 +37,7 @@ function Plot(props) {
   if (!data) true_p = "0.0";
 
   return (
-    <div className="self-start rounded-md overflow-hidden shadow bg-white p-6 ">
+    <div className="self-start rounded-md overflow-hidden  bg-white p-6 ">
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {ano}</p>
       <br />
