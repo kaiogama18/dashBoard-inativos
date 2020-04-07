@@ -2,6 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import useSWR from "swr";
 import { Line } from "react-chartjs-2";
+import "chartjs-plugin-annotation";
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -21,28 +22,62 @@ function Plot(props) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  // console.log("[Tilte]" + objs.x_ks);
+  var originalLineDraw = Chart.controllers.line.prototype.draw;
 
-  // let labels = [];
-  // data?.data.map((aux) => {
-  //   labels = JSON.parse(aux.json);
-  // });
-  // console.log("[Tilte]" + labels[0])
+  Chart.helpers.extend(Chart.controllers.line.prototype, {
+    draw: function () {
+      originalLineDraw.apply(this, arguments);
 
-  const state = {
+      var chart = this.chart;
+      var ctx = chart.chart.ctx;
+
+      var index = chart.config.data.lineAtIndex;
+      if (index) {
+        var xaxis = chart.scales["x-axis-0"];
+        var yaxis = chart.scales["y-axis-0"];
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+        ctx.strokeStyle = "#ff0000";
+        ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+        ctx.stroke();
+        ctx.restore();
+      }
+    },
+  });
+
+
+  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+  gradientStroke.addColorStop(0, "#80b6f4");
+  gradientStroke.addColorStop(1, "#f49080");
+
+  var config = {
+    type: "line",
     data: {
-      labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
+      labels: [
+        "[0,10]",
+        "[10,20]",
+        "[20,30]",
+        "[30,40]",
+        "[40,50]",
+        "[50,60]",
+        "[60,70]",
+        "[70,80]",
+        "[80,90]",
+        "[90,100]",
+      ],
       datasets: [
         {
-          label: "Taxa de Inadimplência",
+          label: "0.535854515034651 ",
           backgroundColor: "rgba(249, 142, 28,0.75)",
-          borderColor: "#ea6227",
+          borderColor:  gradientStroke,
           data: objs.x_0,
           lineTension: 0.9,
           fill: false,
         },
         {
-          label: "y_0",
+          label: "0.3250643575941961",
           borderColor: "#ff56ff",
           data: objs.y_0,
           borderDash: [8, 4],
@@ -50,7 +85,7 @@ function Plot(props) {
           fill: false,
         },
         {
-          label: "x_1",
+          label: "0.535854515034651",
           borderColor: "#1236f9",
           borderDash: [8, 4],
           data: objs.x_1,
@@ -58,31 +93,14 @@ function Plot(props) {
           fill: false,
         },
         {
-          label: "y_1",
+          label: "0.6860759493670886",
           borderColor: "#62bb6d",
           data: objs.y_1,
           lineTension: 0.9,
           fill: false,
         },
       ],
-      options: {
-        annotation: {
-          annotations: [
-            {
-              type: "line",
-              mode: "vertical",
-              scaleID: "x-axis-0",
-              value: "0.8",
-              borderColor: "red",
-              label: {
-                content: "TODAY",
-                enabled: true,
-                position: "top",
-              },
-            },
-          ],
-        },
-      },
+      lineAtIndex: 2,
     },
   };
 
@@ -95,12 +113,28 @@ function Plot(props) {
 
       <Line
         options={{
-          legend: {
-            display: false,
-          },
+          // legend: {
+          //   display: false,
+          // },
           responsive: true,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+          },
         }}
-        data={state.data}
+        data={config.data}
       />
     </div>
   );

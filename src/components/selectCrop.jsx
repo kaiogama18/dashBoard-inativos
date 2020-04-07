@@ -14,7 +14,7 @@ function fetcher(url) {
 function Crop() {
   const [valuekey, setCount] = useState(201803);
 
-  Chart.defaults.scale.gridLines.display = false;
+  // Chart.defaults.scale.gridLines.display = false;
   Chart.defaults.global.animation.duration = 2000;
 
   const { data, error } = useSWR("/api/inativo", fetcher);

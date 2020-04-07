@@ -63,6 +63,22 @@ function Plot(props) {
       <Line
         options={{
           responsive: true,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+          },
         }}
         data={state.data}
       />

@@ -69,7 +69,7 @@ function Plot(props) {
           data: valor.reverse(),
           fill: false,
           borderDash: [5, 5],
-          backgroundColor: [
+          backgroundColor:  [
             "rgba(196, 37, 125, 0.75)",
             "rgba(255, 99, 132, 100)",
             "rgba(255, 91, 25, 0.75)",
@@ -89,32 +89,6 @@ function Plot(props) {
         },
       ],
     },
-
-    options: {
-      animation: {
-        easing: "easeInOutBack",
-      },
-      responsive: true,
-      title: {
-        display: true,
-        text: "Chart.js Time Scale",
-      },
-      pan: {
-        enabled: true,
-        mode: "x",
-        speed: 10,
-        threshold: 10,
-      },
-      zoom: {
-        enabled: true,
-        drag: false,
-        mode: "xy",
-        limits: {
-          max: 10,
-          min: 0.5,
-        },
-      },
-    },
   };
 
   config.data.datasets.forEach(function (dataset) {
@@ -133,6 +107,22 @@ function Plot(props) {
       <HorizontalBar
         options={{
           responsive: true,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+          },
         }}
         data={config.data}
       />

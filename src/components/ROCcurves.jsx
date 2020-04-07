@@ -14,22 +14,56 @@ function Plot(props) {
     "/api/api_inativo?route=" + route + "&key=" + props.safra,
     fetcher
   );
-  const feature = [];
-  const valor = [];
   let title = data?.menssage;
   if (!data) title = "Carregando...";
-  if (error) title = "TOP FEATURES DO TREINO";
+  if (error) title = "Sem conexão com o servidor";
   let objs = [];
   data?.data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  const state = {
+  // var canvas = document.createElement("canvas");
+  // window.ctx = canvas.getContext("2d");
+  var canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  // window.myLine = new Chart(ctx,  {
+  //   scaleOverride: true,
+  //   scaleSteps: 10,
+  //   scaleStepWidth: 10,
+  //   scaleStartValue: 0,
+  // });
+
+  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+  gradientStroke.addColorStop(0, "#80b6f4");
+  gradientStroke.addColorStop(1, "#f49080");
+
+  console.log("[Lepros] --> graficon ctx: " + ctx);
+
+  function randomColorFactor() {
+    return Math.round(Math.random() * 255);
+  }
+  function randomColor(opacity) {
+    return (
+      "rgba(" +
+      randomColorFactor() +
+      "," +
+      randomColorFactor() +
+      "," +
+      randomColorFactor() +
+      "," +
+      (opacity || ".3") +
+      ")"
+    );
+  }
+
+  var config = {
+    type: "line",
     data: {
       labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
       datasets: [
         {
-          label: "Taxa de Inadimplência",
+          label: "roc_0",
           backgroundColor: "rgba(249, 142, 28,0.75)",
           borderColor: "#ea6227",
           data: objs.x_0,
@@ -37,23 +71,21 @@ function Plot(props) {
           fill: false,
         },
         {
-          label: "y_0",
+          label: "roc_1",
           borderColor: "#ff56ff",
           data: objs.y_0,
           borderDash: [8, 4],
-          lineTension: 0.9,
           fill: false,
         },
         {
-          label: "x_1",
+          label: "mic_avg",
           borderColor: "#1236f9",
-          borderDash: [8, 4],
           data: objs.x_1,
           lineTension: 0.9,
           fill: false,
         },
         {
-          label: "y_1",
+          label: "mac_avg",
           borderColor: "#62bb6d",
           data: objs.y_1,
           lineTension: 0.9,
@@ -63,6 +95,13 @@ function Plot(props) {
     },
   };
 
+  config.data.datasets.forEach(function (dataset) {
+    dataset.borderColor = randomColor(1);
+    dataset.backgroundColor = gradientStroke;
+    dataset.pointBorderColor = randomColor(0.7);
+    dataset.pointBackgroundColor = randomColor(0.5);
+  });
+
   return (
     <div className="self-start rounded-md overflow-hidden shadow bg-white p-6">
       <p className="text-base uppercase">{title}</p>
@@ -70,12 +109,33 @@ function Plot(props) {
       <br />
       <Line
         options={{
-          legend: {
-            display: false,
-          },
+          // legend: {
+          //   display: false,
+          // },
           responsive: true,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+              },
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                },
+                ticks: {
+                  max: 0.010531242686637023,
+                  min: 0.0,
+                  stepSize: 0.001,
+                },
+              },
+            ],
+          },
         }}
-        data={state.data}
+        data={config.data}
       />
     </div>
   );
