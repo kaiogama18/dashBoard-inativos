@@ -4,7 +4,7 @@ import { login } from "../utils/auth";
 
 const Login = () => {
   const [userData, setUserData] = useState({ username: "", error: "" });
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setUserData(Object.assign({}, userData, { error: "" }));
 
@@ -15,7 +15,7 @@ const Login = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({ username }),
       });
       if (response.status === 200) {
         const { token } = await response.json();
@@ -32,24 +32,30 @@ const Login = () => {
       const { response } = error;
       setUserData(
         Object.assign({}, userData, {
-          error: response ? response.statusText : error.message
+          error: response ? response.statusText : error.message,
         })
       );
     }
   };
 
   return (
-    <div className="login-page">
-      <form className="card" onSubmit={handleSubmit}>
-        <img src="/logo.png" />
+    <div className="flex content-center flex-wrap justify-center h-screen bg-blue-500 ">
+      <form
+        className="flex flex-col max-w-sm rounded overflow-hidden shadow-lg bg-white card p-6"
+        onSubmit={handleSubmit}
+      >
+        <img className="self-center" src="/logo.png" />
         <div className="flex flex-col px-6 py-4">
-          <lable>Informe seu usuário do github:</lable>
+          <lable className="ext-base my-2">
+            Informe seu usuário do github:
+          </lable>
           <input
+            className="rounded inline-block  bg-gray-300 px-2 py-2"
             type="text"
             id="username"
             name="username"
             value={userData.username}
-            onChange={event =>
+            onChange={(event) =>
               setUserData(
                 Object.assign({}, userData, { username: event.target.value })
               )
@@ -61,7 +67,12 @@ const Login = () => {
             <input type="checkbox" defaultChecked />
             <lable className="mx-2">Esqueci minha senha</lable>
           </div> */}
-          <button className="hover:bg-blue-700" type="submit">
+        </div>
+        <div class="flex flex-col px-6 py-4">
+          <button
+            className="bg-blue-600  text-white font-bold py-2 px-4 my-2 rounded hover:bg-blue-700"
+            type="submit"
+          >
             Conectar
           </button>
           <a
@@ -71,6 +82,7 @@ const Login = () => {
             Fazer o cadastro agora
           </a>
         </div>
+
         {userData.error && (
           <p className="text-red-700 self-center my-2">
             Error: {userData.error}{" "}
