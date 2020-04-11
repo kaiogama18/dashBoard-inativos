@@ -1,7 +1,7 @@
 import Head from "next/head";
 import NavBarLeft from "./NavBarLeft";
-import Navbar from "./Navbar";
 import PropTypes from "prop-types";
+import Navbar from "./Navbar";
 
 const Layout = ({ children }) => (
   // const { avatarUrl } = props.data;
@@ -15,18 +15,12 @@ const Layout = ({ children }) => (
       />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
       <script type="text/javascript" src="jscript/graph.js"></script>
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-
-
       <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
     </Head>
-    <main className="flex bg-gray-100">
+    <main className="flex flex-row h-screen w-screen bg-gray-100">
       <NavBarLeft />
-      <div className="w-screen h-screen p-6">
-        <Navbar />
-        {children}
-      </div>
+      {children}
     </main>
   </>
 );

@@ -1,8 +1,6 @@
 const NavBarLeft = () => (
-  <aside className="flex relative w-24 h-auto navbar-left justify-center py-6">
-    <div className="py-4">
-      <img className="h-10 w-10" src="/buritech-icon.png" alt="logo" />
-    </div>
+  <aside className="navbar-left flex w-24 h-full justify-center py-6">
+    <img className="h-10 w-10 my-4" src="/buritech-icon.png" alt="logo" />
   </aside>
 );
 

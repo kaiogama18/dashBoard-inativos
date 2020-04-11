@@ -5,12 +5,18 @@ import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
 import getHost from "../utils/get-host";
 import SelectCrop from "../components/selectCrop";
+import Navbar from "../components/Navbar";
 
 function Index({ props }) {
   // console.log("[LEPRS] ---> avatarUrl: ", props);
   return (
     <Layout>
-      <SelectCrop />
+      <div className="w-full w-full p-5">
+        <Navbar />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 mt-5">
+          <SelectCrop />
+        </div>
+      </div>
     </Layout>
   );
 }
