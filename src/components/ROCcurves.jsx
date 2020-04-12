@@ -103,7 +103,7 @@ function Plot(props) {
   });
 
   return (
-    <div className="self-start rounded-md overflow-hidden  bg-white p-6">
+    <div className="overflow-hidden p-5 bg-white">
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {props.safra}</p>
       <br />

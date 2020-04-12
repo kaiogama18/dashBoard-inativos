@@ -93,14 +93,13 @@ function Plot(props) {
 
   config.data.datasets.forEach(function (dataset) {
     dataset.borderColor = randomColor(1);
-    // dataset.backgroundColor = gradientStroke;
     dataset.pointBorderColor = randomColor(0.7);
     dataset.pointBackgroundColor = randomColor(0.5);
     dataset.pointBorderWidth = 1;
   });
 
   return (
-    <div className="rounded-md overflow-hidden  bg-white p-6 py-4">
+    <div className="overflow-hidden p-5 bg-white">
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {props.safra}</p>
       <br />

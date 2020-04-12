@@ -16,11 +16,11 @@ function Results(props) {
   if (!data) title = 'Carregando...';
   if (error) title = 'sem internet';
   return (
-    <div className=" rounded-md p-6 bg-blue-600 text-white uppercase">
+    <div className="flex flex-col overflow-hidden p-5 bg-blue-600 text-white uppercase self-center">
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (
-          <p className="text-base mb-2">
+          <p className="text-base">
             {safra.rotulo} <br />
             <a className="text-2xl font-bold">
               AUC {safra.auc} e KS {safra.ks}

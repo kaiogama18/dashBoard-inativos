@@ -18,7 +18,7 @@ const Layout = ({ children }) => (
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
       <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
     </Head>
-    <main className="flex flex-row h-screen w-screen bg-gray-100">
+    <main className="flex w-ful bg-gray-100">
       <NavBarLeft />
       {children}
     </main>
