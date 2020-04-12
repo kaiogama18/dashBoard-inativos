@@ -1,7 +1,7 @@
-import Head from "next/head";
-import NavBarLeft from "./NavBarLeft";
-import PropTypes from "prop-types";
-import Navbar from "./Navbar";
+import Head from 'next/head';
+import NavBarLeft from './NavBarLeft';
+import PropTypes from 'prop-types';
+import Navbar from './Navbar';
 
 const Layout = ({ children }) => (
   // const { avatarUrl } = props.data;

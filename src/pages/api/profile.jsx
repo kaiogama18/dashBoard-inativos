@@ -1,8 +1,8 @@
-import fetch from "isomorphic-unfetch";
+import fetch from 'isomorphic-unfetch';
 
 export default async (req, res) => {
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("Authorization header missing");
+  if (!('authorization' in req.headers)) {
+    return res.status(401).send('Authorization header missing');
   }
 
   const auth = await req.headers.authorization;

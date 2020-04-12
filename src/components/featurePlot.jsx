@@ -1,23 +1,23 @@
-import { HorizontalBar } from "react-chartjs-2";
-import useSWR from "swr";
-import PropTypes from "prop-types";
-import React from "react";
+import { HorizontalBar } from 'react-chartjs-2';
+import useSWR from 'swr';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
 function Plot(props) {
-  const route = "top_features";
+  const route = 'top_features';
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + props.safra,
-    fetcher
+    '/api/api_inativo?route=' + route + '&key=' + props.safra,
+    fetcher,
   );
   let feature = [];
   let valor = [];
   let title = data?.menssage;
-  if (!data) title = "Carregando...";
-  if (error) title = "TOP FEATURES DO TREINO";
+  if (!data) title = 'Carregando...';
+  if (error) title = 'TOP FEATURES DO TREINO';
   data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
 
   let dataArray = valor;
@@ -40,51 +40,51 @@ function Plot(props) {
   }
   function randomColor(opacity) {
     return (
-      "rgba(" +
+      'rgba(' +
       randomColorFactor() +
-      "," +
+      ',' +
       randomColorFactor() +
-      "," +
+      ',' +
       randomColorFactor() +
-      "," +
-      (opacity || ".3") +
-      ")"
+      ',' +
+      (opacity || '.3') +
+      ')'
     );
   }
 
-  var canvas = document.createElement("canvas");
-  window.ctx = canvas.getContext("2d");
+  var canvas = document.createElement('canvas');
+  window.ctx = canvas.getContext('2d');
 
   var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-  gradientStroke.addColorStop(0, "#80b6f4");
-  gradientStroke.addColorStop(1, "#f49080");
+  gradientStroke.addColorStop(0, '#80b6f4');
+  gradientStroke.addColorStop(1, '#f49080');
 
   var config = {
-    type: "line",
+    type: 'line',
     data: {
       labels: feature.reverse(),
       datasets: [
         {
-          label: "Importância",
+          label: 'Importância',
           data: valor.reverse(),
           fill: false,
           borderDash: [5, 5],
-          backgroundColor:  [
-            "rgba(196, 37, 125, 0.75)",
-            "rgba(255, 99, 132, 100)",
-            "rgba(255, 91, 25, 0.75)",
-            "rgba(54, 162, 235, 0.75)",
-            "rgba(255, 206, 86, 0.75)",
-            "rgba(75, 192, 192, 0.75)",
-            "rgba(153, 102, 255, 0.75)",
-            "rgba(255, 159, 64, 0.75)",
-            "rgba(255, 99, 132, 0.75)",
-            "rgba(54, 162, 235, 0.75)",
-            "rgba(255, 206, 86, 0.75)",
-            "rgba(75, 192, 192, 0.75)",
-            "rgba(153, 102, 255, 0.75)",
-            "rgba(255, 159, 64, 0.75)",
-            "rgba(48, 255, 210, 0.75)",
+          backgroundColor: [
+            'rgba(196, 37, 125, 0.75)',
+            'rgba(255, 99, 132, 100)',
+            'rgba(255, 91, 25, 0.75)',
+            'rgba(54, 162, 235, 0.75)',
+            'rgba(255, 206, 86, 0.75)',
+            'rgba(75, 192, 192, 0.75)',
+            'rgba(153, 102, 255, 0.75)',
+            'rgba(255, 159, 64, 0.75)',
+            'rgba(255, 99, 132, 0.75)',
+            'rgba(54, 162, 235, 0.75)',
+            'rgba(255, 206, 86, 0.75)',
+            'rgba(75, 192, 192, 0.75)',
+            'rgba(153, 102, 255, 0.75)',
+            'rgba(255, 159, 64, 0.75)',
+            'rgba(48, 255, 210, 0.75)',
           ],
         },
       ],

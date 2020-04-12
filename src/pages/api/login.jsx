@@ -1,8 +1,8 @@
-import fetch from "isomorphic-unfetch";
+import fetch from 'isomorphic-unfetch';
 
 export default async (req, res) => {
   const { username } = await req.body;
-  console.log("username", username);
+  console.log('username', username);
   const url = `https://api.github.com/users/${username}`;
 
   try {

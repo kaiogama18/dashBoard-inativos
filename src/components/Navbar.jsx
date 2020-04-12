@@ -1,4 +1,4 @@
-import { logout } from "../utils/auth";
+import { logout } from '../utils/auth';
 
 class Navbar extends React.Component {
   render() {
@@ -29,7 +29,7 @@ class Navbar extends React.Component {
 export default Navbar;
 
 const data = {
-  btn_add: "add",
-  btn_logout: "power_settings_new",
-  btn_add_title: "Nova Safra",
+  btn_add: 'add',
+  btn_logout: 'power_settings_new',
+  btn_add_title: 'Nova Safra',
 };

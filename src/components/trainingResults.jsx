@@ -1,20 +1,20 @@
-import useSWR from "swr";
-import PropTypes from "prop-types";
-import React from 'react'
+import useSWR from 'swr';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
 function Results(props) {
-  const route = "result";
+  const route = 'result';
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + props.safra,
-    fetcher
+    '/api/api_inativo?route=' + route + '&key=' + props.safra,
+    fetcher,
   );
   let title = data?.menssage;
-  if (!data) title = "Carregando...";
-  if (error) title = "sem internet";
+  if (!data) title = 'Carregando...';
+  if (error) title = 'sem internet';
   return (
     <div className=" rounded-md p-6 bg-blue-600 text-white uppercase">
       <p className="text-base font-bold uppercase">{title}</p>
@@ -26,9 +26,9 @@ function Results(props) {
               AUC {safra.auc} e KS {safra.ks}
             </a>
             <br />
-            Instância de Treino:{" "}
+            Instância de Treino:{' '}
             <a className="font-bold">{safra.instancias_treino}</a> <br />
-            Instância de Teste:{" "}
+            Instância de Teste:{' '}
             <a className="font-bold">{safra.instancias_teste}</a>
           </p>
         );

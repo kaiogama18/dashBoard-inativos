@@ -46,6 +46,7 @@
     "next": "^9.3.2",
     "next-cookies": "^2.0.3",
     "next-fonts": "^1.0.3",
+    "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
@@ -55,9 +56,18 @@
     "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
     "@types/node": "^12.12.31",
     "@types/react": "^16.9.26",
+    "babel-eslint": "^10.1.0",
     "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "typescript": "^3.8.3"
   }
 }

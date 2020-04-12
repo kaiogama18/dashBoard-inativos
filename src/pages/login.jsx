@@ -1,39 +1,39 @@
-import React, { useState } from "react";
-import fetch from "isomorphic-unfetch";
-import { login } from "../utils/auth";
+import React, { useState } from 'react';
+import fetch from 'isomorphic-unfetch';
+import { login } from '../utils/auth';
 
 const Login = () => {
-  const [userData, setUserData] = useState({ username: "", error: "" });
+  const [userData, setUserData] = useState({ username: '', error: '' });
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setUserData(Object.assign({}, userData, { error: "" }));
+    setUserData(Object.assign({}, userData, { error: '' }));
 
     const username = userData.username;
-    const url = "api/login";
+    const url = 'api/login';
 
     try {
       const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username }),
       });
       if (response.status === 200) {
         const { token } = await response.json();
         await login({ token });
       } else {
-        console.log("[Leprs]  -- login failed");
+        console.log('[Leprs]  -- login failed');
         let error = new Error(response.statusText);
         error.response = response;
         throw error;
       }
     } catch (error) {
-      console.error("[Leprs] -- Error :( --> ", error);
+      console.error('[Leprs] -- Error :( --> ', error);
 
       const { response } = error;
       setUserData(
         Object.assign({}, userData, {
           error: response ? response.statusText : error.message,
-        })
+        }),
       );
     }
   };
@@ -57,7 +57,7 @@ const Login = () => {
             value={userData.username}
             onChange={(event) =>
               setUserData(
-                Object.assign({}, userData, { username: event.target.value })
+                Object.assign({}, userData, { username: event.target.value }),
               )
             }
           />
@@ -85,7 +85,7 @@ const Login = () => {
 
         {userData.error && (
           <p className="text-red-700 self-center my-2">
-            Error: {userData.error}{" "}
+            Error: {userData.error}{' '}
           </p>
         )}
       </form>

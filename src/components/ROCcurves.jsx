@@ -1,22 +1,22 @@
-import { Component } from "react";
-import { Line } from "react-chartjs-2";
-import useSWR from "swr";
-import PropTypes from "prop-types";
-import React from "react";
+import { Component } from 'react';
+import { Line } from 'react-chartjs-2';
+import useSWR from 'swr';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
 function Plot(props) {
-  const route = "roc_curve";
+  const route = 'roc_curve';
   const { data, error } = useSWR(
-    "/api/api_inativo?route=" + route + "&key=" + props.safra,
-    fetcher
+    '/api/api_inativo?route=' + route + '&key=' + props.safra,
+    fetcher,
   );
   let title = data?.menssage;
-  if (!data) title = "Carregando...";
-  if (error) title = "Sem conexão com o servidor";
+  if (!data) title = 'Carregando...';
+  if (error) title = 'Sem conexão com o servidor';
   let objs = [];
   data?.data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
@@ -24,8 +24,8 @@ function Plot(props) {
 
   // var canvas = document.createElement("canvas");
   // window.ctx = canvas.getContext("2d");
-  var canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+  var canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
 
   // window.myLine = new Chart(ctx,  {
   //   scaleOverride: true,
@@ -35,58 +35,58 @@ function Plot(props) {
   // });
 
   var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-  gradientStroke.addColorStop(0, "#80b6f4");
-  gradientStroke.addColorStop(1, "#f49080");
+  gradientStroke.addColorStop(0, '#80b6f4');
+  gradientStroke.addColorStop(1, '#f49080');
 
-  console.log("[Lepros] --> graficon ctx: " + ctx);
+  console.log('[Lepros] --> graficon ctx: ' + ctx);
 
   function randomColorFactor() {
     return Math.round(Math.random() * 255);
   }
   function randomColor(opacity) {
     return (
-      "rgba(" +
+      'rgba(' +
       randomColorFactor() +
-      "," +
+      ',' +
       randomColorFactor() +
-      "," +
+      ',' +
       randomColorFactor() +
-      "," +
-      (opacity || ".3") +
-      ")"
+      ',' +
+      (opacity || '.3') +
+      ')'
     );
   }
 
   var config = {
-    type: "line",
+    type: 'line',
     data: {
-      labels: ["0.0", "0.2", "0.4", "0.6", "0.8", "1.0"],
+      labels: ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0'],
       datasets: [
         {
-          label: "roc_0",
-          backgroundColor: "rgba(249, 142, 28,0.75)",
-          borderColor: "#ea6227",
+          label: 'roc_0',
+          backgroundColor: 'rgba(249, 142, 28,0.75)',
+          borderColor: '#ea6227',
           data: objs.x_0,
           lineTension: 0.9,
           fill: false,
         },
         {
-          label: "roc_1",
-          borderColor: "#ff56ff",
+          label: 'roc_1',
+          borderColor: '#ff56ff',
           data: objs.y_0,
           borderDash: [8, 4],
           fill: false,
         },
         {
-          label: "mic_avg",
-          borderColor: "#1236f9",
+          label: 'mic_avg',
+          borderColor: '#1236f9',
           data: objs.x_1,
           lineTension: 0.9,
           fill: false,
         },
         {
-          label: "mac_avg",
-          borderColor: "#62bb6d",
+          label: 'mac_avg',
+          borderColor: '#62bb6d',
           data: objs.y_1,
           lineTension: 0.9,
           fill: false,

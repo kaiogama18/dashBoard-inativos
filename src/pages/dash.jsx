@@ -1,11 +1,11 @@
-import React from "react";
-import { Router } from "next/router";
-import nextCookie from "next-cookies";
-import { withAuthSync } from "../utils/auth";
-import getHost from "../utils/get-host";
-import fetch from "isomorphic-unfetch";
+import React from 'react';
+import { Router } from 'next/router';
+import nextCookie from 'next-cookies';
+import { withAuthSync } from '../utils/auth';
+import getHost from '../utils/get-host';
+import fetch from 'isomorphic-unfetch';
 
-const Dash = props => {
+const Dash = (props) => {
   const { name, login, avatarUrl } = props.data;
   return (
     <>
@@ -28,25 +28,25 @@ const Dash = props => {
   );
 };
 
-Dash.getInitialProps = async ctx => {
+Dash.getInitialProps = async (ctx) => {
   const { token } = nextCookie(ctx);
-  const apiUrl = (getHost(ctx.req) + "api/profile");
+  const apiUrl = getHost(ctx.req) + 'api/profile';
   const redirectError = () =>
-    typeof window !== "undefined"
-      ? Router.push("/login")
-      : ctx.res.writeHead(302, { Location: "/login" }).end();
+    typeof window !== 'undefined'
+      ? Router.push('/login')
+      : ctx.res.writeHead(302, { Location: '/login' }).end();
 
   try {
     const response = await fetch(apiUrl, {
-      credentials: "include",
+      credentials: 'include',
       headers: {
-        Authorization: JSON.stringify({ token })
-      }
+        Authorization: JSON.stringify({ token }),
+      },
     });
 
     if (response.ok) {
       const js = await response.json();
-      console.log("[Leprs] -- js: ", js);
+      console.log('[Leprs] -- js: ', js);
       return js;
     } else {
       return await redirectError();

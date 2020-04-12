@@ -1,14 +1,14 @@
-import fetch from "node-fetch";
-import Layout from "../components/Layout";
-import { Router } from "next/router";
-import nextCookie from "next-cookies";
-import { withAuthSync } from "../utils/auth";
-import getHost from "../utils/get-host";
-import SelectCrop from "../components/selectCrop";
-import Navbar from "../components/Navbar";
+import React from 'react';
+import fetch from 'node-fetch';
+import { Router } from 'next/router';
+import nextCookie from 'next-cookies';
+import Layout from '../components/Layout';
+import { withAuthSync } from '../utils/auth';
+import getHost from '../utils/get-host';
+import SelectCrop from '../components/selectCrop';
+import Navbar from '../components/Navbar';
 
-function Index({ props }) {
-  // console.log("[LEPRS] ---> avatarUrl: ", props);
+function Index() {
   return (
     <Layout>
       <div className="w-full w-full p-5">
@@ -23,15 +23,15 @@ function Index({ props }) {
 
 Index.getInitialProps = async (ctx) => {
   const { token } = nextCookie(ctx);
-  const apiUrl = getHost(ctx.req) + "api/profile";
+  const apiUrl = `${getHost(ctx.req)}api/profile`;
   const redirectError = () =>
-    typeof window !== "undefined"
-      ? Router.push("/login")
-      : ctx.res.writeHead(302, { Location: "/login" }).end();
+    typeof window !== 'undefined'
+      ? Router.push('/login')
+      : ctx.res.writeHead(302, { Location: '/login' }).end();
 
   try {
     const response = await fetch(apiUrl, {
-      credentials: "include",
+      credentials: 'include',
       headers: {
         Authorization: JSON.stringify({ token }),
       },
@@ -40,12 +40,10 @@ Index.getInitialProps = async (ctx) => {
     if (response.ok) {
       const js = await response.json();
       return js;
-    } else {
-      return await redirectError();
     }
+    return await redirectError();
   } catch (error) {
     return redirectError();
   }
 };
 export default withAuthSync(Index);
-// export default Index;

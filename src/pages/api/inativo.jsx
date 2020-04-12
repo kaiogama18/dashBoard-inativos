@@ -1,13 +1,13 @@
-import fetch from "isomorphic-unfetch";
+import fetch from 'isomorphic-unfetch';
 
 export default (req, res) => {
-  const url = "https://inativos.appspot.com/home/safras";
+  const url = 'https://inativos.appspot.com/home/safras';
   const request = async () => {
     try {
       const response = await fetch(url);
-      if(response.ok) {
-      const json = await response.json();
-      return res.status(200).json(json);
+      if (response.ok) {
+        const json = await response.json();
+        return res.status(200).json(json);
       } else {
         error.response = response;
         throw error;

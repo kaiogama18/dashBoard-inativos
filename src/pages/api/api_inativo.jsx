@@ -1,4 +1,4 @@
-import fetch from "isomorphic-unfetch";
+import fetch from 'isomorphic-unfetch';
 
 export default (req, res) => {
   const token = req.query;
@@ -6,8 +6,8 @@ export default (req, res) => {
   const request = async () => {
     try {
       const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ safra: token.key }),
       });
       if (response.ok) {
