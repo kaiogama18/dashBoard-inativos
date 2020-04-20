@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { login } from '../utils/auth';
+import Link from 'next/link';
 
 const Login = () => {
   const [userData, setUserData] = useState({ username: '', error: '' });
@@ -75,12 +76,11 @@ const Login = () => {
           >
             Conectar
           </button>
-          <a
-            href="#"
-            className="text-blue-600 hover:text-blue-700 self-center my-2"
-          >
-            Fazer o cadastro agora
-          </a>
+          <Link href="/cadastro">
+            <a className="text-blue-600 hover:text-blue-700 self-center my-2">
+              Fazer o cadastro agora
+            </a>
+          </Link>
         </div>
 
         {userData.error && (
