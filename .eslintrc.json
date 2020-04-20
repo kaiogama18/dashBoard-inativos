@@ -4,16 +4,47 @@
     "browser": true,
     "jest": true
   },
-  "plugins": ["react", "jsx-a11y", "prettier", "jest"],
+  // "plugins": ["react", "jsx-a11y", "prettier", "jest"],
+  "plugins": ["flowtype", "css-modules", "prettier", "jest"],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "plugin:css-modules/recommended",
     "prettier",
+    "prettier/flowtype",
     "prettier/react",
-    "airbnb"
+    "stylelint-config-recommended"
   ],
+
+  "globals": {
+    "__DEV__": true
+  },
+
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "packageDir": "." }],
+
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extends",
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ],
+
+    "block-no-empty": null,
+    "unit-whitelist": ["em", "rem", "s"],
+    "declaration-block-trailing-semicolon": null,
+    "no-descending-specificity": null,
+
+    "css.validate": false, // Disable css built-in lint
+    "stylelint.enable": true, // Enable sytlelin
+
     "no-console": [
       "error",
       {

@@ -49,3 +49,39 @@ canvas {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+.login-register {
+  @apply flex justify-center items-center h-screen bg-blue-500;
+
+  form {
+    @apply flex flex-col rounded-md overflow-hidden shadow-lg bg-white p-5;
+
+    img {
+      @apply w-64 self-center;
+    }
+
+    label {
+      @apply text-lg mt-5;
+    }
+
+    input {
+      @apply rounded inline-block  bg-gray-300 p-2;
+    }
+
+    button {
+      @apply mt-10;
+    }
+
+    a {
+      @apply text-blue-600 self-center my-2;
+
+      &:hover {
+        @apply text-blue-700;
+      }
+    }
+
+    .alert {
+      @apply text-red-700 self-center my-2;
+    }
+  }
+}

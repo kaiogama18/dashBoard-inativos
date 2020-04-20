@@ -13,6 +13,13 @@
     "not op_mini all"
   ],
   "scripts": {
+    "precommit": "lint-staged",
+    "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
+    "lint-css": "stylelint \"src/**/*.{css,less,styl,scss,sass,sss}\"",
+    "lint": "yarn run lint-js && yarn run lint-css",
+    "fix-js": "yarn run lint-js --fix",
+    "fix-css": "yarn run lint-css --fix",
+    "fix": "yarn run fix-js && yarn run fix-css",
     "dev": "next",
     "build": "next build",
     "start": "next start -p $PORT",
@@ -29,6 +36,12 @@
   "bugs": {
     "url": "https://github.com/kaiogama18/dashBoard-inativos/issues"
   },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "homepage": "https://github.com/kaiogama18/dashBoard-inativos#readme",
   "dependencies": {
     "@syncfusion/ej2-react-heatmap": "^17.4.51",
@@ -56,10 +69,13 @@
     "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
-    "@types/node": "^12.12.31",
-    "@types/react": "^16.9.26",
     "babel-eslint": "^10.1.0",
     "browser-sync": "^2.26.7",
     "eslint": "^6.8.0",
@@ -68,8 +84,17 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "flow-bin": "^0.122.0",
+    "jest": "^25.3.0",
+    "pure-react-carousel": "^1.27.0",
+    "react-responsive-carousel": "^3.2.4",
+    "react-socks": "^2.1.0",
+    "stylelint": "^13.3.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
     "postcss-flexbugs-fixes": "^4.2.0",
-    "postcss-preset-env": "^6.7.0",
-    "typescript": "^3.8.3"
+    "stylelint-config-recommended": "^3.0.0",
+
+    "postcss-preset-env": "^6.7.0"
   }
 }
