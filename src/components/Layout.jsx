@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 export default ({ children }) => {
   return (
     <>
-      <main className="flex w-ful bg-gray-100">
+      <main id="swup" className="flex w-ful bg-gray-100 transition-fade">
         <NavBarLeft />
         {children}
       </main>

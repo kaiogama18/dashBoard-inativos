@@ -1,31 +1,60 @@
-/* purgecss start ignore */
-@tailwind base;
-@tailwind components;
-/* purgecss end ignore */
-@tailwind utilities;
-
 @import url(https://fonts.googleapis.com/css?family=Vibur);
-$grey: #3e3e3e;
-$text_color_default: $grey;
-$btn_default: #4299e1;
-$blue_default: #0926fe;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+$--grey: #3e3e3e;
+$--text_color_default: $--grey;
+$--btn_default: #4299e1;
+$--blue_default: #0926fe;
+
+:root {
+  /*
+   * Typography
+   * ======================================================================== */
+
+  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+
+  /*
+   * Layout
+   * ======================================================================== */
+
+  --max-content-width: 1000px;
+
+  /*
+   * Media queries breakpoints
+   * ======================================================================== */
+
+  --screen-xs-min: 480px; /* Extra small screen / phone */
+  --screen-sm-min: 768px; /* Small screen / tablet */
+  --screen-md-min: 992px; /* Medium screen / desktop */
+  --screen-lg-min: 1200px; /* Large screen / wide desktop */
+}
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 0.0625rem;
-  color: $text_color_default;
-  height: 100% !important;
-  margin: 0px !important;
-  padding: 0px !important;
+  color: $--text_color_default;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-color: #f7fafc;
 }
 
+.transition-fade {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
 .bg-blue-default {
-  background-color: $blue_default;
+  background-color: $--blue_default;
 }
 
 .navbar-left {
@@ -40,14 +69,10 @@ body {
 
 .bar-char {
   canvas {
-    height: 20vh !important;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
   }
-}
-
-canvas {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 .login-register {
@@ -65,16 +90,24 @@ canvas {
     }
   }
 
-  @apply flex justify-center items-center h-screen bg-blue-500;
+  @apply flex flex-col justify-center items-center h-screen bg-blue-400;
+
+  .login-register-title {
+    @apply text-xl border-b-4 border-gray-300 uppercase;
+  }
+
+  img {
+    @apply w-64 self-center mb-12;
+  }
 
   form {
-    animation: cardAnimation 150ms ease-out;
+    animation: cardAnimation 200ms ease-out;
     animation-fill-mode: backwards;
 
-    @apply flex flex-col rounded-md overflow-hidden shadow-lg bg-white p-5;
+    @apply flex flex-col rounded-md max-w-md w-full py-12 px-6 shadow-lg bg-white;
 
-    img {
-      @apply w-64 self-center;
+    .login-password {
+      @apply absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5;
     }
 
     label {
@@ -86,11 +119,11 @@ canvas {
     }
 
     button {
-      @apply mt-10;
+      @apply mt-8;
     }
 
     a {
-      @apply text-blue-600 self-center my-2;
+      @apply text-blue-600 self-center;
 
       &:hover {
         @apply text-blue-700;

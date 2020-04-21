@@ -14,9 +14,7 @@ export default () => {
     <>
       <section className="login-register">
         <form>
-          <p className="text-2xl border-b-4 border-gray-300 uppercase">
-            {registerTitle}
-          </p>
+          <p className="login-register-title">{registerTitle}</p>
           <label>{registerUser}</label>
           <input type="text" />
           <label>{registerPassword}</label>

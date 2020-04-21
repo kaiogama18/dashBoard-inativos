@@ -42,14 +42,18 @@ const Login = () => {
   };
 
   const loginUser = 'Informe seu usuário do github:';
-  const loginBtn = 'Conectar';
+  const loginPassword = 'Informe sua senha:';
+  const loginBtn = 'Entrar';
   const loginRegister = 'Fazer o cadastro agora';
+  const registerTitle = 'Faça login na sua conta';
 
   return (
     <>
       <section className="login-register">
+        {/* <img src="/logo.png" /> */}
+
         <form onSubmit={handleSubmit}>
-          <img src="/logo.png" />
+          <p className="login-register-title">{registerTitle}</p>
           <label>{loginUser}</label>
           <input
             type="text"
@@ -63,12 +67,13 @@ const Login = () => {
             }
           />
 
-          {/* <lable>Informe sua senha:</lable>
-          <input type="password" disabled />
-          <div className="my-2">
-            <input type="checkbox" defaultChecked />
-            <lable className="mx-2">Esqueci minha senha</lable>
-          </div> */}
+          <label>{loginPassword}</label>
+          <div className="relative bg-gray-300 rounded">
+            <input type="password" />
+            <div class="login-password">
+              <a class="text-gray-900 underline">Esqueceu a senha?</a>
+            </div>
+          </div>
 
           <Button type="submit">{loginBtn}</Button>
           <Link href="/cadastro">
