@@ -8,6 +8,7 @@ import {
 } from '@syncfusion/ej2-react-heatmap';
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
+import Card from './Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -37,7 +38,7 @@ function Plot(props) {
   if (!data) true_p = '0.0';
 
   return (
-    <div className="overflow-hidden p-5 bg-white self-start">
+    <Card>
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {ano}</p>
       <br />
@@ -67,7 +68,7 @@ function Plot(props) {
       >
         <Inject services={[Adaptor, Legend, Tooltip]} />
       </HeatMapComponent>
-    </div>
+    </Card>
   );
 }
 

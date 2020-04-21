@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useSWR from 'swr';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
+import Card from './Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -104,7 +105,7 @@ function Plot(props) {
   };
 
   return (
-    <div className="overflow-hidden p-5 bg-white">
+    <Card>
       <p className="text-base uppercase">{title}</p>
       <p className="text-sm font-bold">Safra: {props.safra}</p>
 
@@ -135,7 +136,7 @@ function Plot(props) {
         }}
         data={config.data}
       />
-    </div>
+    </Card>
   );
 }
 

@@ -3,7 +3,7 @@ import { logout } from '../utils/auth';
 class Navbar extends React.Component {
   render() {
     return (
-      <nav className="flex justify-between overflow-hidden h-16 p-6 bg-white">
+      <nav className="flex justify-between overflow-hidden h-16 p-6 bg-white rounded-md shadow-sm">
         <div className="flex items-center">
           <button className="material-icons text-white shadow-md bg-blue-default hover:bg-blue-700 rounded-full h-10 w-10">
             {data.btn_add}

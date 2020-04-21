@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Card from './Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -16,7 +17,7 @@ function Results(props) {
   if (!data) title = 'Carregando...';
   if (error) title = 'sem internet';
   return (
-    <div className="flex flex-col overflow-hidden p-5 bg-blue-600 text-white uppercase self-center">
+    <div className="overflow-hidden p-5 bg-blue-600 text-white shadow-sm rounded-md">
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (
@@ -42,9 +43,5 @@ class TrainingResults extends React.Component {
     return <Results safra={this.props.safra} />;
   }
 }
-
-// TrainingResults.propTypes = {
-//   props: PropTypes.string.isRequired,
-// };
 
 export default TrainingResults;

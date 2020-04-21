@@ -25,7 +25,7 @@ function Crop() {
 
   return (
     <>
-      <div className="flex justify-between overflow-hidden p-6 bg-white col-span-2">
+      <div className="flex justify-between overflow-hidden p-6 bg-white col-span-2 rounded-md shadow-sm">
         <div className="items-center self-center">
           <p className="text-xl uppercase">{title}</p>
           <p className="text-sm">
@@ -55,7 +55,6 @@ function Crop() {
         <ROCcurves safra={valuekey} />
         <MixedChart safra={valuekey} />
       </div>
-
       <ConfusionPlot safra={valuekey} />
     </>
   );
