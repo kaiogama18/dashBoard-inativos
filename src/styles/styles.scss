@@ -51,9 +51,26 @@ canvas {
 }
 
 .login-register {
+  --stagger-delay: 100ms;
+
+  @keyframes cardAnimation {
+    from {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   @apply flex justify-center items-center h-screen bg-blue-500;
 
   form {
+    animation: cardAnimation 150ms ease-out;
+    animation-fill-mode: backwards;
+
     @apply flex flex-col rounded-md overflow-hidden shadow-lg bg-white p-5;
 
     img {

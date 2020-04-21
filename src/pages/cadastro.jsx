@@ -12,7 +12,7 @@ export default () => {
 
   return (
     <>
-      <div className="login-register">
+      <section className="login-register">
         <form>
           <p className="text-2xl border-b-4 border-gray-300 uppercase">
             {registerTitle}
@@ -30,7 +30,7 @@ export default () => {
             <a>{registerLoginRegister}</a>
           </Link>
         </form>
-      </div>
+      </section>
     </>
   );
 };

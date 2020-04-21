@@ -46,36 +46,38 @@ const Login = () => {
   const loginRegister = 'Fazer o cadastro agora';
 
   return (
-    <div className="login-register">
-      <form onSubmit={handleSubmit}>
-        <img src="/logo.png" />
-        <label>{loginUser}</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={userData.username}
-          onChange={(event) =>
-            setUserData(
-              Object.assign({}, userData, { username: event.target.value }),
-            )
-          }
-        />
+    <>
+      <section className="login-register">
+        <form onSubmit={handleSubmit}>
+          <img src="/logo.png" />
+          <label>{loginUser}</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={userData.username}
+            onChange={(event) =>
+              setUserData(
+                Object.assign({}, userData, { username: event.target.value }),
+              )
+            }
+          />
 
-        {/* <lable>Informe sua senha:</lable>
+          {/* <lable>Informe sua senha:</lable>
           <input type="password" disabled />
           <div className="my-2">
             <input type="checkbox" defaultChecked />
             <lable className="mx-2">Esqueci minha senha</lable>
           </div> */}
 
-        <Button type="submit">{loginBtn}</Button>
-        <Link href="/cadastro">
-          <a>{loginRegister}</a>
-        </Link>
-        {userData.error && <p className="alert">Error: {userData.error} </p>}
-      </form>
-    </div>
+          <Button type="submit">{loginBtn}</Button>
+          <Link href="/cadastro">
+            <a>{loginRegister}</a>
+          </Link>
+          {userData.error && <p className="alert">Error: {userData.error} </p>}
+        </form>
+      </section>
+    </>
   );
 };
 
