@@ -135,3 +135,11 @@ html.is-animating .transition-fade {
     }
   }
 }
+
+.card {
+  @apply overflow-hidden p-5 bg-white shadow-sm self-start rounded-md;
+}
+
+.card-results {
+  @apply bg-blue-600 text-white;
+}

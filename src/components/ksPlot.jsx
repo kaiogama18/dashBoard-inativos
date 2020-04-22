@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useSWR from 'swr';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
-import Card from './Card';
+import Card from './Cards/Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());

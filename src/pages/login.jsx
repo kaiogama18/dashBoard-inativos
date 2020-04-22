@@ -3,7 +3,6 @@ import fetch from 'isomorphic-unfetch';
 import { login } from '../utils/auth';
 import Link from 'next/link';
 import Button from '../components/Button';
-import Card from '../components/Card';
 
 const Login = () => {
   const [userData, setUserData] = useState({ username: '', error: '' });

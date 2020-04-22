@@ -8,7 +8,7 @@ import {
 } from '@syncfusion/ej2-react-heatmap';
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import Card from './Cards/Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());

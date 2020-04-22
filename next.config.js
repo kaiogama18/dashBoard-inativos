@@ -1,4 +1,5 @@
 const tailwindcss = require('tailwindcss');
+// const withStyles = require('@webdeb/next-styles')
 
 module.exports = {
   webpack(config, { dev }) {
@@ -10,5 +11,6 @@ module.exports = {
     require('autoprefixer'),
   ],
 }
+
 
 

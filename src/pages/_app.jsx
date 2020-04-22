@@ -1,6 +1,8 @@
 import '../styles/styles.scss';
 import Head from 'next/head';
 
+import styles from '../styles/styles.scss';
+
 export default ({ Component, pageProps }) => {
   return (
     <>

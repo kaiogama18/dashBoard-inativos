@@ -2,7 +2,7 @@ import { HorizontalBar } from 'react-chartjs-2';
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Card from './Card';
+import Card from './Cards/Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());

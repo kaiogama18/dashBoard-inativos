@@ -1,7 +1,9 @@
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Card from './Card';
+import CountUp from 'react-countup';
+import Card from './Cards/Card';
+import cx from 'classnames';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -17,24 +19,54 @@ function Results(props) {
   if (!data) title = 'Carregando...';
   if (error) title = 'sem internet';
   return (
-    <div className="overflow-hidden p-5 bg-blue-600 text-white shadow-sm rounded-md">
+    <Card className={cx('card', 'card-results')}>
       <p className="text-base font-bold uppercase">{title}</p>
       {data?.data.map((safra) => {
         return (
           <p className="text-base">
             {safra.rotulo} <br />
-            <a className="text-2xl font-bold">
-              AUC {safra.auc} e KS {safra.ks}
-            </a>
-            <br />
-            Instância de Treino:{' '}
-            <a className="font-bold">{safra.instancias_treino}</a> <br />
-            Instância de Teste:{' '}
-            <a className="font-bold">{safra.instancias_teste}</a>
+            <p className="text-2xl font-bold">
+              AUC
+              <CountUp
+                className="font-bold ml-1"
+                start={0}
+                end={safra.auc}
+                duration={1}
+                separator=","
+              />{' '}
+              e KS
+              <CountUp
+                className="font-bold ml-1"
+                start={0}
+                end={safra.ks}
+                duration={1}
+                separator=","
+              />
+            </p>
+            <p>
+              Instância de Treino:
+              <CountUp
+                className="font-bold ml-1"
+                start={0}
+                end={safra.instancias_treino}
+                duration={1}
+                separator=","
+              />
+            </p>
+            <p>
+              Instância de Teste:
+              <CountUp
+                className="font-bold ml-1"
+                start={0}
+                end={safra.instancias_teste}
+                duration={1}
+                separator=","
+              />
+            </p>
           </p>
         );
       })}
-    </div>
+    </Card>
   );
 }
 
