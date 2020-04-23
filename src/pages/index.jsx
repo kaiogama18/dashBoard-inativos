@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import { withAuthSync } from '../utils/auth';
 import getHost from '../utils/get-host';
 import useSWR from 'swr';
-import { CropPicker, Navbar, ResultCrop } from '../components/index';
+import { CropPicker, Navbar, ResultCrop, Charjs } from '../components/index';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -36,7 +36,7 @@ class Index extends React.Component {
           <div className="card-grid">
             <CropPicker handleCropChange={this.handleCropChange} />
             <ResultCrop crop={crop} />
-            {/* <SelectCrop /> */}
+            <Charjs valuekey={crop} />
           </div>
         </div>
       </Layout>

@@ -9,7 +9,7 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function ResultCrop({ crop }) {
+const ResultCrop = ({ crop }) => {
   const route = 'result';
   const { data, error } = useSWR(
     '/api/api_inativo?route=' + route + '&key=' + crop,
@@ -62,77 +62,9 @@ function ResultCrop({ crop }) {
             </p>
           </>
         ))}
-
-        {/* <p className="text-2xl font-bold">
-          AUC
-          <CountUp
-            className="font-bold ml-1"
-            start={0}
-            end={safra.auc}
-            duration={1}
-            separator=","
-          />{' '}
-          e KS
-          <CountUp
-            className="font-bold ml-1"
-            start={0}
-            end={safra.ks}
-            duration={1}
-            separator=","
-          />
-        </p> */}
       </div>
     </Card>
-
-    // <Card className={cx('card', 'card-results')}>
-    //   <p className="text-base font-bold uppercase">{title}</p>
-    //   {data?.data.map((safra, i) => {
-    //     return (
-    //       <p key={i} className="text-base">
-    //         {safra.rotulo} <br />
-    //         <p className="text-2xl font-bold">
-    //           AUC
-    // <CountUp
-    //   className="font-bold ml-1"
-    //   start={0}
-    //   end={safra.auc}
-    //   duration={1}
-    //   separator=","
-    // />{' '}
-    //           e KS
-    //           <CountUp
-    //             className="font-bold ml-1"
-    //             start={0}
-    //             end={safra.ks}
-    //             duration={1}
-    //             separator=","
-    //           />
-    //         </p>
-    //         <p>
-    //           Instância de Treino:
-    //           <CountUp
-    //             className="font-bold ml-1"
-    //             start={0}
-    //             end={safra.instancias_treino}
-    //             duration={1}
-    //             separator=","
-    //           />
-    //         </p>
-    //         <p>
-    //           Instância de Teste:
-    //           <CountUp
-    //             className="font-bold ml-1"
-    //             start={0}
-    //             end={safra.instancias_teste}
-    //             duration={1}
-    //             separator=","
-    //           />
-    //         </p>
-    //       </p>
-    //     );
-    //   })}
-    // </Card>
   );
-}
+};
 
 export default ResultCrop;

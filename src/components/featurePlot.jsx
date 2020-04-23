@@ -53,13 +53,6 @@ function Plot(props) {
     );
   }
 
-  var canvas = document.createElement('canvas');
-  window.ctx = canvas.getContext('2d');
-
-  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-  gradientStroke.addColorStop(0, '#80b6f4');
-  gradientStroke.addColorStop(1, '#f49080');
-
   var config = {
     type: 'line',
     data: {
@@ -135,9 +128,5 @@ class FeaturePlot extends React.Component {
     return <Plot safra={this.props.safra} />;
   }
 }
-
-// FeaturePlot.propTypes = {
-//   props: PropTypes.string.isRequired,
-// };
 
 export default FeaturePlot;

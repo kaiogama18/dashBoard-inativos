@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Card from './Cards/Card';
+import CountUp from 'react-countup';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -60,8 +61,10 @@ function Plot(props) {
 
   return (
     <Card>
-      <p className="text-base uppercase">{title}</p>
-      <p className="text-sm font-bold">Safra: {props.safra}</p>
+      <p className="title">{title}</p>
+      <p className="subtitle">
+        Safra: <CountUp start={0} end={props.safra} duration={1} />
+      </p>
       <br />
       <Line
         options={{
@@ -94,9 +97,5 @@ class MixedChart extends React.Component {
     return <Plot safra={this.props.safra} />;
   }
 }
-
-// MixedChart.propTypes = {
-//   props: PropTypes.string.isRequired,
-// };
 
 export default MixedChart;

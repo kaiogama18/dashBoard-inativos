@@ -23,35 +23,6 @@ function Plot(props) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  var originalLineDraw = Chart.controllers.line.prototype.draw;
-
-  Chart.helpers.extend(Chart.controllers.line.prototype, {
-    draw: function () {
-      originalLineDraw.apply(this, arguments);
-
-      var chart = this.chart;
-      var ctx = chart.chart.ctx;
-
-      var index = chart.config.data.lineAtIndex;
-      if (index) {
-        var xaxis = chart.scales['x-axis-0'];
-        var yaxis = chart.scales['y-axis-0'];
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
-        ctx.strokeStyle = '#ff0000';
-        ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
-        ctx.stroke();
-        ctx.restore();
-      }
-    },
-  });
-
-  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-  gradientStroke.addColorStop(0, '#80b6f4');
-  gradientStroke.addColorStop(1, '#f49080');
-
   var config = {
     type: 'line',
     data: {
@@ -71,7 +42,7 @@ function Plot(props) {
         {
           label: '0.535854515034651 ',
           backgroundColor: 'rgba(249, 142, 28,0.75)',
-          borderColor: gradientStroke,
+          borderColor: '#de1414',
           data: objs.x_0,
           lineTension: 0.9,
           fill: false,

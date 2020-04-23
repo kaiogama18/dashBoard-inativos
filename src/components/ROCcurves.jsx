@@ -23,24 +23,6 @@ function Plot(props) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  // var canvas = document.createElement("canvas");
-  // window.ctx = canvas.getContext("2d");
-  var canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  // window.myLine = new Chart(ctx,  {
-  //   scaleOverride: true,
-  //   scaleSteps: 10,
-  //   scaleStepWidth: 10,
-  //   scaleStartValue: 0,
-  // });
-
-  var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-  gradientStroke.addColorStop(0, '#80b6f4');
-  gradientStroke.addColorStop(1, '#f49080');
-
-  console.log('[Lepros] --> graficon ctx: ' + ctx);
-
   function randomColorFactor() {
     return Math.round(Math.random() * 255);
   }
@@ -98,7 +80,7 @@ function Plot(props) {
 
   config.data.datasets.forEach(function (dataset) {
     dataset.borderColor = randomColor(1);
-    dataset.backgroundColor = gradientStroke;
+    dataset.backgroundColor = '#de1414';
     dataset.pointBorderColor = randomColor(0.7);
     dataset.pointBackgroundColor = randomColor(0.5);
   });

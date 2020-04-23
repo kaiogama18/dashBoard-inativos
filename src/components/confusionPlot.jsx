@@ -17,7 +17,7 @@ function fetcher(url) {
 function Plot(props) {
   const route = 'confusion_matrix';
   const { data, error } = useSWR(
-    '/api/api_inativo?route=' + route + '&key=' + props.safras,
+    '/api/api_inativo?route=' + route + '&key=' + '201802',
     fetcher,
   );
   let title = data?.menssage;
@@ -77,9 +77,5 @@ class ConfusionPlot extends React.Component {
     return <Plot safras={this.props.safra} />;
   }
 }
-
-// ConfusionPlot.propTypes = {
-//   props: PropTypes.string.isRequired,
-// };
 
 export default ConfusionPlot;
