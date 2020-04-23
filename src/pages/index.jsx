@@ -8,42 +8,63 @@ import getHost from '../utils/get-host';
 import SelectCrop from '../components/selectCrop';
 import Navbar from '../components/Navbar';
 
-function Index() {
-  return (
-    <Layout>
-      <div className="w-full p-5">
-        <Navbar />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-5 gap-4">
-          <SelectCrop />
+import { CropPicker } from '../components';
+
+class Index extends React.Component {
+  state = {
+    data: {},
+    crop: 'base',
+  };
+
+  handleCropChange = async (crop) => {
+    console.log('Index Crop --> ' + crop);
+    // const fetcheddata = await fetchData(country);
+    // this.setState({ data: fetcheddata, country: country })
+  };
+
+  render() {
+    const { data, crop } = this.state;
+
+    return (
+      <Layout>
+        <div className="home">
+          <Navbar />
+          <div className="card-grid">
+            <CropPicker handleCropChange={this.handleCropChange} />
+            <SelectCrop />
+          </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
 }
 
-Index.getInitialProps = async (ctx) => {
-  const { token } = nextCookie(ctx);
-  const apiUrl = `${getHost(ctx.req)}api/profile`;
-  const redirectError = () =>
-    typeof window !== 'undefined'
-      ? Router.push('/login')
-      : ctx.res.writeHead(302, { Location: '/login' }).end();
+// Index.getInitialProps = async (ctx) => {
+//   const { token } = nextCookie(ctx);
+//   const apiUrl = `${getHost(ctx.req)}api/profile`;
 
-  try {
-    const response = await fetch(apiUrl, {
-      credentials: 'include',
-      headers: {
-        Authorization: JSON.stringify({ token }),
-      },
-    });
+//   const redirectError = () =>
+//     typeof window !== 'undefined'
+//       ? Router.push('/login')
+//       : ctx.res.writeHead(302, { Location: '/login' }).end();
 
-    if (response.ok) {
-      const js = await response.json();
-      return js;
-    }
-    return await redirectError();
-  } catch (error) {
-    return redirectError();
-  }
-};
-export default withAuthSync(Index);
+//   try {
+//     const response = await fetch(apiUrl, {
+//       credentials: 'include',
+//       headers: {
+//         Authorization: JSON.stringify({ token }),
+//       },
+//     });
+
+//     if (response.ok) {
+//       const js = await response.json();
+//       return js;
+//     }
+//     return await redirectError();
+//   } catch (error) {
+//     return redirectError();
+//   }
+// };
+// export default withAuthSync(Index);
+
+export default Index;

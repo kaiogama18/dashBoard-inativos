@@ -33,15 +33,17 @@ $--blue_default: #0926fe;
 
 html,
 body {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  letter-spacing: 0.0625rem;
+  color: $--text_color_default;
   font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.0625rem;
-  color: $--text_color_default;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #f7fafc;
+
+  // background-color: #f7fafc;
+  // background-color: red;
 }
 
 .transition-fade {
@@ -74,6 +76,46 @@ html.is-animating .transition-fade {
     -ms-user-select: none;
   }
 }
+
+.title {
+  @apply text-2xl font-bold uppercase;
+}
+
+.subtitle {
+  @apply text-xl;
+}
+
+/*
+   * Layout
+   * ======================================================================== */
+
+main {
+  @apply flex bg-gray-200;
+}
+
+.sidebar {
+  @apply w-20 py-5 bg-blue-500;
+
+  .logo {
+    @apply flex justify-center m-2;
+
+    img {
+      @apply h-10 w-10;
+    }
+  }
+}
+
+.home {
+  @apply w-full p-5;
+
+  .card-grid {
+    @apply grid grid-cols-3 overflow-hidden mt-5 gap-4;
+  }
+}
+
+/*
+   * Login and Register
+   * ======================================================================== */
 
 .login-register {
   --stagger-delay: 100ms;
@@ -136,10 +178,90 @@ html.is-animating .transition-fade {
   }
 }
 
+/*
+   * Crad
+   * ======================================================================== */
+
 .card {
   @apply overflow-hidden p-5 bg-white shadow-sm self-start rounded-md;
+
+  .card-title {
+    @apply text-2xl font-bold uppercase;
+  }
+
+  .card-subtitle {
+    @apply text-xl;
+  }
 }
 
 .card-results {
   @apply bg-blue-600 text-white;
+}
+
+.card-picker {
+  @apply grid gap-4 col-span-2;
+}
+
+/*
+   * Crop Picker
+   * ======================================================================== */
+
+.crop-colunm {
+  @apply grid grid-cols-12;
+
+  &__item {
+    @apply flex flex-col items-center;
+  }
+
+  &__btn {
+    background-color: tomato;
+    order: 0;
+    transform-origin: center bottom;
+    box-shadow: 6px 6px rgba(black, 0.2);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    // transform: scaleY(0) translate3d(0, 0, 0);
+
+    @apply w-10 h-24;
+
+    &:hover {
+      box-shadow: 10px 10px rgba(black, 0.2);
+
+      @apply bg-indigo-400;
+    }
+
+    // &.after {
+    //   transform: none;
+    // }
+  }
+
+  .disabled {
+    pointer-events: none;
+    background-color: #bdbcbc;
+  }
+
+  p {
+    @apply text-sm font-bold mt-5;
+  }
+}
+
+.crop {
+  @apply grid grid-cols-12 gap-4 border-indigo-700 relative p-0;
+
+  .crop-picker {
+    transition: all 0.3s ease-in-out;
+
+    @apply flex flex-col items-center bg-green-500;
+
+    p {
+      @apply text-sm font-bold mt-5;
+    }
+
+    .btn-picker {
+      @apply bg-orange-600 h-32 overflow-hidden shadow w-8;
+
+      &:hover {
+        @apply bg-yellow-400;
+      }
+    }
+  }
 }

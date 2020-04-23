@@ -5,17 +5,17 @@ class Navbar extends React.Component {
     return (
       <nav className="flex justify-between overflow-hidden h-16 p-6 bg-white rounded-md shadow-sm">
         <div className="flex items-center">
-          <button className="material-icons text-white shadow-md bg-blue-default hover:bg-blue-700 rounded-full h-10 w-10">
+          <button className="material-icons font-bold text-white shadow-md bg-blue-default hover:bg-blue-700 rounded-full h-10 w-10">
             {data.btn_add}
           </button>
-          <p className="text-base text-blue-800 uppercase ml-5">
+          <p className="subtitle font-bold text-blue-800 ml-5">
             {data.btn_add_title}
           </p>
         </div>
 
         <div className="flex items-center">
           <button
-            className="material-icons text-white -md  bg-red-600 hover:bg-red-700 rounded-full h-10 w-10"
+            className="material-icons font-bold text-white -md  bg-red-600 hover:bg-red-700 rounded-full h-10 w-10"
             onClick={logout}
           >
             {data.btn_logout}

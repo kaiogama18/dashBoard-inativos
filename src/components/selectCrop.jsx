@@ -25,7 +25,7 @@ function Crop() {
 
   return (
     <>
-      <div className="flex justify-between overflow-hidden p-6 bg-white col-span-2 rounded-md shadow-sm">
+      {/* <div className="flex justify-between overflow-hidden p-6 bg-white col-span-2 rounded-md shadow-sm">
         <div className="items-center self-center">
           <p className="text-xl uppercase">{title}</p>
           <p className="text-sm">
@@ -46,7 +46,7 @@ function Crop() {
             );
           })}
         </div>
-      </div>
+      </div> */}
       <TrainingResults safra={valuekey} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 col-span-2">
