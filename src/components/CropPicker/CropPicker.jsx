@@ -21,11 +21,12 @@ const numbers = [
 ];
 const CropPicker = ({ handleCropChange }) => {
   const { data, error } = useSWR('/api/inativo', fetcher);
+  let rotulo = data?.rotulo;
 
   return (
     <Card className={cx('card', 'card-picker')}>
       <div className="self-center">
-        <p className="card-title">{data?.menssage}</p>
+        <p className="card-title">LISTA DE SAFRAS DISPONÍVEIS</p>
         <p className="card-subtitle">{cropTitle}</p>
       </div>
 
@@ -34,7 +35,8 @@ const CropPicker = ({ handleCropChange }) => {
           <button className="crop-colunm__btn disabled" />
           <p>201801</p>
         </div>
-        {data?.data.reverse().map((aux, i) => (
+        {/* {data?.data.reverse().map((aux, i) => ( */}
+        {data?.data.map((aux, i) => (
           <div key={i} className="crop-colunm__item">
             <button
               className="crop-colunm__btn"

@@ -5,23 +5,29 @@ import nextCookie from 'next-cookies';
 import Layout from '../components/Layout';
 import { withAuthSync } from '../utils/auth';
 import getHost from '../utils/get-host';
+import useSWR from 'swr';
+import { CropPicker, Navbar, ResultCrop } from '../components/index';
 
-import { CropPicker, Navbar } from '../components/index';
+function fetcher(url) {
+  return fetch(url).then((r) => r.json());
+}
+
+const route = 'result';
 
 class Index extends React.Component {
   state = {
-    data: {},
-    crop: 'base',
+    crop: '',
   };
 
   handleCropChange = async (crop) => {
     console.log('Index Crop --> ' + crop);
-    // const fetcheddata = await fetchData(country);
-    // this.setState({ data: fetcheddata, country: country })
+    this.setState({
+      crop: crop,
+    });
   };
 
   render() {
-    const { data, crop } = this.state;
+    const { crop } = this.state;
 
     return (
       <Layout>
@@ -29,6 +35,7 @@ class Index extends React.Component {
           <Navbar />
           <div className="card-grid">
             <CropPicker handleCropChange={this.handleCropChange} />
+            <ResultCrop crop={crop} />
             {/* <SelectCrop /> */}
           </div>
         </div>
