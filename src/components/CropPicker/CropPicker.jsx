@@ -51,18 +51,6 @@ const CropPicker = ({ handleCropChange }) => {
           </div>
         ))}
       </div>
-
-      {/* <div className="crop">
-        {data?.data.map((aux, i) => (
-          <div key={i} className="crop-picker">
-            <button
-              className="btn-picker"
-              onClick={(e) => handleCropChange(aux.safra)}
-            />
-            <p>{aux.safra}</p>
-          </div>
-        ))}
-      </div> */}
     </Card>
   );
 };

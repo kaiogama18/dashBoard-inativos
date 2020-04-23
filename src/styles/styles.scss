@@ -179,6 +179,45 @@ main {
 }
 
 /*
+   * Navbar
+   * ======================================================================== */
+
+.navbar {
+  @apply flex justify-between;
+
+  div {
+    @apply flex items-center;
+  }
+
+  &__icon {
+    transform-origin: center bottom;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+    @apply font-bold text-white rounded-full h-10 w-10;
+  }
+
+  .btn_add {
+    @apply bg-green-500;
+
+    &:hover {
+      @apply bg-green-700;
+    }
+  }
+
+  .btn_exit {
+    @apply bg-red-600;
+
+    &:hover {
+      @apply bg-orange-600;
+    }
+  }
+
+  .subtitle {
+    @apply font-bold ml-5;
+  }
+}
+
+/*
    * Crad
    * ======================================================================== */
 

@@ -5,10 +5,8 @@ import nextCookie from 'next-cookies';
 import Layout from '../components/Layout';
 import { withAuthSync } from '../utils/auth';
 import getHost from '../utils/get-host';
-import SelectCrop from '../components/selectCrop';
-import Navbar from '../components/Navbar';
 
-import { CropPicker } from '../components';
+import { CropPicker, Navbar } from '../components/index';
 
 class Index extends React.Component {
   state = {
@@ -31,7 +29,7 @@ class Index extends React.Component {
           <Navbar />
           <div className="card-grid">
             <CropPicker handleCropChange={this.handleCropChange} />
-            <SelectCrop />
+            {/* <SelectCrop /> */}
           </div>
         </div>
       </Layout>
