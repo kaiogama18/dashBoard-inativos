@@ -93,18 +93,6 @@ main {
   @apply flex bg-gray-200;
 }
 
-.sidebar {
-  @apply w-20 py-5 bg-blue-500;
-
-  .logo {
-    @apply flex justify-center m-2;
-
-    img {
-      @apply h-10 w-10;
-    }
-  }
-}
-
 .home {
   @apply w-full p-5;
 
@@ -214,6 +202,22 @@ main {
 
   .subtitle {
     @apply font-bold ml-5;
+  }
+}
+
+/*
+   * Sidebar
+   * ======================================================================== */
+
+.sidebar {
+  @apply w-20 py-5 bg-blue-500;
+
+  .logo {
+    @apply flex justify-center m-2;
+
+    img {
+      @apply h-10 w-10;
+    }
   }
 }
 

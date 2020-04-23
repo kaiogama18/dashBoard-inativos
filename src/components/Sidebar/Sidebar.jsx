@@ -1,4 +1,4 @@
-const NavBarLeft = () => (
+const Sidebar = () => (
   <aside className="sidebar">
     <div className="logo">
       <img src="/buritech-icon.png" alt="logo" />
@@ -6,4 +6,4 @@ const NavBarLeft = () => (
   </aside>
 );
 
-export default NavBarLeft;
+export default Sidebar;
