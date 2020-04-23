@@ -64,15 +64,15 @@ html.is-animating .transition-fade {
   background-color: $--blue_default;
 }
 
-.navbar-left {
-  background: rgb(43, 108, 176);
-  background: linear-gradient(
-    180deg,
-    rgba(43, 108, 176, 1) 29%,
-    rgba(136, 173, 211, 1) 68%,
-    rgba(247, 250, 252, 1) 95%
-  );
-}
+// .navbar-left {
+//   background: rgb(43, 108, 176);
+//   background: linear-gradient(
+//     180deg,
+//     rgba(43, 108, 176, 1) 29%,
+//     rgba(136, 173, 211, 1) 68%,
+//     rgba(247, 250, 252, 1) 95%
+//   );
+// }
 
 .bar-char {
   canvas {
@@ -83,7 +83,7 @@ html.is-animating .transition-fade {
 }
 
 .title {
-  @apply text-xl font-bold uppercase;
+  @apply text-xl font-bold uppercase h-8 items-center flex bg-orange-300;
 }
 
 .subtitle {
