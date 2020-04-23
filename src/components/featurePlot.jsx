@@ -1,31 +1,21 @@
 import { HorizontalBar } from 'react-chartjs-2';
 import useSWR from 'swr';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Card from './Cards/Card';
+import CountUp from 'react-countup';
 
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
+const FeaturePlot = ({ crop }) => {
+  const { data, error } = useSWR(url + crop, fetcher);
 
-function Plot(props) {
-  const route = 'top_features';
-  const { data, error } = useSWR(
-    '/api/api_inativo?route=' + route + '&key=' + props.safra,
-    fetcher,
-  );
   let feature = [];
   let valor = [];
-  let title = data?.menssage;
-  if (!data) title = 'Carregando...';
-  if (error) title = 'TOP FEATURES DO TREINO';
   data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
-
   let dataArray = valor;
   let dataIndexes = dataArray.map((d, i) => i);
   dataIndexes.sort((a, b) => {
     return dataArray[a] - dataArray[b];
   });
+
   dataArray.sort((a, b) => a - b);
   let newMeta = [];
   let newLabels = [];
@@ -36,97 +26,75 @@ function Plot(props) {
   });
   feature = newLabels;
 
-  function randomColorFactor() {
-    return Math.round(Math.random() * 255);
-  }
-  function randomColor(opacity) {
-    return (
-      'rgba(' +
-      randomColorFactor() +
-      ',' +
-      randomColorFactor() +
-      ',' +
-      randomColorFactor() +
-      ',' +
-      (opacity || '.3') +
-      ')'
-    );
-  }
-
-  var config = {
-    type: 'line',
-    data: {
-      labels: feature.reverse(),
-      datasets: [
-        {
-          label: 'Importância',
-          data: valor.reverse(),
-          fill: false,
-          borderDash: [5, 5],
-          backgroundColor: [
-            'rgba(196, 37, 125, 0.75)',
-            'rgba(255, 99, 132, 100)',
-            'rgba(255, 91, 25, 0.75)',
-            'rgba(54, 162, 235, 0.75)',
-            'rgba(255, 206, 86, 0.75)',
-            'rgba(75, 192, 192, 0.75)',
-            'rgba(153, 102, 255, 0.75)',
-            'rgba(255, 159, 64, 0.75)',
-            'rgba(255, 99, 132, 0.75)',
-            'rgba(54, 162, 235, 0.75)',
-            'rgba(255, 206, 86, 0.75)',
-            'rgba(75, 192, 192, 0.75)',
-            'rgba(153, 102, 255, 0.75)',
-            'rgba(255, 159, 64, 0.75)',
-            'rgba(48, 255, 210, 0.75)',
+  const Chart = (
+    <HorizontalBar
+      data={{
+        labels: feature.reverse(),
+        datasets: [
+          {
+            data: valor.reverse(),
+            fill: false,
+            borderDash: [5, 5],
+            backgroundColor: colors,
+          },
+        ],
+      }}
+      options={{
+        responsive: true,
+        legend: { display: false },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            },
           ],
         },
-      ],
-    },
-  };
-
-  config.data.datasets.forEach(function (dataset) {
-    dataset.borderColor = randomColor(1);
-    dataset.pointBorderColor = randomColor(0.7);
-    dataset.pointBackgroundColor = randomColor(0.5);
-    dataset.pointBorderWidth = 1;
-  });
+      }}
+    />
+  );
 
   return (
     <Card>
-      <p className="text-base uppercase">{title}</p>
-      <p className="text-sm font-bold">Safra: {props.safra}</p>
+      <p className="subtitle">
+        Safra: <CountUp start={0} end={crop} duration={1} />
+      </p>
       <br />
-      <HorizontalBar
-        options={{
-          responsive: true,
-          scales: {
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            yAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
-        }}
-        data={config.data}
-      />
+      {Chart}
     </Card>
   );
-}
-
-class FeaturePlot extends React.Component {
-  render() {
-    return <Plot safra={this.props.safra} />;
-  }
-}
+};
 
 export default FeaturePlot;
+
+let url = '/api/api_inativo?route=' + 'top_features' + '&key=';
+
+function fetcher(url) {
+  return fetch(url).then((r) => r.json());
+}
+
+const colors = [
+  'rgba(196, 37, 125, 0.75)',
+  'rgba(255, 99, 132, 100)',
+  'rgba(255, 91, 25, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(255, 99, 132, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(48, 255, 210, 0.75)',
+];

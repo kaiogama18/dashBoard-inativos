@@ -26,8 +26,8 @@ const CropPicker = ({ handleCropChange }) => {
   return (
     <Card className={cx('card', 'card-picker')}>
       <div className="self-center">
-        <p className="card-title">LISTA DE SAFRAS DISPONÍVEIS</p>
-        <p className="card-subtitle">{cropTitle}</p>
+        <p className="title">LISTA DE SAFRAS DISPONÍVEIS</p>
+        <p className="subtitle">{cropTitle}</p>
       </div>
 
       <div className="crop-colunm">

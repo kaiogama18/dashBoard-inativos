@@ -8,6 +8,12 @@ $--text_color_default: $--grey;
 $--btn_default: #4299e1;
 $--blue_default: #0926fe;
 
+/*
+   * Colors
+   * ======================================================================== */
+
+$--primary: #015c92;
+
 :root {
   /*
    * Typography
@@ -43,7 +49,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   // background-color: #f7fafc;
-  // background-color: red;
 }
 
 .transition-fade {
@@ -78,7 +83,7 @@ html.is-animating .transition-fade {
 }
 
 .title {
-  @apply text-2xl font-bold uppercase;
+  @apply text-xl font-bold uppercase;
 }
 
 .subtitle {
@@ -185,7 +190,7 @@ main {
   }
 
   .btn_add {
-    @apply bg-green-500;
+    background-color: #73c384;
 
     &:hover {
       @apply bg-green-700;
@@ -193,7 +198,7 @@ main {
   }
 
   .btn_exit {
-    @apply bg-red-600;
+    background-color: #f07b71;
 
     &:hover {
       @apply bg-orange-600;
@@ -210,7 +215,9 @@ main {
    * ======================================================================== */
 
 .sidebar {
-  @apply w-20 py-5 bg-blue-500;
+  background-color: $--primary;
+
+  @apply w-20 py-5;
 
   .logo {
     @apply flex justify-center m-2;
@@ -227,18 +234,12 @@ main {
 
 .card {
   @apply overflow-hidden p-5 bg-white shadow-sm self-start rounded-md;
-
-  .card-title {
-    @apply text-2xl font-bold uppercase;
-  }
-
-  .card-subtitle {
-    @apply text-xl;
-  }
 }
 
 .card-results {
-  @apply bg-blue-600 text-white;
+  background-color: $--primary;
+
+  @apply text-white;
 }
 
 .card-picker {
