@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { login } from '../utils/auth';
 import Link from 'next/link';
-import Button from '../components/Button';
+import { Button } from '../components';
 
 const Login = () => {
   const [userData, setUserData] = useState({ username: '', error: '' });

@@ -1,8 +1,7 @@
-import FeaturePlot from '../featurePlot';
+import FeaturePlot from './Chart/FeaturePlot/featurePlot';
 import KsPlot from '../ksPlot';
 import ROCcurves from '../ROCcurves';
 import MixedChart from '../MixedChart';
-import ConfusionPlot from '../confusionPlot';
 
 const Charjs = ({ crop }) => {
   return (

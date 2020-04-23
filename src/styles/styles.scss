@@ -240,6 +240,10 @@ main {
   background-color: $--primary;
 
   @apply text-white;
+
+  .title {
+    @apply bg-transparent;
+  }
 }
 
 .card-picker {

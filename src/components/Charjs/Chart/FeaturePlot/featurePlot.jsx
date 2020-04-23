@@ -1,8 +1,8 @@
 import { HorizontalBar } from 'react-chartjs-2';
 import useSWR from 'swr';
 import React from 'react';
-import Card from './Cards/Card';
 import CountUp from 'react-countup';
+import Card from '../../../Cards/Card';
 
 const FeaturePlot = ({ crop }) => {
   const { data, error } = useSWR(url + crop, fetcher);
