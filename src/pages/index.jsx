@@ -43,30 +43,32 @@ class Index extends React.Component {
   }
 }
 
-Index.getInitialProps = async (ctx) => {
-  const { token } = nextCookie(ctx);
-  const apiUrl = `${getHost(ctx.req)}api/profile`;
+export default Index;
 
-  const redirectError = () =>
-    typeof window !== 'undefined'
-      ? Router.push('/login')
-      : ctx.res.writeHead(302, { Location: '/login' }).end();
+// Index.getInitialProps = async (ctx) => {
+//   const { token } = nextCookie(ctx);
+//   const apiUrl = `${getHost(ctx.req)}api/profile`;
 
-  try {
-    const response = await fetch(apiUrl, {
-      credentials: 'include',
-      headers: {
-        Authorization: JSON.stringify({ token }),
-      },
-    });
+//   const redirectError = () =>
+//     typeof window !== 'undefined'
+//       ? Router.push('/login')
+//       : ctx.res.writeHead(302, { Location: '/login' }).end();
 
-    if (response.ok) {
-      const js = await response.json();
-      return js;
-    }
-    return await redirectError();
-  } catch (error) {
-    return redirectError();
-  }
-};
-export default withAuthSync(Index);
+//   try {
+//     const response = await fetch(apiUrl, {
+//       credentials: 'include',
+//       headers: {
+//         Authorization: JSON.stringify({ token }),
+//       },
+//     });
+
+//     if (response.ok) {
+//       const js = await response.json();
+//       return js;
+//     }
+//     return await redirectError();
+//   } catch (error) {
+//     return redirectError();
+//   }
+// };
+// export default withAuthSync(Index);
