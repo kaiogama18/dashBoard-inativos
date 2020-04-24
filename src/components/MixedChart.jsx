@@ -10,10 +10,9 @@ function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function Plot(props) {
-  const route = 'score_distribution';
+function MixedChart({ crop }) {
   const { data, error } = useSWR(
-    '/api/api_inativo?route=' + route + '&key=' + props.safra,
+    '/api/api_inativo?route=' + 'score_distribution' + '&key=' + crop,
     fetcher,
   );
   let title = data?.menssage;
@@ -25,77 +24,73 @@ function Plot(props) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  const state = {
-    data: {
-      labels: [
-        '[0,10]',
-        '[10,20]',
-        '[20,30]',
-        '[30,40]',
-        '[40,50]',
-        '[50,60]',
-        '[60,70]',
-        '[70,80]',
-        '[80,90]',
-        '[90,100]',
-      ],
-      datasets: [
-        {
-          type: 'bar',
-          label: 'Distribuição da População',
-          borderColor: '#e1aa10',
-          backgroundColor: 'rgba(49, 130, 206,0.8)',
-          data: objs.x_dist,
+  const Chart = (
+    <Line
+      data={{
+        labels: [
+          '[0,10]',
+          '[10,20]',
+          '[20,30]',
+          '[30,40]',
+          '[40,50]',
+          '[50,60]',
+          '[60,70]',
+          '[70,80]',
+          '[80,90]',
+          '[90,100]',
+        ],
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Distribuição da População',
+            borderColor: '#e1aa10',
+            backgroundColor: 'rgba(49, 130, 206,0.8)',
+            data: objs.x_dist,
+          },
+          {
+            fill: true,
+            label: 'Taxa de Inadimplência',
+            backgroundColor: 'rgba(244, 144, 128, 0.8)',
+            data: objs.x_inad,
+            borderDash: [8, 8],
+            borderColor: '#de1414',
+          },
+        ],
+      }}
+      options={{
+        responsive: true,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
         },
-        {
-          fill: true,
-          label: 'Taxa de Inadimplência',
-          backgroundColor: 'rgba(244, 144, 128, 0.8)',
-          data: objs.x_inad,
-          borderDash: [8, 8],
-          borderColor: '#de1414',
-        },
-      ],
-    },
-  };
+      }}
+    />
+  );
 
   return (
     <Card>
-      <p className="title">{title}</p>
+      <p className="title">
+        {crop ? <>{data?.menssage}</> : <>Distribution scrore</>}
+      </p>
       <p className="subtitle">
-        Safra: <CountUp start={0} end={props.safra} duration={1} />
+        Safra: <CountUp start={0} end={crop} duration={1} />
       </p>
       <br />
-      <Line
-        options={{
-          responsive: true,
-          scales: {
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            yAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
-        }}
-        data={state.data}
-      />
+      {Chart}
     </Card>
   );
-}
-
-class MixedChart extends React.Component {
-  render() {
-    return <Plot safra={this.props.safra} />;
-  }
 }
 
 export default MixedChart;

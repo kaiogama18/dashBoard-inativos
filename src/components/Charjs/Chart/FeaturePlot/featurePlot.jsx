@@ -64,7 +64,9 @@ const FeaturePlot = ({ crop }) => {
 
   return (
     <Card>
-      <p className="title">{crop ? <>{data?.menssage}</> : <>falso</>}</p>
+      <p className="title">
+        {crop ? <>{data?.menssage}</> : <>Top Features</>}
+      </p>
       <p className="subtitle">
         Safra: <CountUp start={0} end={crop} duration={1} />
       </p>
