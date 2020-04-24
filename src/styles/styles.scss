@@ -95,11 +95,11 @@ html.is-animating .transition-fade {
    * ======================================================================== */
 
 main {
-  @apply flex bg-gray-200;
+  @apply flex;
 }
 
 .home {
-  @apply w-full p-5;
+  @apply w-full p-5 relative;
 
   .card-grid {
     @apply grid grid-cols-3 overflow-hidden mt-5 gap-4;
@@ -217,7 +217,7 @@ main {
 .sidebar {
   background-color: $--primary;
 
-  @apply w-20 py-5;
+  @apply w-20 py-5 relative;
 
   .logo {
     @apply flex justify-center m-2;
