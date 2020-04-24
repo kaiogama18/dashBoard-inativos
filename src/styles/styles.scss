@@ -48,7 +48,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  // background-color: #f7fafc;
+  @apply bg-gray-200;
 }
 
 .transition-fade {
