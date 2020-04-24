@@ -69,8 +69,8 @@ const Login = () => {
           <label>{loginPassword}</label>
           <div className="relative bg-gray-300 rounded">
             <input type="password" />
-            <div class="login-password">
-              <a class="text-gray-900 underline">Esqueceu a senha?</a>
+            <div className="login-password">
+              <a className="text-gray-900 underline">Esqueceu a senha?</a>
             </div>
           </div>
 
