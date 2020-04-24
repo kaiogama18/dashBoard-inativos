@@ -20,7 +20,6 @@ class Index extends React.Component {
   };
 
   handleCropChange = async (crop) => {
-    // console.log('Index Crop --> ' + crop);
     this.setState({
       crop: crop,
     });
@@ -71,5 +70,3 @@ Index.getInitialProps = async (ctx) => {
   }
 };
 export default withAuthSync(Index);
-
-// export default Index;
