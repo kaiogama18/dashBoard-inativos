@@ -1,10 +1,9 @@
 import { HorizontalBar } from 'react-chartjs-2';
 import useSWR from 'swr';
 import React from 'react';
-import CountUp from 'react-countup';
-import Card from '../../../Cards/Card';
+import Chart from '../../Chart/Chart';
 
-const FeaturePlot = ({ crop }) => {
+const Feature = ({ crop }) => {
   const { data, error } = useSWR(url + crop, fetcher);
 
   let feature = [];
@@ -26,7 +25,7 @@ const FeaturePlot = ({ crop }) => {
   });
   feature = newLabels;
 
-  const Chart = (
+  const Plot = (
     <HorizontalBar
       data={{
         labels: feature.reverse(),
@@ -60,23 +59,15 @@ const FeaturePlot = ({ crop }) => {
         },
       }}
     />
-  );
+  )
 
-  return (
-    <Card>
-      <p className="title">
-        {crop ? <>{data?.menssage}</> : <>Top Features</>}
-      </p>
-      <p className="subtitle">
-        Safra: <CountUp start={0} end={crop} duration={1} />
-      </p>
-      <br />
-      {Chart}
-    </Card>
-  );
+
+
+
+  return <Chart title={data?.menssage} crop={crop}> {Plot} </Chart>
 };
 
-export default FeaturePlot;
+export default Feature;
 
 let url = '/api/api_inativo?route=' + 'top_features' + '&key=';
 

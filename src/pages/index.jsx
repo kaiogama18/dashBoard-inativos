@@ -1,18 +1,10 @@
+import { CropPicker, Navbar, ResultCrop, Plots, Layout } from '../components';
 import React from 'react';
 import fetch from 'node-fetch';
 import { Router } from 'next/router';
 import nextCookie from 'next-cookies';
-import Layout from '../components/Layout';
 import { withAuthSync } from '../utils/auth';
 import getHost from '../utils/get-host';
-import useSWR from 'swr';
-import { CropPicker, Navbar, ResultCrop, Charjs } from '../components/index';
-
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
-
-const route = 'result';
 
 class Index extends React.Component {
   state = {
@@ -27,7 +19,6 @@ class Index extends React.Component {
 
   render() {
     const { crop } = this.state;
-
     return (
       <Layout>
         <div className="home">
@@ -35,7 +26,7 @@ class Index extends React.Component {
           <div className="card-grid">
             <CropPicker handleCropChange={this.handleCropChange} />
             <ResultCrop crop={crop} />
-            <Charjs crop={crop} />
+            <Plots crop={crop} />
           </div>
         </div>
       </Layout>

@@ -1,16 +1,12 @@
-import { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import useSWR from 'swr';
-import PropTypes from 'prop-types';
 import React from 'react';
-import Card from './Cards/Card';
-import CountUp from 'react-countup';
-
+import Chart from '../../Chart/Chart';
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
-function MixedChart({ crop }) {
+function Mixed({ crop }) {
   const { data, error } = useSWR(
     '/api/api_inativo?route=' + 'score_distribution' + '&key=' + crop,
     fetcher,
@@ -24,7 +20,7 @@ function MixedChart({ crop }) {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-  const Chart = (
+  const Plot = (
     <Line
       data={{
         labels: [
@@ -79,18 +75,9 @@ function MixedChart({ crop }) {
     />
   );
 
-  return (
-    <Card>
-      <p className="title">
-        {crop ? <>{data?.menssage}</> : <>Distribution scrore</>}
-      </p>
-      <p className="subtitle">
-        Safra: <CountUp start={0} end={crop} duration={1} />
-      </p>
-      <br />
-      {Chart}
-    </Card>
-  );
+  return <Chart title={data?.menssage} crop={crop}> {Plot} </Chart>
+
+
 }
 
-export default MixedChart;
+export default Mixed;

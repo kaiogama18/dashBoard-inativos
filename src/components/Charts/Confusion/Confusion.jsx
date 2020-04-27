@@ -8,7 +8,7 @@ import {
 } from '@syncfusion/ej2-react-heatmap';
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
-import Card from './Cards/Card';
+import Card from '../../Cards/Card';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
@@ -72,10 +72,10 @@ function Plot(props) {
   );
 }
 
-class ConfusionPlot extends React.Component {
+class Confusion extends React.Component {
   render() {
     return <Plot safras={this.props.safra} />;
   }
 }
 
-export default ConfusionPlot;
+export default Confusion;
