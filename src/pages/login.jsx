@@ -54,13 +54,9 @@ export default () => {
   return (
     <>
       <section className="login-register">
-
-
         <form onSubmit={formik.handleSubmit}>
           <p className="login-register-title">{registerTitle}</p>
           <label>{loginUser}</label>
-
-
           <input
             name="email"
             type="email"
@@ -86,19 +82,7 @@ export default () => {
             <a>{loginRegister}</a>
           </Link>
         </form>
-
-
-
-
-
-
-
-
-
-
-
       </section>
-
     </>
   );
 };
