@@ -23,7 +23,6 @@ const Login = () => {
         const { token } = await response.json();
         await login({ token });
       } else {
-        console.log('[Leprs]  -- login failed');
         let error = new Error(response.statusText);
         error.response = response;
         throw error;

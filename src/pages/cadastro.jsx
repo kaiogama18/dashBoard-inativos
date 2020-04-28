@@ -3,9 +3,34 @@ import Link from 'next/link';
 import { Button } from '../components';
 import { useFormik } from 'formik';
 import fetch from 'isomorphic-unfetch';
-
+import Router from 'next/router';
 
 export default () => {
+
+  const handleSubmit = async (data) => {
+    const url = 'api/cadastro';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data }),
+      });
+
+      if (response.status === 200) {
+        const { token } = await response.json();
+        // await login({ token });
+        Router.push('/login');
+        alert(token);
+
+      } else {
+        let error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+    } catch (error) {
+      const { response } = error;
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -14,16 +39,8 @@ export default () => {
       email: '',
       senha: ''
     },
-    onSubmit: async data => {
-      const response = await fetch('api/cadastro',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data }),
-        }
-      )
-      console.log(response)
-
+    onSubmit: data => {
+      handleSubmit(data)
     },
   });
   return (

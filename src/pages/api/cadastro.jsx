@@ -12,8 +12,22 @@ export default async (req, res) => {
 
 
     if (response.ok) {
-      const json = await response.json();
-      return res.status(200).json(json);
+      // const json = await response.json();
+      // console.log("[cadastro] ---> " + JSON.stringify(json, null, 2))
+      // return res.status(200).json(json);
+
+      const { menssage } = await response.json();
+      return res.status(200).json({ token: menssage });
+
+
+
+
+
+
+
+
+
+
 
     } else {
       error.response = response;
