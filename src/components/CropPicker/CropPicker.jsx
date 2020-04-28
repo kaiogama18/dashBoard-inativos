@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../Cards/Card';
+import Card from '../Card/Card';
 import cx from 'classnames';
 import useSWR from 'swr';
 
@@ -35,7 +35,6 @@ const CropPicker = ({ handleCropChange }) => {
           <button className="crop-colunm__btn disabled" />
           <p>201801</p>
         </div>
-        {/* {data?.data.reverse().map((aux, i) => ( */}
         {data?.data.map((aux, i) => (
           <div key={i} className="crop-colunm__item">
             <button

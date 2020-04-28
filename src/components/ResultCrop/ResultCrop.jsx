@@ -1,65 +1,57 @@
 import useSWR from 'swr';
-import PropTypes from 'prop-types';
+import { Card, Button } from '..';
 import React from 'react';
-import CountUp from 'react-countup';
 import cx from 'classnames';
-import { Card } from '..';
+import CountUp from 'react-countup';
 
 function fetcher(url) {
   return fetch(url).then((r) => r.json());
 }
 
+function Count({ props }) {
+  return (
+    <CountUp start={0}
+      end={props}
+      duration={1}
+
+    />
+  )
+}
+
 const ResultCrop = ({ crop }) => {
-  const route = 'result';
-  const { data, error } = useSWR(
-    '/api/api_inativo?route=' + route + '&key=' + crop,
+  const { data } = useSWR(
+    '/api/api_inativo?route=' + 'result' + '&key=' + crop,
     fetcher,
   );
 
-  let title = data?.menssage;
-  if (!data) title = 'Carregando...';
-  if (error) title = 'sem internet';
-
   return (
-    <Card className={cx('card', 'card-results')}>
-      <div>
-        <p className="title">
-          RESULTADOS do TREINO: <CountUp start={0} end={crop} duration={1} />
-        </p>
-        {data?.data.map((aux, i) => (
-          <p key={i} className="subtitle">
-            {aux.rotulo}{' '}
+    <div className="grid grid-cols-1">
+      <Card className={cx('card', 'card-results')}>
+        <div>
+          <p className="title">
+            <a>RESULTADOS do TREINO: {' '}<Count props={crop} /></a>
           </p>
-        ))}
-
-        {data?.data.map((aux, i) => (
-          <p className="subtitle" key="i">
+          <a className="subtitle">{crop ? data?.data.map(aux => aux.rotulo) : "BACKTEST 0_0 - LGBM - TUNED"}</a>
+          <p className="subtitle">
             <a className="font-bold">
-              AUC: <CountUp start={0} end={aux.auc} duration={1} /> e KS:{' '}
-              <CountUp start={0} end={aux.ks} duration={1} />
+              AUC: <Count props={data?.data.map(aux => aux.auc)} />
+              {' '}e KS: <Count props={data?.data.map(aux => aux.ks)} />
             </a>
-            <br />
-            Instância de Treino:{' '}
-            <CountUp
-              className="font-bold"
-              start={0}
-              end={aux.instancias_treino}
-              duration={1}
-              separator=","
-            />
-            <br />
-            Instância de Teste:{' '}
-            <CountUp
-              className="font-bold"
-              start={0}
-              end={aux.instancias_teste}
-              duration={1}
-              separator=","
-            />
           </p>
-        ))}
-      </div>
-    </Card>
+          <p className="subtitle">
+            <a>
+              Instância de Teste: {' '}
+              <Count props={data?.data.map(aux => aux.instancias_teste)} />
+            </a>
+          </p>
+        </div>
+      </Card>
+      <button className="btn-csv">
+        <p className="subtitle font-bold text-white">Fazer dowload do CSV</p>
+      </button>
+    </div>
+
+
   );
 };
 

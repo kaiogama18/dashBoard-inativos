@@ -1,5 +1,5 @@
 import { CropPicker, Navbar, ResultCrop, Plots, Layout } from '../components';
-import React from 'react';
+import React, { useEffect } from 'react';
 import fetch from 'node-fetch';
 import { Router } from 'next/router';
 import nextCookie from 'next-cookies';
@@ -34,32 +34,32 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+// export default Index;
 
-// Index.getInitialProps = async (ctx) => {
-//   const { token } = nextCookie(ctx);
-//   const apiUrl = `${getHost(ctx.req)}api/profile`;
+Index.getInitialProps = async (ctx) => {
+  const { token } = nextCookie(ctx);
+  const apiUrl = `${getHost(ctx.req)}api/profile`;
 
-//   const redirectError = () =>
-//     typeof window !== 'undefined'
-//       ? Router.push('/login')
-//       : ctx.res.writeHead(302, { Location: '/login' }).end();
+  const redirectError = () =>
+    typeof window !== 'undefined'
+      ? Router.push('/login')
+      : ctx.res.writeHead(302, { Location: '/login' }).end();
 
-//   try {
-//     const response = await fetch(apiUrl, {
-//       credentials: 'include',
-//       headers: {
-//         Authorization: JSON.stringify({ token }),
-//       },
-//     });
+  try {
+    const response = await fetch(apiUrl, {
+      credentials: 'include',
+      headers: {
+        Authorization: JSON.stringify({ token }),
+      },
+    });
 
-//     if (response.ok) {
-//       const js = await response.json();
-//       return js;
-//     }
-//     return await redirectError();
-//   } catch (error) {
-//     return redirectError();
-//   }
-// };
-// export default withAuthSync(Index);
+    if (response.ok) {
+      const js = await response.json();
+      return js;
+    }
+    return await redirectError();
+  } catch (error) {
+    return redirectError();
+  }
+};
+export default withAuthSync(Index);
