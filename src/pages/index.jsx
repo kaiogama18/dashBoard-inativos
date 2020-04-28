@@ -1,7 +1,6 @@
 import { CropPicker, Navbar, ResultCrop, Plots, Layout } from '../components';
 import React from 'react';
 
-
 class Index extends React.Component {
   state = {
     crop: '',
