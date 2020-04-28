@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch';
-const url = 'https://inativos.appspot.com/login/usuario/cadastro'
+const url = 'https://inativos.appspot.com/login/usuario/'
 
 export default async (req, res) => {
   const { data } = await req.body;
@@ -12,8 +12,8 @@ export default async (req, res) => {
 
     if (response.ok) {
 
-      const { menssage } = await response.json();
-      return res.status(200).json({ token: menssage });
+      const { menssage, code } = await response.json();
+      return res.status(200).json({ token: menssage, code: code });
 
     } else {
       error.response = response;
