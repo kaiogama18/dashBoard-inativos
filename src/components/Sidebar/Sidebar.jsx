@@ -2,11 +2,7 @@
 
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
-import Activation from '../Activation/Activation';
-
-
-
-
+import { ListUser } from '../Adm';
 
 const Sidebar = () => {
 
@@ -31,14 +27,12 @@ const Sidebar = () => {
             group_add
       </button>
         </div>
-
       </aside>
-
       <Modal
         className="flex justify-center "
         open={open}
         onClose={handleClose}>
-        <Activation />
+        <ListUser />
       </Modal>
     </>
   )

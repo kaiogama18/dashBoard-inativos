@@ -9,8 +9,8 @@ export default async (req, res) => {
     });
 
     if (response.ok) {
-      const { data } = await response.json();
-      return res.status(200).json({ data: data });
+      const { data, menssage, code } = await response.json();
+      return res.status(200).json({ data: data, menssage: menssage, code: code });
 
     } else {
       error.response = response;
