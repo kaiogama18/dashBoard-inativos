@@ -38,6 +38,8 @@
   },
   "homepage": "https://github.com/kaiogama18/dashBoard-inativos#readme",
   "dependencies": {
+    "@material-ui/core": "^4.9.12",
+    "@material-ui/icons": "^4.9.1",
     "@syncfusion/ej2-react-heatmap": "^17.4.51",
     "autoprefixer": "^9.7.5",
     "body-parser": "^1.19.0",

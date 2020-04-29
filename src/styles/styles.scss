@@ -90,6 +90,10 @@ html.is-animating .transition-fade {
   @apply text-xl h-8 items-center flex;
 }
 
+.title-border {
+  @apply text-xl border-b-4 border-gray-300 uppercase;
+}
+
 /*
    * Layout
    * ======================================================================== */
@@ -262,6 +266,14 @@ main {
 
 .btn-csv {
   @apply rounded-md bg-blue-500 flex justify-center bg-green-500;
+}
+
+.card-modal {
+  @apply bg-white w-auto h-auto flex m-40 rounded-md;
+
+  p {
+    @apply bg-black h-full text-white flex items-center text-xl;
+  }
 }
 
 /*
