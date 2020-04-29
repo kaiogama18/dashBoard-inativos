@@ -13,6 +13,7 @@ $--blue_default: #0926fe;
    * ======================================================================== */
 
 $--primary: #015c92;
+$--exit: #fafa;
 
 :root {
   /*
@@ -83,7 +84,8 @@ html.is-animating .transition-fade {
 }
 
 .title {
-  @apply text-xl font-bold uppercase h-8 items-center flex bg-orange-300;
+  // @apply text-xl font-bold uppercase h-8 items-center flex bg-orange-300;
+  @apply text-xl font-bold uppercase h-8 items-center flex;
 }
 
 .subtitle {

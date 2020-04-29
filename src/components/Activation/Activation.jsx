@@ -7,11 +7,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Radio from '@material-ui/core/Radio';
 export default () => {
 
   const [route, setRoute] = useState('listar');
   const [lists, setLists] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(0);
   const url = 'api/adm_usuario';
 
 
@@ -64,16 +67,20 @@ export default () => {
 
 
 
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
-  const Index = lists.length ? (
 
+
+  const Root = lists.length ? (
     <TableContainer className={cx('card-modal')}>
       <Table className="bg-gray-200">
         <TableHead>
           <TableRow>
             <StyledTableCell>E-mail</StyledTableCell>
             <StyledTableCell align="right">Status</StyledTableCell>
-            <StyledTableCell align="right">Deletar</StyledTableCell>
+            <StyledTableCell align="right">Deletar Usuário</StyledTableCell>
 
           </TableRow>
         </TableHead>
@@ -83,13 +90,32 @@ export default () => {
               <StyledTableCell component="th" scope="row">
                 {list.email}
               </StyledTableCell>
-              <StyledTableCell align="right"> {list.ativo}</StyledTableCell>
-              <StyledTableCell align="right">Exculir</StyledTableCell>
+              <StyledTableCell align="right">
+                <Radio
+                  checked={list.ativo === 1}
+                  onChange={handleChange}
+                  inputProps={0}
+                />
+                {list.ativo}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+
+
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<DeleteIcon />}
+                >
+                  Excluir
+                  </Button>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   ) : null
-  return Index
+
+
+  return Root
 };
