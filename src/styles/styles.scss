@@ -220,10 +220,20 @@ main {
   @apply w-20 py-5 relative;
 
   .logo {
-    @apply flex justify-center m-2;
+    @apply flex justify-center p-5;
 
     img {
       @apply h-10 w-10;
+    }
+  }
+
+  .btn {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+    @apply p-5 w-full text-white font-bold;
+
+    &:hover {
+      @apply bg-green-600;
     }
   }
 }
