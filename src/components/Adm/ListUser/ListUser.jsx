@@ -8,53 +8,22 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { DeleteUser, ActivateUser } from '..';
+import Rota from '../../../Routes/Rota';
 
 
 export default () => {
+  const [route, setRoute] = useState('/adm_usuario/listar');
   const [data, setData] = useState([]);
   const [menssage, setMenssage] = useState('');
-  const [code, setCode] = useState('');
-
-  const [route, setRoute] = useState('listar');
-  const url = 'api/list_usuario';
-
-  /*
-   * Call Api
-   * ======================================================================== */
-
 
   useEffect(() => {
     const fetchAPI = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ route }),
-        });
-
-        if (response.status === 200) {
-          const { data, menssage, code } = await response.json();
-          setMenssage(menssage)
-          setCode(code)
-          return setData(data)
-
-        } else {
-          let error = new Error(response.statusText);
-          error.response = response;
-          throw error;
-        }
-      } catch (error) {
-        const { response } = error;
-      }
-    };
-
+      const { data, menssage } = await Rota({ route });
+      setMenssage(menssage)
+      setData(data)
+    }
     fetchAPI();
   }, [route])
-
-
-  /*
- * Style Table
- * ======================================================================== */
 
 
   const StyledTableCell = withStyles((theme) => ({
@@ -117,4 +86,5 @@ export default () => {
 
 
   return Root
+  // return <>dsad</>
 };
