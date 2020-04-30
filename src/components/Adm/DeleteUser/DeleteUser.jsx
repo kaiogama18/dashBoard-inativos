@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Rota from '../../../Routes/Rota';
+import Router from 'next/router';
 
 export default ({ nome, cpf }) => {
   const route = '/adm_usuario/deletar';
@@ -10,6 +11,7 @@ export default ({ nome, cpf }) => {
     const param = { cpf: props.cpf }
     const { menssage } = await Rota({ route, param });
     alert(menssage)
+    Router.push('/');
   }
 
   return (

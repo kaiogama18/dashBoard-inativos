@@ -45,12 +45,6 @@ export default () => {
       },
     },
   }))(TableRow);
-
-
-  /*
-* Table list User
-* ======================================================================== */
-
   const Root = data.length ? (
     <TableContainer className={cx('card-modal')}>
       <Table>
@@ -70,7 +64,7 @@ export default () => {
               </StyledTableCell>
 
               <StyledTableCell align="right">
-                <ActivateUser ativo={list.ativo} />
+                <ActivateUser ativo={list.ativo} cpf={list.cpf} />
               </StyledTableCell>
 
               <StyledTableCell align="right">
@@ -82,9 +76,16 @@ export default () => {
         </TableBody>
       </Table>
     </TableContainer>
+
   ) : null
 
 
+  /*
+* Table list User
+* ======================================================================== */
+
+
+
+
   return Root
-  // return <>dsad</>
 };
