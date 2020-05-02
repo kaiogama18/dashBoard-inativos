@@ -18,7 +18,7 @@ export default () => {
 
 
 
-  const updateData = async (e) => {
+  const updateData = async () => {
     const { data } = await Rota({ route });
     setData(data)
   }
@@ -60,7 +60,7 @@ export default () => {
               </StyledTableCell>
 
               <StyledTableCell>
-                <DeleteUser nome={list.nome} cpf={list.cpf} />
+                <DeleteUser nome={list.nome} cpf={list.cpf} updateData={updateData} />
               </StyledTableCell>
 
             </StyledTableRow>

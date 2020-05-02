@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Rota from '../../../Routes/Rota';
-import Router from 'next/router';
 
-export default ({ nome, cpf }) => {
+export default ({ nome, cpf, updateData }) => {
   const route = '/adm_usuario/deletar';
 
   const deleteUser = async (props) => {
     const param = { cpf: props.cpf }
     const { menssage } = await Rota({ route, param });
     alert(menssage)
-    Router.push('/');
+    updateData()
   }
 
   return (

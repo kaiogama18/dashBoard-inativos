@@ -3,7 +3,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Rota from '../../../Routes/Rota';
 
 export default ({ ativo, cpf, updateData }) => {
-  // export default ({ ativo, cpf }) => {
   const route = '/adm_usuario/ativar';
   const [checked, setChecked] = useState(ativo == 1 ? true : false);
 
