@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ListUser } from '../Adm';
 import { Dialog, Slide } from '@material-ui/core';
 
@@ -10,8 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Sidebar = () => {
 
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -27,15 +26,15 @@ const Sidebar = () => {
           <img src="/buritech-icon.png" alt="logo" />
         </div>
         <div className="mt-5">
-          <button className="material-icons btn" onClick={handleOpen}>
+          <button className="material-icons btn"
+            onClick={handleOpen}>
             group_add
-      </button>
+          </button>
         </div>
       </aside>
       <Dialog open={open}
         onClose={handleClose}
-        TransitionComponent={Transition}
-      >
+        TransitionComponent={Transition}>
         <div className="modal">
           <div>
             <p className="title">Lista de Usuários</p>
@@ -48,11 +47,8 @@ const Sidebar = () => {
         </div>
         <ListUser />
       </Dialog>
-
     </>
   )
-
-
 
 }
 export default Sidebar;

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import Rota from '../../../Routes/Rota';
 
-export default ({ ativo, cpf }) => {
+export default ({ ativo, cpf, updateData }) => {
+  // export default ({ ativo, cpf }) => {
   const route = '/adm_usuario/ativar';
   const [checked, setChecked] = useState(ativo == 1 ? true : false);
 
@@ -17,7 +18,7 @@ export default ({ ativo, cpf }) => {
     const param = (ativo == 1) ? { cpf: props.cpf, "ativo": 0 } : { cpf: props.cpf, "ativo": 1 }
     const { menssage } = await Rota({ route, param });
     alert(menssage)
-    return setChecked(ativo == 1 ? true : false)
+    updateData()
 
   }
 

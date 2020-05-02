@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
+import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles } from '@material-ui/core';
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
 
@@ -15,11 +10,18 @@ export default () => {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      const { data, menssage } = await Rota({ route });
+      const { data } = await Rota({ route });
       setData(data)
     }
     fetchAPI();
   }, [route])
+
+
+
+  const updateData = async (e) => {
+    const { data } = await Rota({ route });
+    setData(data)
+  }
 
 
 
@@ -42,6 +44,7 @@ export default () => {
       },
     },
   }))(TableRow);
+
   const Root = data.length ? (
     <TableContainer >
       <Table>
@@ -53,10 +56,10 @@ export default () => {
               </StyledTableCell>
 
               <StyledTableCell>
-                <ActivateUser ativo={list.ativo} cpf={list.cpf} />
+                <ActivateUser ativo={list.ativo} cpf={list.cpf} updateData={updateData} />
               </StyledTableCell>
 
-              <StyledTableCell >
+              <StyledTableCell>
                 <DeleteUser nome={list.nome} cpf={list.cpf} />
               </StyledTableCell>
 
