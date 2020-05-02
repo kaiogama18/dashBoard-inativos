@@ -4,33 +4,23 @@ import Rota from '../../../Routes/Rota';
 
 export default ({ ativo, cpf, updateData }) => {
   const route = '/adm_usuario/ativar';
-  const [checked, setChecked] = useState(ativo == 1 ? true : false);
-
-
-
-  const [status, setStatus] = useState(
-    ativo == 1 ? 'Ativado' : 'Inativo');
-
 
   const Activate = async (props) => {
-
     const param = (ativo == 1) ? { cpf: props.cpf, "ativo": 0 } : { cpf: props.cpf, "ativo": 1 }
     const { menssage } = await Rota({ route, param });
     alert(menssage)
     updateData()
-
   }
-
 
   return (
     <>
       <Checkbox
-        checked={checked}
+        checked={ativo == 1 ? true : false}
         color="primary"
         onClick={() => Activate({ ativo, cpf })}
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
-      {status}
+      {ativo == 1 ? 'Ativado' : 'Inativo'}
     </>
   )
 }

@@ -3,7 +3,6 @@ import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles } fro
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
 
-
 export default () => {
   const [route, setRoute] = useState('/adm_usuario/listar');
   const [data, setData] = useState([]);
@@ -15,8 +14,6 @@ export default () => {
     }
     fetchAPI();
   }, [route])
-
-
 
   const updateData = async () => {
     const { data } = await Rota({ route });
