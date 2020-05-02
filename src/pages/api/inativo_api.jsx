@@ -8,8 +8,6 @@ export default async (req, res) => {
     const response = (param == null) ? (
       await fetch(url + route, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(param),
       })
     ) : (
         await fetch(url + route, {

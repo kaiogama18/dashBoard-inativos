@@ -270,12 +270,10 @@ main {
   @apply rounded-md bg-blue-500 flex justify-center bg-green-500;
 }
 
-.card-modal {
-  @apply bg-white w-auto h-auto flex m-40 rounded-md;
+.modal {
+  background-color: $--primary;
 
-  p {
-    @apply bg-black h-full text-white flex items-center text-xl;
-  }
+  @apply grid grid-cols-2 justify-between text-white content-between p-4;
 }
 
 /*

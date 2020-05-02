@@ -1,8 +1,12 @@
 
 
 import React from 'react';
-import Modal from '@material-ui/core/Modal';
 import { ListUser } from '../Adm';
+import { Dialog, Slide } from '@material-ui/core';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Sidebar = () => {
 
@@ -28,12 +32,23 @@ const Sidebar = () => {
       </button>
         </div>
       </aside>
-      <Modal
-        className="flex justify-center "
-        open={open}
-        onClose={handleClose}>
+      <Dialog open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <div className="modal">
+          <div>
+            <p className="title">Lista de Usuários</p>
+          </div>
+          <div className="text-right">
+            <button className="material-icons mt-1" onClick={handleClose}>
+              cancel
+            </button>
+          </div>
+        </div>
         <ListUser />
-      </Modal>
+      </Dialog>
+
     </>
   )
 

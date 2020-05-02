@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 
 export default async (props) => {
   const url = 'api/inativo_api';
@@ -14,7 +13,6 @@ export default async (props) => {
       const { data, menssage, code } = await response.json();
       // alert(menssage)
       return { code, menssage, data }
-      // return json({ data: data, menssage: menssage, code: code })
     } else {
       let error = new Error(response.statusText);
       error.response = response;
