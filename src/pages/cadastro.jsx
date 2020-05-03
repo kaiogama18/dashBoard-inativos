@@ -2,35 +2,19 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../components';
 import { useFormik } from 'formik';
-import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
+import Rota from '../Routes/Rota';
 
 export default () => {
+  const route = '/login/usuario/cadastro';
 
-  const handleSubmit = async (data) => {
-    const url = 'api/cadastro';
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data }),
-      });
-
-      if (response.status === 200) {
-        const { token } = await response.json();
-        // await login({ token });
-        Router.push('/login');
-        alert(token);
-
-      } else {
-        let error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-    } catch (error) {
-      const { response } = error;
+  const handleSubmit = async (param) => {
+    const { code, menssage } = await Rota({ route, param });
+    if (code === 200) {
+      alert(menssage);
+      Router.push('/login');
     }
-  };
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -39,8 +23,8 @@ export default () => {
       email: '',
       senha: ''
     },
-    onSubmit: data => {
-      handleSubmit(data)
+    onSubmit: param => {
+      handleSubmit(param)
     },
   });
   return (
@@ -74,8 +58,6 @@ export default () => {
             value={formik.values.cpf}
           />
 
-
-
           <label>{registerPassword}</label>
           <input
             name="senha"
@@ -83,7 +65,6 @@ export default () => {
             onChange={formik.handleChange}
             value={formik.values.senha}
           />
-
 
           <p className="text-sm mt-1">{caracteres}</p>
 
