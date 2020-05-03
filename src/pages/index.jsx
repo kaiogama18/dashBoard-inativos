@@ -32,33 +32,10 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
-// Index.getInitialProps = async (ctx) => {
-//   const { token } = nextCookie(ctx);
-//   const apiUrl = getHost(ctx.req) + "api/profile";
-//   const redirectError = () =>
-//     typeof window !== "undefined"
-//       ? Router.push("/login")
-//       : ctx.res.writeHead(302, { Location: "/login" }).end();
-
-//   try {
-//     const response = await fetch(apiUrl, {
-//       credentials: "include",
-//       headers: {
-//         Authorization: JSON.stringify({ token }),
-//       },
-//     });
-
-//     if (response.ok) {
-//       const js = await response.json();
-//       console.log("[Leprs] -- js: ", js);
-//       return js;
-//     } else {
-//       return await redirectError();
-//     }
-//   } catch (error) {
-//     return redirectError();
-//   }
-// };
-// export default withAuthSync(Index);
+// export default Index;
+Index.getInitialProps = async (ctx) => {
+  const { token } = nextCookie(ctx);
+  // console.log("ajuste::: " + token)
+};
+export default withAuthSync(Index);
 
