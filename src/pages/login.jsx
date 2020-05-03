@@ -20,7 +20,6 @@ export default () => {
   const handleSubmit = async (param) => {
     const { code, menssage, data } = await Rota({ route, param });
     if (code === 200) {
-      alert(" Token --> " + JSON.stringify(data[0].cpf, null, 2))
       await login({ token: data[0].cpf });
     } else {
       alert(menssage)

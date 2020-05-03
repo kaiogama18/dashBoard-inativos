@@ -32,10 +32,8 @@ class Index extends React.Component {
   }
 }
 
-// export default Index;
 Index.getInitialProps = async (ctx) => {
   const { token } = nextCookie(ctx);
-  // console.log("ajuste::: " + token)
 };
 export default withAuthSync(Index);
 

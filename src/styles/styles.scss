@@ -249,7 +249,7 @@ main {
    * ======================================================================== */
 
 .card {
-  @apply overflow-hidden p-5 bg-white shadow-sm self-start rounded-md;
+  @apply overflow-hidden p-5 bg-white shadow-sm self-start;
 }
 
 .card-results {

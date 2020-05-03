@@ -13,6 +13,8 @@ export default () => {
     if (code === 200) {
       alert(menssage);
       Router.push('/login');
+    } else {
+      alert(menssage)
     }
   }
 

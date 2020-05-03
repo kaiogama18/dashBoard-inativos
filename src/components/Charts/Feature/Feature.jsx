@@ -1,31 +1,69 @@
 import { HorizontalBar } from 'react-chartjs-2';
-import useSWR from 'swr';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from '../../Chart/Chart';
+import Rota from '../../../Routes/Rota';
+
+const colors = [
+  'rgba(196, 37, 125, 0.75)',
+  'rgba(255, 99, 132, 100)',
+  'rgba(255, 91, 25, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(255, 99, 132, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(48, 255, 210, 0.75)',
+];
+
 
 const Feature = ({ crop }) => {
-  const { data, error } = useSWR(url + crop, fetcher);
+  const route = '/home/safras/top_features';
+  const [menssage, setMenssage] = useState('');
+  const [feature, setfeature] = useState([]);
+  const [valor, setValor] = useState([]);
+  const [data, setData] = useState([]);
 
-  let feature = [];
-  let valor = [];
-  data?.data.map((aux) => (feature.push(aux.feature), valor.push(aux.valor)));
-  let dataArray = valor;
-  let dataIndexes = dataArray.map((d, i) => i);
+  useEffect(() => {
+
+    const fetchAPI = async () => {
+      const { data, menssage } = await Rota({ route, param: { safra: crop } });
+
+      setMenssage(menssage)
+      setData(data)
+
+      setfeature(data.map(i => i.feature))
+      setValor(data.map(i => i.valor))
+
+    }
+    fetchAPI();
+  }, [crop])
+
+
+  let dataArray = valor
+  let dataIndexes = dataArray.map((i) => i);
+
   dataIndexes.sort((a, b) => {
     return dataArray[a] - dataArray[b];
   });
 
   dataArray.sort((a, b) => a - b);
+
   let newMeta = [];
   let newLabels = [];
-  data?.data.forEach((bar, i) => {
+
+  data.forEach((bar, i) => {
     let newIndex = dataIndexes.indexOf(i);
     newMeta[newIndex] = bar;
     newLabels[newIndex] = feature[i];
   });
-  feature = newLabels;
 
-  const Plot = (
+  const Plot = feature.length ? (
     <HorizontalBar
       data={{
         labels: feature.reverse(),
@@ -59,36 +97,12 @@ const Feature = ({ crop }) => {
         },
       }}
     />
-  )
+  ) : null
 
-
-
-
-  return <Chart title={data?.menssage} crop={crop}> {Plot} </Chart>
+  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
 };
 
 export default Feature;
 
-let url = '/api/api_inativo?route=' + 'top_features' + '&key=';
 
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
 
-const colors = [
-  'rgba(196, 37, 125, 0.75)',
-  'rgba(255, 99, 132, 100)',
-  'rgba(255, 91, 25, 0.75)',
-  'rgba(54, 162, 235, 0.75)',
-  'rgba(255, 206, 86, 0.75)',
-  'rgba(75, 192, 192, 0.75)',
-  'rgba(153, 102, 255, 0.75)',
-  'rgba(255, 159, 64, 0.75)',
-  'rgba(255, 99, 132, 0.75)',
-  'rgba(54, 162, 235, 0.75)',
-  'rgba(255, 206, 86, 0.75)',
-  'rgba(75, 192, 192, 0.75)',
-  'rgba(153, 102, 255, 0.75)',
-  'rgba(255, 159, 64, 0.75)',
-  'rgba(48, 255, 210, 0.75)',
-];

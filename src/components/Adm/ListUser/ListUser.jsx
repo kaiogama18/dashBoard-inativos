@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles } from '@material-ui/core';
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
+import Skeleton from '@material-ui/lab/Skeleton';
+
 
 export default () => {
   const [route, setRoute] = useState('/adm_usuario/listar');
@@ -66,7 +68,7 @@ export default () => {
       </Table>
     </TableContainer>
 
-  ) : <div>CARREGANDO</div>
+  ) : <Skeleton animation="wave" />
 
 
 
