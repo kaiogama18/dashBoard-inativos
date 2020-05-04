@@ -1,57 +1,55 @@
-import useSWR from 'swr';
+import React, { useState, useEffect } from 'react';
 import { Card } from '..';
-import React from 'react';
 import cx from 'classnames';
+import Rota from '../../Routes/Rota';
 import CountUp from 'react-countup';
-
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
-
-function Count({ props }) {
-  return (
-    <CountUp start={0}
-      end={props}
-      duration={1}
-
-    />
-  )
-}
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const ResultCrop = ({ crop }) => {
-  const { data } = useSWR(
-    '/api/api_inativo?route=' + 'result' + '&key=' + crop,
-    fetcher,
-  );
+  const route = '/home/safras/result'
+  const [data, setData] = useState([]);
+  const [menssage, setMenssage] = useState('');
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
+      if (code === 200) {
+        setMenssage(menssage)
+        setData(data)
+      }
+    }
+    fetchAPI();
+  }, [crop])
 
   return (
     <div className="grid grid-cols-1">
       <Card className={cx('card', 'card-results')}>
-        <div>
-          <p className="title">
-            <a>RESULTADOS do TREINO: {' '}<Count props={crop} /></a>
-          </p>
-          <a className="subtitle">{crop ? data?.data.map(aux => aux.rotulo) : "BACKTEST 0_0 - LGBM - TUNED"}</a>
-          <p className="subtitle">
+        <a className="title"> {menssage ? menssage : <Skeleton width={300} animation="wave" />}</a>
+        <a className="subtitle"> {data.length ? data[0].rotulo : <Skeleton width={500} animation="wave" />} </a>
+
+        <p className="subtitle">
+          {data.length ? (
             <a className="font-bold">
-              AUC: <Count props={data?.data.map(aux => aux.auc)} />
-              {' '}e KS: <Count props={data?.data.map(aux => aux.ks)} />
+              AUC: <CountUp start={0} end={data[0].auc} />
+              {' '} e {' '}
+              KS: <CountUp start={0} end={data[0].ks} />
             </a>
-          </p>
-          <p className="subtitle">
+          ) : <Skeleton width={200} animation="wave" />
+          }
+        </p>
+        <a className="subtitle">
+          {data.length ? (
             <a>
-              Instância de Teste: {' '}
-              <Count props={data?.data.map(aux => aux.instancias_teste)} />
+              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} />
             </a>
-          </p>
-        </div>
+          ) : <Skeleton width={250} animation="wave" />}
+        </a>
+
       </Card>
       <button className="btn-csv">
         <p className="subtitle font-bold text-white">Fazer dowload do CSV</p>
       </button>
     </div>
-
-
   );
 };
 

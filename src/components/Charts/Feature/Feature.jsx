@@ -1,5 +1,5 @@
-import { HorizontalBar } from 'react-chartjs-2';
 import React, { useState, useEffect } from 'react';
+import { HorizontalBar } from 'react-chartjs-2';
 import Chart from '../../Chart/Chart';
 import Rota from '../../../Routes/Rota';
 
@@ -11,7 +11,6 @@ const Feature = ({ crop }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-
     const fetchAPI = async () => {
       const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
       if (code === 200) {
