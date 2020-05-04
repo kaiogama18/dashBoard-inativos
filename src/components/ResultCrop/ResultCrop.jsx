@@ -30,9 +30,9 @@ const ResultCrop = ({ crop }) => {
         <p className="subtitle">
           {data.length ? (
             <a className="font-bold">
-              AUC: <CountUp start={0} end={data[0].auc} />
+              AUC: <CountUp start={0} end={data[0].auc} decimal="." />
               {' '} e {' '}
-              KS: <CountUp start={0} end={data[0].ks} />
+              KS: <CountUp start={0} end={data[0].ks} decimal="." />
             </a>
           ) : <Skeleton width={200} animation="wave" />
           }
@@ -40,7 +40,7 @@ const ResultCrop = ({ crop }) => {
         <a className="subtitle">
           {data.length ? (
             <a>
-              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} />
+              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} decimal="." separator="," />
             </a>
           ) : <Skeleton width={250} animation="wave" />}
         </a>
