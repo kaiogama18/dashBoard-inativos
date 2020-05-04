@@ -4,12 +4,13 @@ import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import Skeleton from "@material-ui/lab/Skeleton";
 import Router from 'next/router';
-import safras from '../../data/safra.json';
+// import safras from '../../data/safra.json';
 
 
 const CropPicker = ({ handleCropChange }) => {
   const route = '/home/safras'
   const [data, setData] = useState([]);
+  const [safras, setSafras] = useState([]);
   const [menssage, setMenssage] = useState('');
 
   useEffect(() => {
@@ -18,32 +19,13 @@ const CropPicker = ({ handleCropChange }) => {
         const { data, menssage } = await Rota({ method: 'GET', route });
         setMenssage(menssage)
         setData(data)
+        setSafras(data.map((aux) => aux.safra).reverse())
       } catch (error) {
-        // Router.push('/notfound');
         Router.push('/login');
       }
     }
-    // alert(JSON.stringify(safras, null, 2))
-
     fetchAPI();
   }, [route])
-
-  const SafraSubmit = (props) => {
-    // onClick={() => handleCropChange(safra.safra)}
-    // alert("Safras " + props)
-
-    data.map(aux => (
-      alert(aux.safra),
-      aux.safra == props ? (
-        alert(aux.safra),
-        handleCropChange(aux.safra)
-      ) : null
-    ))
-  }
-
-
-
-
 
   return (
     <Card className={cx('card', 'card-picker')}>
@@ -55,71 +37,21 @@ const CropPicker = ({ handleCropChange }) => {
       </div>
       <div className="crop-colunm">
 
-        {/* {
-          safras.map(safra => (
-            <div key={safra.safra} className="crop-colunm__item">
-              <button
-                className="crop-colunm__btn "
-                onClick={() => SafraSubmit(safra.safra)}
-              />
-              <p>{safra.title}</p>
-            </div>
-          ))
-        } */}
-
-        <div className="crop-colunm__item">
-          <button className="crop-colunm__btn disabled" />
-          <p>201801</p>
-        </div>
-
-
         {
-          data.map(aux => (
-            <div key={aux.safra} className="crop-colunm__item">
-              <button
-                className="crop-colunm__btn"
-                onClick={() => handleCropChange(aux.safra)}
-              />
-              <p>{aux.safra}</p>
+          safras.map(safra => (
+            <div key={safra} className="crop-colunm__item">
+              <button className="crop-colunm__btn"
+                onClick={() => handleCropChange(safra)}>
+              </button>
+              <p>{safra}</p>
             </div>
           ))
         }
+
       </div>
 
     </Card>
   );
-
-  // return (
-  //   <Card className={cx('card', 'card-picker')}>
-  //     <div className="self-center">
-  //       <p className="title">LISTA DE SAFRAS DISPONÍVEIS</p>
-  //       <p className="subtitle">{cropTitle}</p>
-  //     </div>
-
-  //     <div className="crop-colunm">
-  // <div className="crop-colunm__item">
-  //   <button className="crop-colunm__btn disabled" />
-  //   <p>201801</p>
-  // </div>
-  //       {data?.data.map((aux, i) => (
-  //         <div key={i} className="crop-colunm__item">
-  // <button
-  //   className="crop-colunm__btn"
-  //   onClick={(e) => handleCropChange(aux.safra)}
-  // />
-  //           <p>{aux.safra}</p>
-  //         </div>
-  //       ))}
-
-  //       {numbers.map((aux, i) => (
-  //         <div key={i} className="crop-colunm__item">
-  //           <button className="crop-colunm__btn disabled" />
-  //           <p>{aux}</p>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   </Card>
-  // );
 };
 
 export default CropPicker;
