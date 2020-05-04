@@ -18,11 +18,15 @@ export default () => {
   const route = '/login/usuario';
 
   const handleSubmit = async (param) => {
-    const { code, menssage, data } = await Rota({ route, param });
-    if (code === 200) {
-      await login({ token: data[0].cpf });
-    } else {
-      alert(menssage)
+    try {
+      const { code, menssage, data } = await Rota({ route, param });
+      if (code === 200) {
+        await login({ token: data[0].cpf });
+      } else {
+        alert(menssage)
+      }
+    } catch (error) {
+      alert("Sem Coneção")
     }
   }
 

@@ -19,7 +19,7 @@ class Index extends React.Component {
     const { crop } = this.state;
     return (
       <Layout>
-        <div className="home">
+        <div className="home bg-gray-200">
           <Navbar />
           <div className="card-grid">
             <CropPicker handleCropChange={this.handleCropChange} />

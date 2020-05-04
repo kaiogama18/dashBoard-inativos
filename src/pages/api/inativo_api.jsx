@@ -2,19 +2,23 @@ import fetch from 'isomorphic-unfetch';
 const url = 'https://inativos.appspot.com'
 
 export default async (req, res) => {
-  const { route, param } = await req.body;
+  const { method, route, param } = await req.body;
 
   try {
-    const response = (param == null) ? (
-      await fetch(url + route, {
-        method: 'POST',
-      })
+    const response = (method == 'GET') ? (
+      await fetch(url + route)
     ) : (
-        await fetch(url + route, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(param),
-        })
+        param == null ? (
+          await fetch(url + route, {
+            method: 'POST',
+          })
+        ) : (
+            await fetch(url + route, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(param),
+            })
+          )
       )
 
     if (response.ok) {

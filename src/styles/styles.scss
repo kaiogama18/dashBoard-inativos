@@ -48,8 +48,9 @@ body {
   font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $--primary;
 
-  @apply bg-gray-200;
+  // @apply bg-gray-200;
 }
 
 .transition-fade {
@@ -223,7 +224,7 @@ main {
 .sidebar {
   background-color: $--primary;
 
-  @apply w-20 py-5 relative;
+  @apply w-20 h-screen py-5 relative;
 
   .logo {
     @apply flex justify-center p-5;

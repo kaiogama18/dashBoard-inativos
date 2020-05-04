@@ -20,7 +20,7 @@ export default async (props) => {
     }
   } catch (error) {
     const { response } = error;
-    alert("Error de Conexão");
+    // alert("Error de Conexão");
   }
 
 }

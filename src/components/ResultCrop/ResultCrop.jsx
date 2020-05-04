@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { Card, Button } from '..';
+import { Card } from '..';
 import React from 'react';
 import cx from 'classnames';
 import CountUp from 'react-countup';

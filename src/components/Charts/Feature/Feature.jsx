@@ -32,13 +32,14 @@ const Feature = ({ crop }) => {
   useEffect(() => {
 
     const fetchAPI = async () => {
-      const { data, menssage } = await Rota({ route, param: { safra: crop } });
+      const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
+      if (code === 200) {
+        setMenssage(menssage)
+        setData(data)
+        setfeature(data.map(i => i.feature))
+        setValor(data.map(i => i.valor))
+      }
 
-      setMenssage(menssage)
-      setData(data)
-
-      setfeature(data.map(i => i.feature))
-      setValor(data.map(i => i.valor))
 
     }
     fetchAPI();

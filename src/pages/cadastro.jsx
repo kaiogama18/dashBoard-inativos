@@ -9,12 +9,16 @@ export default () => {
   const route = '/login/usuario/cadastro';
 
   const handleSubmit = async (param) => {
-    const { code, menssage } = await Rota({ route, param });
-    if (code === 200) {
-      alert(menssage);
-      Router.push('/login');
-    } else {
-      alert(menssage)
+    try {
+      const { code, menssage } = await Rota({ route, param });
+      if (code === 200) {
+        alert(menssage);
+        Router.push('/login');
+      } else {
+        alert(menssage)
+      }
+    } catch (error) {
+      alert("Sem Coneção")
     }
   }
 
