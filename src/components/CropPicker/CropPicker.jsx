@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import Skeleton from "@material-ui/lab/Skeleton";
 import Router from 'next/router';
-// import safras from '../../data/safra.json';
+import listS from '../../data/safra.json';
 
 
 const CropPicker = ({ handleCropChange }) => {
@@ -37,11 +37,27 @@ const CropPicker = ({ handleCropChange }) => {
       </div>
       <div className="crop-colunm">
 
+        <div className="crop-colunm__item">
+          <button className="crop-colunm__btn disabled">
+          </button>
+          <p>201801</p>
+        </div>
+
         {
           safras.map(safra => (
             <div key={safra} className="crop-colunm__item">
               <button className="crop-colunm__btn"
                 onClick={() => handleCropChange(safra)}>
+              </button>
+              <p>{safra}</p>
+            </div>
+          ))
+        }
+
+        {
+          listS.map(safra => (
+            <div key={safra} className="crop-colunm__item">
+              <button className="crop-colunm__btn disabled">
               </button>
               <p>{safra}</p>
             </div>
