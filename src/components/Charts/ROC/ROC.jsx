@@ -1,29 +1,35 @@
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import useSWR from 'swr';
-import React from 'react';
 import Chart from '../../Chart/Chart';
-
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
+import Rota from '../../../Routes/Rota';
 
 function ROC({ crop }) {
-  const { data, error } = useSWR(
-    '/api/api_inativo?route=' + 'roc_curve' + '&key=' + crop,
-    fetcher,
-  );
-  let title = data?.menssage;
-  if (!data) title = 'Carregando...';
-  if (error) title = 'Sem conexão com o servidor';
+  const route = '/home/safras/roc_curve';
+  const [menssage, setMenssage] = useState('');
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
+      if (code === 200) {
+        setMenssage(menssage)
+        setData(data)
+      }
+
+    }
+    fetchAPI();
+  }, [crop])
+
+
   let objs = [];
-  data?.data.map((aux) => {
+  data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
   const Plot = (
     <Line
       data={{
-        labels: ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0'],
+        labels: labels,
         datasets: [
           {
             label: 'roc_0',
@@ -81,9 +87,11 @@ function ROC({ crop }) {
         },
       }}
     />
-  );
+  )
 
-  return <Chart title={data?.menssage} crop={crop}> {Plot} </Chart>
+  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
 }
 
 export default ROC;
+
+const labels = ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0']

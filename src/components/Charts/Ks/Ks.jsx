@@ -1,39 +1,40 @@
-import useSWR from 'swr';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
 import Chart from '../../Chart/Chart';
+import Rota from '../../../Routes/Rota';
 
 
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
 
 const Ks = ({ crop }) => {
-  const { data, error } = useSWR(
-    '/api/api_inativo?route=' + 'ks_curve' + '&key=' + crop,
-    fetcher,
-  );
+  const route = '/home/safras/ks_curve';
+  const [menssage, setMenssage] = useState('');
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
+      if (code === 200) {
+        setMenssage(menssage)
+        setData(data)
+      }
+
+    }
+    fetchAPI();
+  }, [crop])
+
+
 
   let objs = [];
-  data?.data.map((aux) => {
+  data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
+
 
   const Plot = (
     <Line
       data={{
-        labels: [
-          '[0,10]',
-          '[10,20]',
-          '[20,30]',
-          '[30,40]',
-          '[40,50]',
-          '[50,60]',
-          '[60,70]',
-          '[70,80]',
-          '[80,90]',
-          '[90,100]',
-        ],
+        labels: labels,
         datasets: [
           {
             label: '0.535854515034651 ',
@@ -89,9 +90,22 @@ const Ks = ({ crop }) => {
         },
       }}
     />
-  );
+  )
 
-  return <Chart title={data?.menssage} crop={crop}> {Plot} </Chart>
+  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
 };
 
 export default Ks;
+
+const labels = [
+  '[0,10]',
+  '[10,20]',
+  '[20,30]',
+  '[30,40]',
+  '[40,50]',
+  '[50,60]',
+  '[60,70]',
+  '[70,80]',
+  '[80,90]',
+  '[90,100]',
+]

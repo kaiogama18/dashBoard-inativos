@@ -3,25 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Chart from '../../Chart/Chart';
 import Rota from '../../../Routes/Rota';
 
-const colors = [
-  'rgba(196, 37, 125, 0.75)',
-  'rgba(255, 99, 132, 100)',
-  'rgba(255, 91, 25, 0.75)',
-  'rgba(54, 162, 235, 0.75)',
-  'rgba(255, 206, 86, 0.75)',
-  'rgba(75, 192, 192, 0.75)',
-  'rgba(153, 102, 255, 0.75)',
-  'rgba(255, 159, 64, 0.75)',
-  'rgba(255, 99, 132, 0.75)',
-  'rgba(54, 162, 235, 0.75)',
-  'rgba(255, 206, 86, 0.75)',
-  'rgba(75, 192, 192, 0.75)',
-  'rgba(153, 102, 255, 0.75)',
-  'rgba(255, 159, 64, 0.75)',
-  'rgba(48, 255, 210, 0.75)',
-];
-
-
 const Feature = ({ crop }) => {
   const route = '/home/safras/top_features';
   const [menssage, setMenssage] = useState('');
@@ -64,7 +45,7 @@ const Feature = ({ crop }) => {
     newLabels[newIndex] = feature[i];
   });
 
-  const Plot = feature.length ? (
+  const Plot = (
     <HorizontalBar
       data={{
         labels: feature.reverse(),
@@ -98,7 +79,7 @@ const Feature = ({ crop }) => {
         },
       }}
     />
-  ) : null
+  )
 
   return <Chart title={menssage} crop={crop}> {Plot} </Chart>
 };
@@ -107,3 +88,20 @@ export default Feature;
 
 
 
+const colors = [
+  'rgba(196, 37, 125, 0.75)',
+  'rgba(255, 99, 132, 100)',
+  'rgba(255, 91, 25, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(255, 99, 132, 0.75)',
+  'rgba(54, 162, 235, 0.75)',
+  'rgba(255, 206, 86, 0.75)',
+  'rgba(75, 192, 192, 0.75)',
+  'rgba(153, 102, 255, 0.75)',
+  'rgba(255, 159, 64, 0.75)',
+  'rgba(48, 255, 210, 0.75)',
+];

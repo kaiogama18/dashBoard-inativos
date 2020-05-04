@@ -68,7 +68,7 @@ export default () => {
       </Table>
     </TableContainer>
 
-  ) : <Skeleton animation="wave" />
+  ) : <div className="mx-2"> <Skeleton animation="wave" /></div>
 
 
 
