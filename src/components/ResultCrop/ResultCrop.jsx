@@ -40,7 +40,7 @@ const ResultCrop = ({ crop }) => {
         <a className="subtitle">
           {data.length ? (
             <a>
-              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} decimal="." separator="," />
+              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} decimal="." separator="." />
             </a>
           ) : <Skeleton width={250} animation="wave" />}
         </a>
