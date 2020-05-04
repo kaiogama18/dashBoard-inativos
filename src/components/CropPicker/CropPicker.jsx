@@ -4,8 +4,10 @@ import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import Skeleton from "@material-ui/lab/Skeleton";
 import Router from 'next/router';
-const CropPicker = ({ handleCropChange }) => {
+import safras from '../../data/safra.json';
 
+
+const CropPicker = ({ handleCropChange }) => {
   const route = '/home/safras'
   const [data, setData] = useState([]);
   const [menssage, setMenssage] = useState('');
@@ -17,13 +19,30 @@ const CropPicker = ({ handleCropChange }) => {
         setMenssage(menssage)
         setData(data)
       } catch (error) {
-        Router.push('/notfound');
+        // Router.push('/notfound');
+        Router.push('/login');
       }
-
-
     }
+    // alert(JSON.stringify(safras, null, 2))
+
     fetchAPI();
   }, [route])
+
+  const SafraSubmit = (props) => {
+    // onClick={() => handleCropChange(safra.safra)}
+    // alert("Safras " + props)
+
+    data.map(aux => (
+      alert(aux.safra),
+      aux.safra == props ? (
+        alert(aux.safra),
+        handleCropChange(aux.safra)
+      ) : null
+    ))
+  }
+
+
+
 
 
   return (
@@ -35,6 +54,24 @@ const CropPicker = ({ handleCropChange }) => {
         <p className="subtitle">{cropTitle}</p>
       </div>
       <div className="crop-colunm">
+
+        {/* {
+          safras.map(safra => (
+            <div key={safra.safra} className="crop-colunm__item">
+              <button
+                className="crop-colunm__btn "
+                onClick={() => SafraSubmit(safra.safra)}
+              />
+              <p>{safra.title}</p>
+            </div>
+          ))
+        } */}
+
+        <div className="crop-colunm__item">
+          <button className="crop-colunm__btn disabled" />
+          <p>201801</p>
+        </div>
+
 
         {
           data.map(aux => (
@@ -60,10 +97,10 @@ const CropPicker = ({ handleCropChange }) => {
   //     </div>
 
   //     <div className="crop-colunm">
-  //       <div className="crop-colunm__item">
-  //         <button className="crop-colunm__btn disabled" />
-  //         <p>201801</p>
-  //       </div>
+  // <div className="crop-colunm__item">
+  //   <button className="crop-colunm__btn disabled" />
+  //   <p>201801</p>
+  // </div>
   //       {data?.data.map((aux, i) => (
   //         <div key={i} className="crop-colunm__item">
   // <button

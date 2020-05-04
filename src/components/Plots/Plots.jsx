@@ -8,7 +8,7 @@ const Plots = ({ crop }) => {
       <ROC crop={crop} />
       <Mixed crop={crop} />
     </>
-  ) : <>Sem Safra</>
+  ) : <></>
 };
 
 
