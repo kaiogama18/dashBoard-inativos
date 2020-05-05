@@ -86,11 +86,11 @@ html.is-animating .transition-fade {
 
 .title {
   // @apply text-xl font-bold uppercase h-8 items-center flex bg-orange-300;
-  @apply text-xl font-bold uppercase h-8 items-center flex;
+  @apply text-xl font-bold uppercase  items-center flex;
 }
 
 .subtitle {
-  @apply text-xl h-8 items-center flex;
+  @apply text-xl items-center flex;
 }
 
 .title-border {

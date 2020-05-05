@@ -75,7 +75,7 @@ const Confusion = ({ crop }) => {
     </HeatMapComponent>
 
   ) : <div className=" col-span-3 p-5">
-      <div className=" flex items-center justify-center flex-col">
+      <div className=" flex items-center justify-center  text-center flex-col">
         <img className="w-4/12" src="/no.png" />
         <p className="subtitle mt-5 text-gray-600">Safra sem dados no momento</p>
       </div>
