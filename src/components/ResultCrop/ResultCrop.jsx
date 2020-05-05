@@ -4,6 +4,8 @@ import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import CountUp from 'react-countup';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { Button } from '@material-ui/core';
+
 
 const ResultCrop = ({ crop }) => {
   const route = '/home/safras/result'
@@ -46,9 +48,18 @@ const ResultCrop = ({ crop }) => {
         </a>
 
       </Card>
-      <button className="btn-csv">
-        <p className="subtitle font-bold text-white">Fazer dowload do CSV</p>
-      </button>
+      {crop ? <Button variant="contained" color="primary">
+        <p className="text-base font-bold">
+          Fazer dowload do CSV </p>
+      </Button> : <Button variant="contained" disabled >
+          <p className="text-base font-bold">
+            Fazer dowload do CSV </p>
+        </Button>}
+
+
+
+      {/* <button className="btn-csv">
+      </button> */}
     </div>
   );
 };
