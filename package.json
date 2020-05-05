@@ -64,9 +64,7 @@
     "sass": "^1.26.3",
     "swr": "^0.2.0",
     "swup": "^2.0.9",
-    "tailwindcss": "^1.2.0"
-  },
-  "devDependencies": {
+    "tailwindcss": "^1.2.0",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",

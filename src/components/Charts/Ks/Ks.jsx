@@ -37,7 +37,7 @@ const Ks = ({ crop }) => {
         labels: labels,
         datasets: [
           {
-            label: '0.535854515034651 ',
+            label: 'Classe 0',
             backgroundColor: 'rgba(249, 142, 28,0.75)',
             borderColor: '#de1414',
             data: objs.x_0,
@@ -45,7 +45,7 @@ const Ks = ({ crop }) => {
             fill: false,
           },
           {
-            label: '0.3250643575941961',
+            label: 'Classe 1',
             borderColor: '#ff56ff',
             data: objs.y_0,
             borderDash: [8, 4],
