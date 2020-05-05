@@ -24,9 +24,6 @@ const ResultCrop = ({ crop }) => {
     fetchAPI();
   }, [crop])
 
-
-
-
   const theme = createMuiTheme({
     palette: {
       primary: green,
@@ -68,11 +65,6 @@ const ResultCrop = ({ crop }) => {
               Fazer dowload do CSV </p>
           </Button>}
       </MuiThemeProvider>
-
-
-
-      {/* <button className="btn-csv">
-      </button> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Mixed, ROC, Ks, Feature } from "../Charts";
+import { Mixed, ROC, Ks, Feature, Confusion } from "../Charts";
 
 const Plots = ({ crop }) => {
   return crop ? (
@@ -7,6 +7,7 @@ const Plots = ({ crop }) => {
       <Ks crop={crop} />
       <ROC crop={crop} />
       <Mixed crop={crop} />
+      <Confusion crop={crop} />
     </>
   ) : <div className=" col-span-3  flex items-center justify-center p-5">
       <div className="flex items-center justify-center text-center flex-col">
@@ -15,28 +16,5 @@ const Plots = ({ crop }) => {
       </div>
     </div>
 };
-
-
-
-
-// const Plots = ({ crop }) => {
-//   return (
-//     <>
-//       {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 col-span-2"> */}
-
-//       {crop ? (
-//         <Feature crop={crop} />
-//         <Ks crop={crop} />
-//         <ROC crop={crop} />
-//         <Mixed crop={crop} />
-//       ): null
-//       }
-
-
-//       {/* </div> */}
-//       {/* <ConfusionPlot safra={valuekey} /> */}
-//     </>
-//   );
-// };
 
 export default Plots;

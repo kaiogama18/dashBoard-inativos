@@ -250,13 +250,13 @@ main {
    * ======================================================================== */
 
 .card {
-  @apply overflow-hidden p-5 bg-white shadow-sm self-start;
+  @apply overflow-hidden p-5 bg-white shadow-sm;
 }
 
 .card-results {
   background-color: $--primary;
 
-  @apply text-white;
+  @apply text-white self-start;
 
   .title {
     @apply bg-transparent;
