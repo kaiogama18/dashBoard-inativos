@@ -4,7 +4,8 @@ import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import CountUp from 'react-countup';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { Button } from '@material-ui/core';
+import { Button, withStyles, makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
 
 
 const ResultCrop = ({ crop }) => {
@@ -22,6 +23,15 @@ const ResultCrop = ({ crop }) => {
     }
     fetchAPI();
   }, [crop])
+
+
+
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: green,
+    }
+  });
 
   return (
     <div className="grid grid-cols-1">
@@ -48,13 +58,16 @@ const ResultCrop = ({ crop }) => {
         </a>
 
       </Card>
-      {crop ? <Button variant="contained" color="primary">
-        <p className="text-base font-bold">
-          Fazer dowload do CSV </p>
-      </Button> : <Button variant="contained" disabled >
-          <p className="text-base font-bold">
+      <MuiThemeProvider theme={theme}>
+
+        {crop ? <Button variant="contained" color="primary">
+          <p className="text-base text-white font-bold">
             Fazer dowload do CSV </p>
-        </Button>}
+        </Button> : <Button variant="contained" disabled >
+            <p className="text-base font-bold">
+              Fazer dowload do CSV </p>
+          </Button>}
+      </MuiThemeProvider>
 
 
 
