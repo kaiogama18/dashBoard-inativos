@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '../components';
 import { useFormik } from 'formik';
 import Router from 'next/router';
 import Rota from '../Routes/Rota';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+
+
+
 
 export default () => {
   const route = '/login/usuario/cadastro';
 
+  const [loading, setLoading] = useState(false)
+
   const handleSubmit = async (param) => {
+    setLoading(true)
+
     try {
       const { code, menssage } = await Rota({ route, param });
       if (code === 200) {
         alert(menssage);
+        setLoading(false)
+
         Router.push('/login');
       } else {
         alert(menssage)
+        setLoading(false)
       }
     } catch (error) {
       alert("Sem Coneção")
@@ -33,6 +44,7 @@ export default () => {
       handleSubmit(param)
     },
   });
+
   return (
     <>
       <section className="login-register">
@@ -74,7 +86,12 @@ export default () => {
 
           <p className="text-sm mt-1">{caracteres}</p>
 
-          <Button type="submit">{registerBtn}</Button>
+
+          <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <Icon> send</Icon>} disabled={loading} >
+            {loading ? <>Enviando</> : <>{registerBtn}</>}
+
+          </Button>
+
           <Link href="/login">
             <a>{registerLoginRegister}</a>
           </Link>
