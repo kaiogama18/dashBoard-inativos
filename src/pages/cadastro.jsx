@@ -30,6 +30,7 @@ export default () => {
       }
     } catch (error) {
       alert("Sem Coneção")
+      setLoading(false)
     }
   }
 

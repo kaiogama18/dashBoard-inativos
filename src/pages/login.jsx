@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '../components';
 import { useFormik } from 'formik';
-import Router from 'next/router';
 import Rota from '../Routes/Rota';
 import { login } from '../utils/auth';
-
+import Button from '@material-ui/core/Button';
 
 const loginUser = 'Informe seu e-mail:';
 const loginPassword = 'Informe sua senha:';
@@ -16,17 +14,24 @@ const registerTitle = 'Faça login na sua conta';
 
 export default () => {
   const route = '/login/usuario';
+  const [loading, setLoading] = useState(false)
+
 
   const handleSubmit = async (param) => {
+    setLoading(true)
     try {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
+        setLoading(false)
       } else {
         alert(menssage)
+        setLoading(false)
       }
     } catch (error) {
       alert("Sem Coneção")
+      setLoading(false)
+
     }
   }
 
@@ -66,7 +71,12 @@ export default () => {
             </div>
           </div>
 
-          <Button type="submit">{loginBtn}</Button>
+
+          <Button variant="contained" size="medium" type="submit" color="primary" disabled={loading} >
+            {loading ? <>Entrando</> : <>{loginBtn}</>}
+
+          </Button>
+
           <Link href="/cadastro">
             <a>{loginRegister}</a>
           </Link>
