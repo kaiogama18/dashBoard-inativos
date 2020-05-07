@@ -10,6 +10,7 @@ const Ks = ({ crop }) => {
   const route = '/home/safras/ks_curve';
   const [menssage, setMenssage] = useState('');
   const [data, setData] = useState([]);
+  const [points, setPoints] = useState([])
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -17,6 +18,7 @@ const Ks = ({ crop }) => {
       if (code === 200) {
         setMenssage(menssage)
         setData(data)
+        setPoints(data.map(a => JSON.parse(a.json.replace(/'/g, '"'))))
       }
 
     }
@@ -31,44 +33,53 @@ const Ks = ({ crop }) => {
   });
 
 
+  // console.log("Points x_0: " + JSON.stringify(points.map(a => a.x_0), null, 2))
+  // console.log("Points y_0: " + JSON.stringify(points.map(a => a.y_0), null, 2))
+
+  // console.log("Points x_1: " + JSON.stringify(points.map(a => a.x_1), null, 2))
+  // console.log("Points y_1: " + JSON.stringify(points.map(a => a.y_1), null, 2))
+
+
+  // console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2).split()+ "]"))
+  // console.log("Points x_ks: " + JSON.parse(points.map(a => a.x_ks)))
+
+
+  console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2) + "]"))
+
+  // console.log("Points ks_val_1: " + points.map(a => a.ks_val_1))
+
+
+  // y_ks: [0.3250643575941961, 0.6860759493670886],
+  // ks_val_1: "0.361",
+  // ks_val_2: "0.536"
+
+
   const Plot = (
     <Line
       data={{
-        labels: labels,
+        // labels: labels,
         datasets: [
           {
-            label: 'Classe 0',
-            backgroundColor: 'rgba(249, 142, 28,0.75)',
-            borderColor: '#de1414',
+            label: 'Class 1',
+            borderColor: '#4bc0c0',
+            data: objs.x_ks,
+            borderDash: [8, 4],
+            fill: false,
+          },
+          {
+            label: 'Class 0',
+            borderColor: '#ffcc56',
+            data: objs.y_ks,
+            backgroundColor: 'rgba(255, 223, 147,0.35)'
+          },
+          {
+            label: 'KS Statistic',
+            borderColor: '#ff6284',
             data: objs.x_0,
-            lineTension: 0.9,
             fill: false,
           },
-          {
-            label: 'Classe 1',
-            borderColor: '#ff56ff',
-            data: objs.y_0,
-            borderDash: [8, 4],
-            lineTension: 0.9,
-            fill: false,
-          },
-          {
-            label: '0.535854515034651',
-            borderColor: '#1236f9',
-            borderDash: [8, 4],
-            data: objs.x_1,
-            lineTension: 0.9,
-            fill: false,
-          },
-          {
-            label: '0.6860759493670886',
-            borderColor: '#62bb6d',
-            data: objs.y_1,
-            lineTension: 0.9,
-            fill: false,
-          },
+
         ],
-        lineAtIndex: 2,
       }}
       options={{
         responsive: true,
@@ -87,6 +98,9 @@ const Ks = ({ crop }) => {
               },
             },
           ],
+        },
+        animation: {
+          easing: 'easeInOutCubic',
         },
       }}
     />
