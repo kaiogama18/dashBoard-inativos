@@ -3,19 +3,11 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import Rota from '../Routes/Rota';
 import { login } from '../utils/auth';
-import Button from '@material-ui/core/Button';
-
-const loginUser = 'Informe seu e-mail:';
-const loginPassword = 'Informe sua senha:';
-const loginBtn = 'Entrar';
-const loginRegister = 'Fazer o cadastro agora';
-const registerTitle = 'Faça login na sua conta';
-
+import { TextField, Button } from '@material-ui/core';
 
 export default () => {
   const route = '/login/usuario';
   const [loading, setLoading] = useState(false)
-
 
   const handleSubmit = async (param) => {
     setLoading(true)
@@ -46,42 +38,58 @@ export default () => {
   });
 
   return (
-    <>
-      <section className="login-register">
-        <form onSubmit={formik.handleSubmit}>
-          <p className="login-register-title">{registerTitle}</p>
-          <label>{loginUser}</label>
-          <input
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
+    <section className="login-register">
+      <form onSubmit={formik.handleSubmit} >
+        <div className="flex justify-center">
+          <img
+            src="/logo.png"
+            alt="Logo Buritech"
           />
+        </div>
 
-          <label>{loginPassword}</label>
-          <div className="relative bg-gray-300 rounded">
-            <input
-              name="senha"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.senha}
-            />
-            <div className="login-password">
-              <a className="text-gray-900 underline">Esqueceu a senha?</a>
-            </div>
-          </div>
-
-
-          <Button variant="contained" size="medium" type="submit" color="primary" disabled={loading} >
+        <TextField
+          label="E-mail"
+          name="email"
+          type="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          defaultValue="Normal"
+          required
+          variant="filled"
+        />
+        <div className="mt-5">
+          <TextField
+            label="Senha"
+            name="senha"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.senha}
+            defaultValue="Normal"
+            required
+            variant="filled"
+          />
+        </div>
+        <div>
+          <Button variant="contained" size="large" color="primary" type="submit" disabled={loading} >
             {loading ? <>Entrando</> : <>{loginBtn}</>}
-
           </Button>
+        </div>
 
-          <Link href="/cadastro">
-            <a>{loginRegister}</a>
-          </Link>
-        </form>
-      </section>
-    </>
+
+        <Link href="/cadastro">
+          <a>{loginRegister}</a>
+        </Link>
+
+      </form>
+
+    </section >
   );
 };
+
+
+
+const loginUser = 'Informe seu e-mail:';
+const loginPassword = 'Informe sua senha:';
+const loginBtn = 'Entrar';
+const loginRegister = 'Fazer o cadastro agora';
+const registerTitle = 'Faça login na sua conta';

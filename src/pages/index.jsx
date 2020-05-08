@@ -2,12 +2,17 @@ import { CropPicker, Navbar, ResultCrop, Plots, Layout } from '../components';
 import React from 'react';
 import nextCookie from "next-cookies";
 import { withAuthSync } from "../utils/auth";
-import { Router } from "next/router";
+import PropTypes from 'prop-types'
 
 class Index extends React.Component {
+  static pageTransitionDelayEnter = true
+
   state = {
     crop: '',
+    loaded: false,
   };
+
+
 
   handleCropChange = async (crop) => {
     this.setState({
@@ -33,6 +38,14 @@ class Index extends React.Component {
 }
 
 // export default Index
+
+Index.propTypes = {
+  pageTransitionReadyToEnter: PropTypes.func,
+}
+
+Index.defaultProps = {
+  pageTransitionReadyToEnter: () => { },
+}
 
 Index.getInitialProps = async (ctx) => {
   const { token } = nextCookie(ctx);
