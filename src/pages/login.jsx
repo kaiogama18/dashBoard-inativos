@@ -51,7 +51,6 @@ export default () => {
 
   return (
     <section className="login-register">
-
       <form onSubmit={formik.handleSubmit} >
         <div className="flex justify-center">
           <img
@@ -64,10 +63,9 @@ export default () => {
           label="E-mail *"
           name="email"
           type="email"
+          variant="filled"
           onChange={formik.handleChange}
           value={formik.values.email}
-          defaultValue="Normal"
-          variant="filled"
           error={formik.errors.email ? true : false}
           helperText={formik.errors.email ? formik.errors.email : false}
         />
@@ -76,10 +74,9 @@ export default () => {
             label="Senha *"
             name="senha"
             type="password"
+            variant="filled"
             onChange={formik.handleChange}
             value={formik.values.senha}
-            defaultValue="Normal"
-            variant="filled"
             error={formik.errors.senha ? true : false}
             helperText={formik.errors.senha ? formik.errors.senha : false}
           />

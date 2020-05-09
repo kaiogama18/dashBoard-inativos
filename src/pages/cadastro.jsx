@@ -3,20 +3,30 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import Router from 'next/router';
 import Rota from '../Routes/Rota';
-import Button from '@material-ui/core/Button';
-import { CircularProgress } from '@material-ui/core';
-
-
+import { TextField, Button, CircularProgress } from '@material-ui/core';
+import * as Yup from "yup";
 
 
 export default () => {
   const route = '/login/usuario/cadastro';
-
   const [loading, setLoading] = useState(false)
+
+  const SignupSchema = Yup.object().shape({
+    nome: Yup.string()
+      .required('Obrigatório'),
+    email: Yup.string()
+      .email('email invalido')
+      .required('Obrigatório'),
+    senha: Yup.string()
+      .min(8, 'Curto demais!')
+      .required('Obrigatório'),
+    cpf: Yup.string()
+      .min(8, 'Curto demais!')
+      .required('Obrigatório'),
+  });
 
   const handleSubmit = async (param) => {
     setLoading(true)
-
     try {
       const { code, menssage } = await Rota({ route, param });
       if (code === 200) {
@@ -30,6 +40,7 @@ export default () => {
       }
     } catch (error) {
       setLoading(false)
+      alert(menssage)
       alert("Sem Coneção")
     }
   }
@@ -41,67 +52,78 @@ export default () => {
       email: '',
       senha: ''
     },
+    validationSchema: SignupSchema,
     onSubmit: param => {
       handleSubmit(param)
     },
   });
 
   return (
-    <>
-      <section className="login-register">
+    <section className="login-register">
+      <form onSubmit={formik.handleSubmit}>
+        <p className="text-2xl uppercase font-bold mb-5">{registerTitle}</p>
 
-        <form onSubmit={formik.handleSubmit}>
-          <p className="login-register-title">{registerTitle}</p>
+        <TextField
+          label="Nome *"
+          name="nome"
+          type="text"
+          variant="filled"
+          onChange={formik.handleChange}
+          value={formik.values.nome}
+          error={formik.errors.nome ? true : false}
+          helperText={formik.errors.nome ? formik.errors.nome : false}
+        />
 
-          <label>{registerUser}</label>
-          <input
-            name="nome"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.nome}
-          />
-
-          <label>Informe seu e-mail</label>
-          <input
+        <div className="mt-5">
+          <TextField
+            label="E-mail *"
             name="email"
             type="email"
+            variant="filled"
             onChange={formik.handleChange}
             value={formik.values.email}
+            error={formik.errors.email ? true : false}
+            helperText={formik.errors.email ? formik.errors.email : false}
           />
+        </div>
 
-          <label>Informe seu CPF:</label>
-          <input
+        <div className="mt-5">
+          <TextField
+            label="Cpf *"
             name="cpf"
             type="number"
+            variant="filled"
             onChange={formik.handleChange}
             value={formik.values.cpf}
+            error={formik.errors.cpf ? true : false}
+            helperText={formik.errors.cpf ? formik.errors.cpf : false}
           />
+        </div>
 
-          <label>{registerPassword}</label>
-          <input
+
+        <div className="mt-5">
+          <TextField
+            label="Senha *"
             name="senha"
             type="password"
+            variant="filled"
             onChange={formik.handleChange}
             value={formik.values.senha}
+            error={formik.errors.senha ? true : false}
+            helperText={formik.errors.senha ? formik.errors.senha : "Use 8 ou mais caracteres"}
           />
-
-          <p className="text-sm mt-1">{caracteres}</p>
-
-
-          <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <CircularProgress size={24} />} disabled={loading} >
-            {loading ? <>Enviando</> : <>{registerBtn}</>}
-
-          </Button>
-
-          <Link href="/login">
-            <a>{registerLoginRegister}</a>
-          </Link>
-        </form>
+        </div>
 
 
-      </section>
+        <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <CircularProgress size={24} />} disabled={loading} >
+          {loading ? <>Enviando</> : <>{registerBtn}</>}
+        </Button>
 
-    </>
+        <Link href="/login">
+          <a>{registerLoginRegister}</a>
+        </Link>
+      </form>
+    </section>
   );
 };
 
