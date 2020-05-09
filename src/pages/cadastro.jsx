@@ -53,12 +53,10 @@ export default () => {
     },
     validationSchema: SignupSchema,
     onSubmit: param => {
-      alert(JSON.stringify(param, null, 2))
       handleSubmit(param)
     },
   });
 
-  // 15221162229
   return (
     <section className="login-register">
       <form onSubmit={formik.handleSubmit}>
@@ -91,7 +89,6 @@ export default () => {
           <TextField
             label="Cpf *"
             name="cpf"
-            type="number"
             variant="filled"
             onChange={formik.handleChange}
             value={formik.values.cpf}
