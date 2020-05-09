@@ -6,7 +6,6 @@ import Rota from '../Routes/Rota';
 import { TextField, Button, CircularProgress } from '@material-ui/core';
 import * as Yup from "yup";
 
-
 export default () => {
   const route = '/login/usuario/cadastro';
   const [loading, setLoading] = useState(false)
@@ -128,8 +127,5 @@ export default () => {
 const registerBtn = 'Cadastrar';
 const validade = 'confirme sua senha';
 const registerTitle = 'Crie sua Conta';
-const registerUser = 'Informe seu usuário:';
-const registerPassword = 'Informe sua senha:';
-const caracteres = 'Use oito ou mais caracteres';
 const registerLoginRegister = 'Faça login em vez disso';
 
