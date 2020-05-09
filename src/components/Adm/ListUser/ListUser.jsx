@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles } from '@material-ui/core';
+import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles, Backdrop, CircularProgress, LinearProgress } from '@material-ui/core';
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -8,6 +8,8 @@ import Skeleton from '@material-ui/lab/Skeleton';
 export default () => {
   const [route, setRoute] = useState('/adm_usuario/listar');
   const [data, setData] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -68,7 +70,14 @@ export default () => {
       </Table>
     </TableContainer>
 
-  ) : <div className="mx-2"> <Skeleton animation="wave" /></div>
+    // ) : <div className="mx-2"> <Skeleton animation="wave" /></div>
+  ) : <div className="mx-2 p-5"><LinearProgress /></div>
+
+
+
+  // ) : <Backdrop >
+  //     <CircularProgress color="inherit" />
+  //   </Backdrop>
 
 
 

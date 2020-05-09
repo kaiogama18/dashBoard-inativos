@@ -1,7 +1,7 @@
 import { logout } from '../../utils/auth';
 import { Card } from '..';
 import cx from 'classnames';
-import { Fab } from '@material-ui/core';
+import { Fab, Tooltip } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
@@ -20,9 +20,12 @@ class Navbar extends React.Component {
         </div>
 
         <div>
-          <Fab size="medium" color="secondary" aria-label="logout" onClick={logout} >
-            <PowerSettingsNewIcon />
-          </Fab>
+          <Tooltip title="Sair" aria-label="sair">
+
+            <Fab size="medium" color="secondary" aria-label="logout" onClick={logout} disableElevation >
+              <PowerSettingsNewIcon />
+            </Fab>
+          </Tooltip>
 
 
         </div>

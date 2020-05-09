@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { ListUser } from '../Adm';
-import { Dialog, Slide } from '@material-ui/core';
+import { Dialog, Slide, IconButton, MuiThemeProvider, createMuiTheme, Tooltip } from '@material-ui/core';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import { green } from '@material-ui/core/colors';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -19,17 +21,26 @@ const Sidebar = () => {
     setOpen(false);
   };
 
+
   return (
     <>
       <aside className="sidebar">
         <div className="logo">
           <img src="/buritech-icon.png" alt="logo" />
         </div>
-        <div className="mt-5">
-          <button className="material-icons btn"
+        <div className="mt-5 flex justify-center items-center">
+          {/* <button className="material-icons btn"
             onClick={handleOpen}>
             group_add
-          </button>
+          </button> */}
+
+          <Tooltip title="Lista de Usuários" placement="right">
+
+            <IconButton aria-label="upload picture" component="span" onClick={handleOpen}>
+              <GroupAddIcon fontSize="large" color="white" />
+            </IconButton>
+          </Tooltip>
+
         </div>
       </aside>
       <Dialog open={open}
