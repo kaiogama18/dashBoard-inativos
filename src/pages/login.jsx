@@ -15,6 +15,9 @@ export default () => {
     email: Yup.string()
       .email('email invalido')
       .required('Obrigatório'),
+    senha: Yup.string()
+      // .min(8, 'Curto demais!')
+      .required('Obrigatório'),
   });
 
   const handleSubmit = async (param) => {
@@ -70,13 +73,15 @@ export default () => {
         />
         <div className="mt-5">
           <TextField
-            label="Senha"
+            label="Senha *"
             name="senha"
             type="password"
             onChange={formik.handleChange}
             value={formik.values.senha}
             defaultValue="Normal"
             variant="filled"
+            error={formik.errors.senha ? true : false}
+            helperText={formik.errors.senha ? formik.errors.senha : false}
           />
         </div>
         <div>
