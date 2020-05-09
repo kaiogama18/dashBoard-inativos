@@ -96,6 +96,7 @@
     "stylelint-order": "^4.0.0",
     "swr": "^0.2.0",
     "swup": "^2.0.9",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "yup": "^0.28.5"
   }
 }

@@ -3,11 +3,19 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import Rota from '../Routes/Rota';
 import { login } from '../utils/auth';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, CircularProgress } from '@material-ui/core';
+import * as Yup from "yup";
+
 
 export default () => {
   const route = '/login/usuario';
   const [loading, setLoading] = useState(false)
+
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string()
+      .email('email invalido')
+      .required('Obrigatório'),
+  });
 
   const handleSubmit = async (param) => {
     setLoading(true)
@@ -15,7 +23,7 @@ export default () => {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
-        setLoading(false)
+        // setLoading(false)
       } else {
         alert(menssage)
         setLoading(false)
@@ -32,6 +40,7 @@ export default () => {
       email: '',
       senha: ''
     },
+    validationSchema: SignupSchema,
     onSubmit: param => {
       handleSubmit(param)
     },
@@ -39,6 +48,7 @@ export default () => {
 
   return (
     <section className="login-register">
+
       <form onSubmit={formik.handleSubmit} >
         <div className="flex justify-center">
           <img
@@ -48,14 +58,15 @@ export default () => {
         </div>
 
         <TextField
-          label="E-mail"
+          label="E-mail *"
           name="email"
           type="email"
           onChange={formik.handleChange}
           value={formik.values.email}
           defaultValue="Normal"
-          required
           variant="filled"
+          error={formik.errors.email ? true : false}
+          helperText={formik.errors.email ? formik.errors.email : false}
         />
         <div className="mt-5">
           <TextField
@@ -65,13 +76,12 @@ export default () => {
             onChange={formik.handleChange}
             value={formik.values.senha}
             defaultValue="Normal"
-            required
             variant="filled"
           />
         </div>
         <div>
           <Button variant="contained" size="large" color="primary" type="submit" disabled={loading} >
-            {loading ? <>Entrando</> : <>{loginBtn}</>}
+            {loading ? <><CircularProgress size={24} /> </> : <>{loginBtn}</>}
           </Button>
         </div>
 
@@ -81,8 +91,7 @@ export default () => {
         </Link>
 
       </form>
-
-    </section >
+    </section>
   );
 };
 

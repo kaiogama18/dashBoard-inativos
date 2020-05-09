@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import Router from 'next/router';
 import Rota from '../Routes/Rota';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
+import { CircularProgress } from '@material-ui/core';
 
 
 
@@ -25,12 +25,12 @@ export default () => {
 
         Router.push('/login');
       } else {
-        alert(menssage)
         setLoading(false)
+        alert(menssage)
       }
     } catch (error) {
-      alert("Sem Coneção")
       setLoading(false)
+      alert("Sem Coneção")
     }
   }
 
@@ -88,7 +88,7 @@ export default () => {
           <p className="text-sm mt-1">{caracteres}</p>
 
 
-          <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <Icon> send</Icon>} disabled={loading} >
+          <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <CircularProgress size={24} />} disabled={loading} >
             {loading ? <>Enviando</> : <>{registerBtn}</>}
 
           </Button>
