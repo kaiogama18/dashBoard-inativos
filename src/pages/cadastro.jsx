@@ -40,7 +40,6 @@ export default () => {
       }
     } catch (error) {
       setLoading(false)
-      alert(menssage)
       alert("Sem Coneção")
     }
   }
@@ -54,15 +53,16 @@ export default () => {
     },
     validationSchema: SignupSchema,
     onSubmit: param => {
+      alert(JSON.stringify(param, null, 2))
       handleSubmit(param)
     },
   });
 
+  // 15221162229
   return (
     <section className="login-register">
       <form onSubmit={formik.handleSubmit}>
         <p className="text-2xl uppercase font-bold mb-5">{registerTitle}</p>
-
         <TextField
           label="Nome *"
           name="nome"
