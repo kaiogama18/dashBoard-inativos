@@ -70,19 +70,10 @@ export default () => {
       </Table>
     </TableContainer>
 
-    // ) : <div className="mx-2"> <Skeleton animation="wave" /></div>
   ) : <div className="mx-2 p-5"><LinearProgress /></div>
-
-
-
   // ) : <Backdrop >
   //     <CircularProgress color="inherit" />
   //   </Backdrop>
-
-
-
-
-
 
   return Root
 };
