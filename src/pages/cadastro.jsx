@@ -5,10 +5,37 @@ import Router from 'next/router';
 import Rota from '../Routes/Rota';
 import { TextField, Button, CircularProgress } from '@material-ui/core';
 import * as Yup from "yup";
+import MaskedInput from 'react-text-mask';
+import PropTypes from 'prop-types';
+
+
+
+
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+      showMask
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 export default () => {
   const route = '/login/usuario/cadastro';
   const [loading, setLoading] = useState(false)
+
+
+
 
   const SignupSchema = Yup.object().shape({
     nome: Yup.string()
@@ -16,12 +43,19 @@ export default () => {
     email: Yup.string()
       .email('email invalido')
       .required('Obrigatório'),
-    senha: Yup.string()
-      .min(8, 'Curto demais!')
-      .required('Obrigatório'),
     cpf: Yup.string()
       .min(8, 'Curto demais!')
       .required('Obrigatório'),
+    senha: Yup.string()
+      .required('Obrigatório')
+      .min(8, 'Curto demais!')
+      .matches(/[a-zA-Z]/, 'Informe uma Letra'),
+    // confirmSenha: Yup.string()
+    //   .required('Obrigatório')
+    //   .test('Validado', 'As senhas devem ser iguais', function (value) {
+    //     return senha === value;
+    //   }),
+
   });
 
   const handleSubmit = async (param) => {
@@ -48,10 +82,12 @@ export default () => {
       nome: '',
       cpf: '',
       email: '',
-      senha: ''
+      senha: '',
+      // confirmSenha: '',
     },
     validationSchema: SignupSchema,
     onSubmit: param => {
+      // console.log(JSON.stringify(param, null, 2))
       handleSubmit(param)
     },
   });
@@ -64,6 +100,7 @@ export default () => {
           label="Nome *"
           name="nome"
           type="text"
+
           variant="filled"
           onChange={formik.handleChange}
           value={formik.values.nome}
@@ -93,6 +130,9 @@ export default () => {
             value={formik.values.cpf}
             error={formik.errors.cpf ? true : false}
             helperText={formik.errors.cpf ? formik.errors.cpf : false}
+            InputProps={{
+              inputComponent: TextMaskCustom,
+            }}
           />
         </div>
 
@@ -109,6 +149,19 @@ export default () => {
             helperText={formik.errors.senha ? formik.errors.senha : "Use 8 ou mais caracteres"}
           />
         </div>
+        {/*
+        <div className="mt-4">
+          <TextField
+            label="confirme sua senha *"
+            name="confirmSenha"
+            type="password"
+            variant="filled"
+            onChange={formik.handleChange}
+            value={formik.values.confirmSenha}
+            error={formik.errors.confirmSenha ? true : false}
+            helperText={formik.errors.confirmSenha ? formik.errors.confirmSenha : false}
+          />
+        </div> */}
 
 
         <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <CircularProgress size={24} />} disabled={loading} >

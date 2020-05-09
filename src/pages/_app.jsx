@@ -7,8 +7,8 @@ export default ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Dashboard Inativos</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Buritech | Dashboard</title>
+        <link rel="icon" href="/bavicon.ico" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
