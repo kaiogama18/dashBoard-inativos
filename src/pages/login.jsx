@@ -5,18 +5,20 @@ import Rota from '../Routes/Rota';
 import { login } from '../utils/auth';
 import { TextField, Button, CircularProgress } from '@material-ui/core';
 import * as Yup from "yup";
+import { AlertStatus } from '../components';
 
 
 export default () => {
   const route = '/login/usuario';
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState([]);
+
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
       .email('email invalido')
       .required('Obrigatório'),
     senha: Yup.string()
-      // .min(8, 'Curto demais!')
       .required('Obrigatório'),
   });
 
@@ -26,13 +28,14 @@ export default () => {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
+        // setStatus({ menssage: menssage, status: true, code: code })
         // setLoading(false)
       } else {
-        alert(menssage)
+        setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)
       }
     } catch (error) {
-      alert("Sem Coneção")
+      setStatus({ menssage: "Sem Coneção", status: true, code: 400 })
       setLoading(false)
 
     }
@@ -86,21 +89,18 @@ export default () => {
             {loading ? <><CircularProgress size={24} /> </> : <>{loginBtn}</>}
           </Button>
         </div>
-
-
         <Link href="/cadastro">
           <a>{loginRegister}</a>
         </Link>
-
       </form>
+      {/* <AlertStatus status={open} menssage={menssage} /> */}
+      <AlertStatus alert={status} />
+
     </section>
   );
 };
 
 
 
-const loginUser = 'Informe seu e-mail:';
-const loginPassword = 'Informe sua senha:';
 const loginBtn = 'Entrar';
 const loginRegister = 'Fazer o cadastro agora';
-const registerTitle = 'Faça login na sua conta';

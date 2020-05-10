@@ -6,3 +6,4 @@ export { default as ResultCrop } from './ResultCrop/ResultCrop';
 export { default as Plots } from './Plots/Plots';
 export { default as Button } from './Button/Button';
 export { default as Layout } from './Layout/Layout';
+export { default as AlertStatus } from './AlertStatus/AlertStatus';
