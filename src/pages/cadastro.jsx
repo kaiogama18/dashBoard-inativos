@@ -7,12 +7,14 @@ import { TextField, Button, CircularProgress } from '@material-ui/core';
 import * as Yup from "yup";
 import MaskedInput from 'react-text-mask';
 import PropTypes from 'prop-types';
+import { AlertStatus } from '../components';
 
 
 
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
+
   return (
     <MaskedInput
       {...other}
@@ -33,9 +35,7 @@ TextMaskCustom.propTypes = {
 export default () => {
   const route = '/login/usuario/cadastro';
   const [loading, setLoading] = useState(false)
-
-
-
+  const [status, setStatus] = useState([]);
 
   const SignupSchema = Yup.object().shape({
     nome: Yup.string()
@@ -63,16 +63,19 @@ export default () => {
     try {
       const { code, menssage } = await Rota({ route, param });
       if (code === 200) {
-        alert(menssage);
+        // alert(menssage);
+        setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)
-
-        Router.push('/login');
+        setTimeout(() => {
+          Router.push('/login');
+        }, 3000);
       } else {
+        setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)
-        alert(menssage)
       }
     } catch (error) {
-      setLoading(false)
+      // setLoading(false)
+      setStatus({ menssage: "Sem Coneção", status: true, code: 400 })
       alert("Sem Coneção")
     }
   }
@@ -172,6 +175,7 @@ export default () => {
           <a>{registerLoginRegister}</a>
         </Link>
       </form>
+      <AlertStatus alert={status} />
     </section>
   );
 };
