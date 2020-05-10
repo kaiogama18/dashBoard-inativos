@@ -50,12 +50,8 @@ export default () => {
       .required('Obrigatório')
       .min(8, 'Curto demais!')
       .matches(/[a-zA-Z]/, 'Informe uma Letra'),
-    // confirmSenha: Yup.string()
-    //   .required('Obrigatório')
-    //   .test('Validado', 'As senhas devem ser iguais', function (value) {
-    //     return senha === value;
-    //   }),
-
+    confirmSenha: Yup.string()
+      .oneOf([Yup.ref('senha'), null], 'As senhas devem ser iguais')
   });
 
   const handleSubmit = async (param) => {
@@ -63,7 +59,6 @@ export default () => {
     try {
       const { code, menssage } = await Rota({ route, param });
       if (code === 200) {
-        // alert(menssage);
         setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)
         setTimeout(() => {
@@ -74,9 +69,8 @@ export default () => {
         setLoading(false)
       }
     } catch (error) {
-      // setLoading(false)
+      setLoading(false)
       setStatus({ menssage: "Sem Coneção", status: true, code: 400 })
-      alert("Sem Coneção")
     }
   }
 
@@ -86,14 +80,15 @@ export default () => {
       cpf: '',
       email: '',
       senha: '',
-      // confirmSenha: '',
+      confirmSenha: '',
     },
     validationSchema: SignupSchema,
-    onSubmit: param => {
-      // console.log(JSON.stringify(param, null, 2))
+    onSubmit: data => {
+      const { nome, cpf, email, senha } = data
+      const param = { nome, cpf, email, senha }
       handleSubmit(param)
     },
-  });
+  }); //AspireVX15
 
   return (
     <section className="login-register">
@@ -152,8 +147,9 @@ export default () => {
             helperText={formik.errors.senha ? formik.errors.senha : "Use 8 ou mais caracteres"}
           />
         </div>
-        {/*
-        <div className="mt-4">
+
+
+        <div className="mt-5">
           <TextField
             label="confirme sua senha *"
             name="confirmSenha"
@@ -164,7 +160,7 @@ export default () => {
             error={formik.errors.confirmSenha ? true : false}
             helperText={formik.errors.confirmSenha ? formik.errors.confirmSenha : false}
           />
-        </div> */}
+        </div>
 
 
         <Button variant="contained" size="medium" type="submit" color="primary" startIcon={loading && <CircularProgress size={24} />} disabled={loading} >
