@@ -28,8 +28,6 @@ export default () => {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
-        // setStatus({ menssage: menssage, status: true, code: code })
-        // setLoading(false)
       } else {
         setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)

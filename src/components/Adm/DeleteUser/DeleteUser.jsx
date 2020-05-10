@@ -1,16 +1,20 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
+import { CircularProgress, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Rota from '../../../Routes/Rota';
 
 export default ({ nome, cpf, updateData }) => {
   const route = '/adm_usuario/deletar';
+  const [loading, setLoading] = useState(false);
 
   const deleteUser = async (props) => {
+    setLoading(true)
     const param = { cpf: props.cpf }
-    const { menssage } = await Rota({ route, param });
-    alert(menssage)
-    updateData()
+    const { menssage, code } = await Rota({ route, param });
+    updateData({ menssage, code })
+    setTimeout(() => {
+      setLoading(false)
+    }, 3500);
   }
 
   return (
@@ -18,7 +22,8 @@ export default ({ nome, cpf, updateData }) => {
       variant="contained"
       color="secondary"
       onClick={() => deleteUser({ cpf, nome })}
-      startIcon={<DeleteIcon />}
+      startIcon={loading ? <CircularProgress color="default" size={20} /> : <DeleteIcon />}
+      disabled={loading ? true : false}
     >
       Excluir
     </Button>

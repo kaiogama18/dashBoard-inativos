@@ -3,13 +3,13 @@ import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles, Back
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { AlertStatus } from '../..';
 
 
 export default () => {
   const [route, setRoute] = useState('/adm_usuario/listar');
   const [data, setData] = useState([]);
-  const [open, setOpen] = React.useState(false);
-
+  const [status, setStatus] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -19,8 +19,9 @@ export default () => {
     fetchAPI();
   }, [route])
 
-  const updateData = async () => {
+  const updateData = async ({ menssage, code }) => {
     const { data } = await Rota({ route });
+    code == 8080 ? null : setStatus({ menssage: menssage, status: true, code: code })
     setData(data)
   }
 
@@ -47,28 +48,31 @@ export default () => {
   }))(TableRow);
 
   const Root = data.length ? (
-    <TableContainer >
-      <Table>
-        <TableBody>
-          {data.map((list, i) => (
-            <StyledTableRow key={i}>
-              <StyledTableCell component="th" scope="row">
-                {list.email}
-              </StyledTableCell>
+    <>
+      <TableContainer >
+        <Table>
+          <TableBody>
+            {data.map((list, i) => (
+              <StyledTableRow key={i}>
+                <StyledTableCell component="th" scope="row">
+                  {list.email}
+                </StyledTableCell>
 
-              <StyledTableCell>
-                <ActivateUser ativo={list.ativo} cpf={list.cpf} updateData={updateData} />
-              </StyledTableCell>
+                <StyledTableCell>
+                  <ActivateUser ativo={list.ativo} cpf={list.cpf} updateData={updateData} />
+                </StyledTableCell>
 
-              <StyledTableCell>
-                <DeleteUser nome={list.nome} cpf={list.cpf} updateData={updateData} />
-              </StyledTableCell>
+                <StyledTableCell>
+                  <DeleteUser nome={list.nome} cpf={list.cpf} updateData={updateData} />
+                </StyledTableCell>
 
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AlertStatus alert={status} />
+    </>
 
   ) : <div className="mx-2 p-5"><LinearProgress /></div>
   // ) : <Backdrop >
