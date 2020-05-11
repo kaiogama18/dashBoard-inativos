@@ -88,8 +88,7 @@ export default () => {
       const param = { nome, cpf, email, senha }
       handleSubmit(param)
     },
-  }); //AspireVX15
-
+  });
   return (
     <section className="login-register">
       <form onSubmit={formik.handleSubmit}>

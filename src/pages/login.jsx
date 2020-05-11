@@ -13,7 +13,6 @@ export default () => {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState([]);
 
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
       .email('email invalido')
@@ -28,6 +27,8 @@ export default () => {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
+        // setStatus({ menssage: menssage, status: true, code: code })
+        // setLoading(false)
       } else {
         setStatus({ menssage: menssage, status: true, code: code })
         setLoading(false)
@@ -91,7 +92,6 @@ export default () => {
           <a>{loginRegister}</a>
         </Link>
       </form>
-      {/* <AlertStatus status={open} menssage={menssage} /> */}
       <AlertStatus alert={status} />
 
     </section>

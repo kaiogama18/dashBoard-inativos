@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Snackbar, Dialog, DialogTitle, DialogContentText, DialogContent, DialogActions, Button } from '@material-ui/core';
-
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-
-
 export default ({ alert: { status, menssage, code } }) => {
-  const [open, setOpen] = useState(false);
-  let aux = code
+  const [open, setOpen] = useState(true);
+
+  // const increment = useCallback(() => {
+  //   setCount(v => v + 1)
+  // }, [count])
 
   useEffect(() => {
     setOpen(status)
-  }, [menssage])
+  }, [code]) //--> só funciona 1 vez
 
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -42,10 +42,7 @@ export default ({ alert: { status, menssage, code } }) => {
               Fechar
           </Button>
           </DialogActions>
-
         </Dialog>
-
-
       }
     </>
   )
