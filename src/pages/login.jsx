@@ -3,15 +3,16 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import Rota from '../Routes/Rota';
 import { login } from '../utils/auth';
-import { TextField, Button, CircularProgress } from '@material-ui/core';
+import { TextField, Button, CircularProgress, Snackbar, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import * as Yup from "yup";
-import { AlertStatus } from '../components';
+import Alert from '../components/Alert/Alert';
 
 
 export default () => {
   const route = '/login/usuario';
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState([]);
+  const [openStatus, seOpenStatus] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -27,14 +28,14 @@ export default () => {
       const { code, menssage, data } = await Rota({ route, param });
       if (code === 200) {
         await login({ token: data[0].cpf });
-        // setStatus({ menssage: menssage, status: true, code: code })
-        // setLoading(false)
       } else {
-        setStatus({ menssage: menssage, status: true, code: code })
+        setStatus({ code: code, menssage: menssage })
+        seOpenStatus(true)
         setLoading(false)
       }
     } catch (error) {
-      setStatus({ menssage: "Sem Coneção", status: true, code: 400 })
+      setStatus({ code: code, menssage: "Sem Coneção" })
+      seOpenStatus(true)
       setLoading(false)
 
     }
@@ -50,6 +51,36 @@ export default () => {
       handleSubmit(param)
     },
   });
+
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    seOpenStatus(false)
+  };
+
+  const Feedback = (
+    status.code == 203 ?
+      <Dialog open={openStatus} onClose={handleClose} >
+        <DialogTitle>Oops, usuário inativo</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {status.menssage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Fechar
+        </Button>
+        </DialogActions>
+      </Dialog>
+      : <Snackbar open={openStatus} autoHideDuration={2500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={status.code == 400 ? "error" : "success"}>
+          {status.menssage}
+        </Alert>
+      </Snackbar>
+  )
 
   return (
     <section className="login-register">
@@ -92,13 +123,9 @@ export default () => {
           <a>{loginRegister}</a>
         </Link>
       </form>
-      <AlertStatus alert={status} />
-
+      {Feedback}
     </section>
   );
 };
-
-
-
 const loginBtn = 'Entrar';
 const loginRegister = 'Fazer o cadastro agora';

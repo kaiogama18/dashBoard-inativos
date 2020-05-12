@@ -9,13 +9,11 @@ function Alert(props) {
 export default ({ alert: { status, menssage, code } }) => {
   const [open, setOpen] = useState(true);
 
-  // const increment = useCallback(() => {
-  //   setCount(v => v + 1)
-  // }, [count])
+
 
   useEffect(() => {
     setOpen(status)
-  }, [code]) //--> só funciona 1 vez
+  }, [code])
 
   const handleClose = (reason) => {
     if (reason === 'clickaway') {
@@ -47,6 +45,3 @@ export default ({ alert: { status, menssage, code } }) => {
     </>
   )
 }
-
-
-
