@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import Router from 'next/router';
 import Rota from '../Routes/Rota';
-import { TextField, Button, CircularProgress } from '@material-ui/core';
+import { TextField, Button, CircularProgress, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Snackbar } from '@material-ui/core';
 import * as Yup from "yup";
 import MaskedInput from 'react-text-mask';
 import PropTypes from 'prop-types';
-import { AlertStatus } from '../components';
+import { Alert } from '../components';
 
 
 
@@ -36,6 +36,7 @@ export default () => {
   const route = '/login/usuario/cadastro';
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState([]);
+  const [openStatus, seOpenStatus] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     nome: Yup.string()
@@ -59,18 +60,18 @@ export default () => {
     try {
       const { code, menssage } = await Rota({ route, param });
       if (code === 200) {
-        setStatus({ menssage: menssage, status: true, code: code })
+        setStatus({ code: code, menssage: menssage })
+        seOpenStatus(true)
         setLoading(false)
-        setTimeout(() => {
-          Router.push('/login');
-        }, 3000);
       } else {
-        setStatus({ menssage: menssage, status: true, code: code })
+        setStatus({ code: code, menssage: menssage })
+        seOpenStatus(true)
         setLoading(false)
       }
     } catch (error) {
       setLoading(false)
-      setStatus({ menssage: "Sem Coneção", status: true, code: 400 })
+      setStatus({ code: code, menssage: menssage })
+      seOpenStatus(true)
     }
   }
 
@@ -89,6 +90,40 @@ export default () => {
       handleSubmit(param)
     },
   });
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    seOpenStatus(false)
+  };
+
+
+  const Feedback = (
+    status.code == 200 ?
+      <Dialog open={openStatus} onClose={handleClose} >
+        <DialogTitle>Sucesso</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {status.menssage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => Router.push('/login')} color="primary">
+            Fazer Login
+        </Button>
+        </DialogActions>
+      </Dialog>
+      : <Snackbar open={openStatus} autoHideDuration={2500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          {status.menssage}
+        </Alert>
+      </Snackbar>
+  )
+
+
+
+
   return (
     <section className="login-register">
       <form onSubmit={formik.handleSubmit}>
@@ -170,7 +205,7 @@ export default () => {
           <a>{registerLoginRegister}</a>
         </Link>
       </form>
-      <AlertStatus alert={status} />
+      {Feedback}
     </section>
   );
 };
