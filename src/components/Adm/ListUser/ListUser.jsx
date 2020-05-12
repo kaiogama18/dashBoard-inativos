@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles, Backdrop, CircularProgress, LinearProgress } from '@material-ui/core';
+import { Table, TableContainer, TableBody, TableCell, TableRow, withStyles, LinearProgress, Snackbar } from '@material-ui/core';
 import { DeleteUser, ActivateUser } from '..';
 import Rota from '../../../Routes/Rota';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { AlertStatus } from '../..';
+import { Alert } from '../..';
 
 
 export default () => {
   const [route, setRoute] = useState('/adm_usuario/listar');
   const [data, setData] = useState([]);
   const [status, setStatus] = useState([]);
+  const [openStatus, seOpenStatus] = useState(false);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -21,8 +21,10 @@ export default () => {
 
   const updateData = async ({ menssage, code }) => {
     const { data } = await Rota({ route });
-    code == 8080 ? null : setStatus({ menssage: menssage, status: true, code: code })
+    // code == 8080 ? null : setStatus({ menssage: menssage, status: true, code: code })
+    code == 8080 ? null : setStatus({ code: code, menssage: menssage })
     setData(data)
+    seOpenStatus(true)
   }
 
 
@@ -46,6 +48,24 @@ export default () => {
       },
     },
   }))(TableRow);
+
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    seOpenStatus(false)
+  };
+
+
+  const Feedback = (
+    <Snackbar open={openStatus} autoHideDuration={2500} onClose={handleClose}>
+      <Alert onClose={handleClose} severity={status.code == 400 ? "error" : "success"}>
+        {status.menssage}
+      </Alert>
+    </Snackbar>
+  )
+
 
   const Root = data.length ? (
     <>
@@ -71,7 +91,8 @@ export default () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <AlertStatus alert={status} />
+      {/* <AlertStatus alert={status} /> */}
+      {Feedback}
     </>
 
   ) : <div className="mx-2 p-5"><LinearProgress /></div>

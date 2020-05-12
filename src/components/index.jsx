@@ -7,4 +7,4 @@ export { default as Plots } from './Plots/Plots';
 export { default as Button } from './Button/Button';
 export { default as Layout } from './Layout/Layout';
 export { default as AlertStatus } from './AlertStatus/AlertStatus';
-// export { default as Alert } from './Alert/Alert';
+export { default as Alert } from './Alert/Alert';
