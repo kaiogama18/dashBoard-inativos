@@ -98,7 +98,6 @@ export default () => {
     seOpenStatus(false)
   };
 
-
   const Feedback = (
     status.code == 200 ?
       <Dialog open={openStatus} onClose={handleClose} >
@@ -120,9 +119,6 @@ export default () => {
         </Alert>
       </Snackbar>
   )
-
-
-
 
   return (
     <section className="login-register">
