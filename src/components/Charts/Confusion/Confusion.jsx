@@ -45,43 +45,58 @@ const Confusion = ({ crop }) => {
   }
 
 
+  const Plot = (() => {
 
-
-  const Plot = (data.length) ? (
-    <HeatMapComponent
-      id="heatmap"
-      xAxis={{
-        valueType: 'Category',
-        labels: ['0', '1'],
-      }}
-      yAxis={{
-        valueType: 'Category',
-        labels: ['1', '0'],
-      }}
-      paletteSettings={{
-        palette: [
-          { color: '#C06C84' },
-          { color: '#6C5B7B' },
-          { color: '#355C7D' },
-        ],
-        type: 'Gradient',
-      }}
-      dataSource={[
-        [true_n, false_p],
-        [false_n, true_p],
-      ]}
-    >
-      <Inject services={[Adaptor, Legend, Tooltip]} />
-    </HeatMapComponent>
-
-  ) : <div className=" col-span-3 p-5">
-      <div className=" flex items-center justify-center  text-center flex-col">
-        <img className="w-4/12" src="/no.png" />
-        <p className="subtitle mt-5 text-gray-600">Sem dados no momento</p>
+    if (data.length == 1) {
+      <div className=" col-span-3 p-5">
+        <div className=" flex items-center justify-center  text-center flex-col">
+          <img className="w-4/12" src="/no.png" />
+          <p className="subtitle mt-5 text-gray-600">Sem dados no momento</p>
+        </div>
       </div>
-    </div>
+    }
+
+  })
+
+
+  // const Plot = (data.length != 1) ? (
+  // <HeatMapComponent
+  //   id="heatmap"
+  //   xAxis={{
+  //     valueType: 'Category',
+  //     labels: ['0', '1'],
+  //   }}
+  //   yAxis={{
+  //     valueType: 'Category',
+  //     labels: ['1', '0'],
+  //   }}
+  //   paletteSettings={{
+  //     palette: [
+  //       { color: '#C06C84' },
+  //       { color: '#6C5B7B' },
+  //       { color: '#355C7D' },
+  //     ],
+  //     type: 'Gradient',
+  //   }}
+  //   dataSource={[
+  //     [true_n, false_p],
+  //     [false_n, true_p],
+  //   ]}
+  // >
+  //   <Inject services={[Adaptor, Legend, Tooltip]} />
+  // </HeatMapComponent>
+
+  // ) : <div className=" col-span-3 p-5">
+  //     <div className=" flex items-center justify-center  text-center flex-col">
+  //       <img className="w-4/12" src="/no.png" />
+  //       <p className="subtitle mt-5 text-gray-600">Sem dados no momento</p>
+  //     </div>
+  //   </div>
 
   return <Chart title={menssage} crop={crop}> {Plot} </Chart>
+
+  // return <Chart title={menssage} crop={crop}> {(data.length) != 1 ? data.length : "nãoteste"} </Chart>
+
 };
 
 export default Confusion;
