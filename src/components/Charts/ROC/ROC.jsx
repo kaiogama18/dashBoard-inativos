@@ -32,6 +32,13 @@ function ROC({ crop }) {
         labels: labels,
         datasets: [
           {
+            label: 'Class 1',
+            borderColor: '#4bc0c0',
+            data: [0,1],
+            borderDash: [8, 4],
+            fill: false,
+          },
+          {
             label: 'roc_0',
             backgroundColor: 'rgba(249, 142, 28,0.75)',
             borderColor: '#ea6227',

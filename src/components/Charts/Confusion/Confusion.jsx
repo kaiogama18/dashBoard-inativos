@@ -21,25 +21,22 @@ const Confusion = ({ crop }) => {
         setMenssage(menssage)
         setData(data)
       }
-
-
     }
     fetchAPI();
   }, [crop])
 
+
+
   const Plot = (data.length) ? (
     <HeatMapComponent
-      // titleSettings={{
-      //   text: '*No eixo y: Etiqueta verdadeira *No eixo x: Etiqueta prevista',
-      // }}
       xAxis={{
-        title: { text: 'Etiqueta prevista' },
+        // title: { text: 'Etiqueta prevista' },
         valueType: 'Category',
         labels: ['0', '1'],
-      
+
       }}
       yAxis={{
-        title: { text: 'Etiqueta verdadeira' },
+        // title: { text: 'Etiqueta verdadeira' },
         valueType: 'Category',
         labels: ['1', '0'],
       }}
@@ -54,12 +51,12 @@ const Confusion = ({ crop }) => {
       dataSource={[
         // [data[0].true_negative, data[0].false_positive],
         // [data[0].false_negative, data[0].true_positive],
-        [ data[0].false_positive, data[0].true_negative,],
-        [ data[0].true_positive, data[0].false_negative],
+        [data[0].false_positive, data[0].true_negative,],
+        [data[0].true_positive, data[0].false_negative],
       ]}
       cellSettings={{
         format: '{value}'
-    }}
+      }}
     >
       <Inject services={[Adaptor, Legend, Tooltip]} />
     </HeatMapComponent>

@@ -19,7 +19,7 @@ const CropPicker = ({ handleCropChange }) => {
         const { data, menssage } = await Rota({ method: 'GET', route });
         setMenssage(menssage)
         setData(data)
-        setSafras(data.map((aux) => aux.safra).reverse())
+        setSafras(data.map((aux) => aux.safra))
       } catch (error) {
         Router.push('/login');
       }
@@ -36,13 +36,6 @@ const CropPicker = ({ handleCropChange }) => {
         <p className="subtitle">{cropTitle}</p>
       </div>
       <div className="crop-colunm">
-
-        <div className="crop-colunm__item">
-          <button className="crop-colunm__btn disabled">
-          </button>
-          <p>201801</p>
-        </div>
-
         {
           safras.map(safra => (
             <div key={safra} className="crop-colunm__item">
@@ -53,17 +46,6 @@ const CropPicker = ({ handleCropChange }) => {
             </div>
           ))
         }
-
-        {
-          listS.map(safra => (
-            <div key={safra} className="crop-colunm__item">
-              <button className="crop-colunm__btn disabled">
-              </button>
-              <p>{safra}</p>
-            </div>
-          ))
-        }
-
       </div>
 
     </Card>

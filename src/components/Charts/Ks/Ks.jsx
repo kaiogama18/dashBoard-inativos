@@ -23,9 +23,10 @@ const Ks = ({ crop }) => {
 
     }
     fetchAPI();
+    console.log("Points : " + JSON.stringify(points, null, 2))
+    console.log("data : " + JSON.stringify(data, null, 2))
+
   }, [crop])
-
-
 
   let objs = [];
   data.map((aux) => {
@@ -35,57 +36,60 @@ const Ks = ({ crop }) => {
 
   // console.log("Points x_0: " + JSON.stringify(points.map(a => a.x_0), null, 2))
   // console.log("Points y_0: " + JSON.stringify(points.map(a => a.y_0), null, 2))
-
   // console.log("Points x_1: " + JSON.stringify(points.map(a => a.x_1), null, 2))
   // console.log("Points y_1: " + JSON.stringify(points.map(a => a.y_1), null, 2))
-
-
   // console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2).split()+ "]"))
   // console.log("Points x_ks: " + JSON.parse(points.map(a => a.x_ks)))
-
-
-  console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2) + "]"))
-
+  // console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2) + "]"))
   // console.log("Points ks_val_1: " + points.map(a => a.ks_val_1))
-
-
   // y_ks: [0.3250643575941961, 0.6860759493670886],
   // ks_val_1: "0.361",
   // ks_val_2: "0.536"
 
-
+  console.log("Objs : " + JSON.stringify(objs.coord_line_0, null, 2))
   const Plot = (
+
     <Line
+      type='scatter'
       data={{
         // labels: labels,
         datasets: [
           {
-            label: 'Class 1',
-            borderColor: '#4bc0c0',
-            data: objs.x_ks,
-            borderDash: [8, 4],
-            fill: false,
-          },
-          {
             label: 'Class 0',
-            borderColor: '#ffcc56',
-            data: objs.y_ks,
-            backgroundColor: 'rgba(255, 223, 147,0.35)'
-          },
-          {
-            label: 'KS Statistic',
-            borderColor: '#ff6284',
-            data: objs.x_0,
+            borderWidth: 1,
+            backgroundColor: '#4bc0c0',
+            borderColor: '#1236f9',
+            pointRadius: 1,
+            data: objs.coord_line_0,
             fill: false,
           },
+          {
+            label: 'Class 1',
+            borderWidth: 1,
+            backgroundColor: '#ff0000',
+            borderColor: '#ea6227',
+            pointRadius: 1,
+            data: objs.coord_line_1,
+            fill: false,
+          },
+          {
+            label: 'Class KS',
+            borderColor: '#000',
+            data: objs.coord_line_ks,
+            borderDash: [8, 4],
 
+            fill: false,
+          }
         ],
       }}
       options={{
         responsive: true,
+        devicePixelRatio: 5,
         scales: {
           xAxes: [
             {
+              type: 'linear',
+              position: 'bottom',
               gridLines: {
                 display: false,
               },
@@ -110,16 +114,4 @@ const Ks = ({ crop }) => {
 };
 
 export default Ks;
-
-const labels = [
-  '[0,10]',
-  '[10,20]',
-  '[20,30]',
-  '[30,40]',
-  '[40,50]',
-  '[50,60]',
-  '[60,70]',
-  '[70,80]',
-  '[80,90]',
-  '[90,100]',
-]
+// const labels = ['0.00', '0.2', '0.4', '0.6', '0.8', '1.0']
