@@ -33,36 +33,73 @@ const ResultCrop = ({ crop }) => {
   return (
     <div className="grid grid-cols-1">
       <Card className={cx('card', 'card-results')}>
-        <a className="title"> {menssage ? menssage : <Skeleton width={300} animation="wave" />}</a>
-        <a className="subtitle"> {data.length ? data[0].rotulo : <Skeleton width={500} animation="wave" />} </a>
+        <div className="flex flex-col items-center">
+          <a className="title"> {menssage ? menssage : <Skeleton width={300} animation="wave" />}</a>
+          <a className="subtitle"> {data.length ? data[0].rotulo : <Skeleton width={500} animation="wave" />} </a>
 
-        <p className="subtitle">
-          {data.length ? (
-            <a className="font-bold">
-              AUC: <CountUp start={0} end={data[0].auc} decimal="." />
-              {' '} e {' '}
+          <p className="subtitle">
+            {data.length ? (
+              <a className="font-bold">
+                AUC: <CountUp start={0} end={data[0].auc} decimal="." />
+                {' '} e {' '}
               KS: <CountUp start={0} end={data[0].ks} decimal="." />
-            </a>
-          ) : <Skeleton width={200} animation="wave" />
-          }
-        </p>
-        <a className="subtitle">
-          {data.length ? (
-            <a>
-              Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} decimal="." separator="." />
-            </a>
-          ) : <Skeleton width={250} animation="wave" />}
-        </a>
+              </a>
+            ) : <Skeleton width={200} animation="wave" />
+            }
+          </p>
 
+        </div>
+
+        <div className="bg-green-500 p-2 my-2">
+          <a className="subtitle">
+            {data.length ? (
+              <a>
+                Instância de Teste: <CountUp start={0} end={data[0].instancias_teste} decimal="." separator="." />
+              </a>
+            ) : <Skeleton width={250} animation="wave" />}
+          </a>
+
+          <p className="subtitle">
+            {data.length ? (
+              <a>
+                Bons: <CountUp start={0} end={data[0].bons_pagadores_teste} decimal="." separator="." />%
+                {' '} e {' '}
+              Maus: <CountUp start={0} end={data[0].maus_pagadores_teste} decimal="." separator="." />%{' '}pagadores
+              </a>
+            ) : <Skeleton width={200} animation="wave" />
+            }
+          </p>
+        </div>
+
+        <div className="bg-red-500 p-2 my-2">
+          <a className="subtitle">
+            {data.length ? (
+              <a>
+                Instância de Treino: <CountUp start={0} end={data[0].instancias_treino} decimal="." separator="." />
+              </a>
+            ) : <Skeleton width={250} animation="wave" />}
+          </a>
+
+          <p className="subtitle">
+            {data.length ? (
+              <a>
+                Bons: <CountUp start={0} end={data[0].bons_pagadores_treino} decimal="." separator="." />%
+                {' '} e {' '}
+              Maus: <CountUp start={0} end={data[0].maus_pagadores_treino} decimal="." separator="." />%{' '}pagadores
+              </a>
+            ) : <Skeleton width={200} animation="wave" />
+            }
+          </p>
+        </div>
       </Card>
-      <MuiThemeProvider theme={theme}>
 
+      <MuiThemeProvider theme={theme}>
         {crop ? <Button variant="contained" color="primary">
           <p className="text-base text-white font-bold">
-            Fazer dowload do CSV </p>
+            Fazer dowload dos Scores </p>
         </Button> : <Button variant="contained" disabled >
             <p className="text-base font-bold">
-              Fazer dowload do CSV </p>
+              Fazer dowload dos Scores </p>
           </Button>}
       </MuiThemeProvider>
     </div>
