@@ -20,7 +20,6 @@ function ROC({ crop }) {
     fetchAPI();
   }, [crop])
 
-
   let objs = [];
   data.map((aux) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
@@ -28,52 +27,80 @@ function ROC({ crop }) {
 
   const Plot = (
     <Line
+      type='scatter'
       data={{
-        labels: labels,
         datasets: [
           {
-            label: 'Class 1',
-            borderColor: '#4bc0c0',
-            data: [0,1],
+            label: 'ROC curve class 0',
+            borderDash: [1, 0],
+            borderColor: "#5c415d",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
+            fill: false,
+            data: objs.coord_line_0,
+          },
+          {
+            label: 'ROC curve class 1',
+            borderDash: [1, 0],
+            borderColor: "#8abb21",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
+            fill: false,
+            data: objs.coord_line_1,
+          },
+          {
+            label: 'Micro-average ROC curve',
+            borderDash: [5, 5],
+            borderColor: "#f64d2a",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
+            fill: false,
+            data: objs.coord_line_mic,
+          },
+          {
+            label: 'Macro-average ROC curve',
+            borderDash: [5, 5],
+            borderColor: "#2d95ec",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
+            fill: false,
+            data: objs.coord_line_mac,
+          },
+          {
+            label: 'Auxiliar',
+            borderColor: '#000',
             borderDash: [8, 4],
             fill: false,
-          },
-          {
-            label: 'roc_0',
-            backgroundColor: 'rgba(249, 142, 28,0.75)',
-            borderColor: '#ea6227',
-            data: objs.x_0,
-            lineTension: 0.9,
-            fill: false,
-          },
-          {
-            label: 'roc_1',
-            borderColor: '#ff56ff',
-            data: objs.y_0,
-            borderDash: [8, 4],
-            fill: false,
-          },
-          {
-            label: 'mic_avg',
-            borderColor: '#1236f9',
-            data: objs.x_1,
-            lineTension: 0.9,
-            fill: false,
-          },
-          {
-            label: 'mac_avg',
-            borderColor: '#62bb6d',
-            data: objs.y_1,
-            lineTension: 0.9,
-            fill: false,
+            data: [{
+              x: 1,
+              y: 1
+            }, {
+              x: 0,
+              y: 0
+            }],
           },
         ],
       }}
       options={{
         responsive: true,
+        devicePixelRatio: 5,
         scales: {
           xAxes: [
             {
+              type: 'linear',
+              position: 'bottom',
               gridLines: {
                 display: false,
               },
@@ -84,21 +111,22 @@ function ROC({ crop }) {
               gridLines: {
                 display: false,
               },
-              ticks: {
-                max: 0.010531242686637023,
-                min: 0.0,
-                stepSize: 0.001,
-              },
             },
           ],
         },
+        animation: {
+          easing: 'easeInOutCubic',
+        },
+        elements: {
+          point: {
+            radius: 0
+          }
+        }
       }}
     />
   )
-
   return <Chart title={menssage} crop={crop}> {Plot} </Chart>
 }
 
 export default ROC;
 
-const labels = ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0']

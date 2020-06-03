@@ -33,51 +33,40 @@ const Ks = ({ crop }) => {
     objs = JSON.parse(aux.json.replace(/'/g, '"'));
   });
 
-
-  // console.log("Points x_0: " + JSON.stringify(points.map(a => a.x_0), null, 2))
-  // console.log("Points y_0: " + JSON.stringify(points.map(a => a.y_0), null, 2))
-  // console.log("Points x_1: " + JSON.stringify(points.map(a => a.x_1), null, 2))
-  // console.log("Points y_1: " + JSON.stringify(points.map(a => a.y_1), null, 2))
-  // console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2).split()+ "]"))
-  // console.log("Points x_ks: " + JSON.parse(points.map(a => a.x_ks)))
-  // console.log("Points x_ks: " + JSON.parse("[" + JSON.stringify(points.map(a => a.x_ks), null, 2) + "]"))
-  // console.log("Points ks_val_1: " + points.map(a => a.ks_val_1))
-  // y_ks: [0.3250643575941961, 0.6860759493670886],
-  // ks_val_1: "0.361",
-  // ks_val_2: "0.536"
-
   console.log("Objs : " + JSON.stringify(objs.coord_line_0, null, 2))
   const Plot = (
 
     <Line
       type='scatter'
       data={{
-        // labels: labels,
         datasets: [
           {
             label: 'Class 0',
-            borderWidth: 1,
-            backgroundColor: '#4bc0c0',
-            borderColor: '#1236f9',
-            pointRadius: 1,
-            data: objs.coord_line_0,
+            borderColor: "#2d95ec",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
             fill: false,
+            data: objs.coord_line_0,
           },
           {
             label: 'Class 1',
-            borderWidth: 1,
-            backgroundColor: '#ff0000',
-            borderColor: '#ea6227',
-            pointRadius: 1,
-            data: objs.coord_line_1,
+            borderColor: "#f64d2a",
+            backgroundColor: "#e755ba",
+            pointBackgroundColor: "#55bae7",
+            pointBorderColor: "#55bae7",
+            pointHoverBackgroundColor: "#55bae7",
+            pointHoverBorderColor: "#55bae7",
             fill: false,
+            data: objs.coord_line_1,
           },
           {
-            label: 'Class KS',
+            label: 'KS Statistic Plot',
             borderColor: '#000',
             data: objs.coord_line_ks,
             borderDash: [8, 4],
-
             fill: false,
           }
         ],
@@ -106,6 +95,11 @@ const Ks = ({ crop }) => {
         animation: {
           easing: 'easeInOutCubic',
         },
+        elements: {
+          point: {
+            radius: 0
+          }
+        }
       }}
     />
   )
@@ -114,4 +108,3 @@ const Ks = ({ crop }) => {
 };
 
 export default Ks;
-// const labels = ['0.00', '0.2', '0.4', '0.6', '0.8', '1.0']
