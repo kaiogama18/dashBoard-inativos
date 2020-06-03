@@ -66,7 +66,7 @@ const ResultCrop = ({ crop }) => {
                 {' '} e {' '}
               Maus: <CountUp start={0} end={data[0].maus_pagadores_teste} decimal="." separator="." />%{' '}pagadores
               </a>
-            ) : <Skeleton width={200} animation="wave" />
+            ) : <Skeleton width={350} animation="wave" />
             }
           </p>
         </div>
@@ -87,13 +87,13 @@ const ResultCrop = ({ crop }) => {
                 {' '} e {' '}
               Maus: <CountUp start={0} end={data[0].maus_pagadores_treino} decimal="." separator="." />%{' '}pagadores
               </a>
-            ) : <Skeleton width={200} animation="wave" />
+            ) : <Skeleton width={350} animation="wave" />
             }
           </p>
         </div>
       </Card>
 
-      <MuiThemeProvider theme={theme}>
+      {/* <MuiThemeProvider theme={theme}>
         {crop ? <Button variant="contained" color="primary">
           <p className="text-base text-white font-bold">
             Fazer dowload dos Scores </p>
@@ -101,7 +101,7 @@ const ResultCrop = ({ crop }) => {
             <p className="text-base font-bold">
               Fazer dowload dos Scores </p>
           </Button>}
-      </MuiThemeProvider>
+      </MuiThemeProvider> */}
     </div>
   );
 };
