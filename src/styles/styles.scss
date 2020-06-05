@@ -3,16 +3,16 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-$--grey: #3e3e3e;
-$--text_color_default: $--grey;
-$--btn_default: #4299e1;
-$--blue_default: #0926fe;
+
+
 
 /*
    * Colors
    * ======================================================================== */
 
-$--primary: #015c92;
+$--grey: #3e3e3e;
+$--text_color_default: $--grey;
+$--primary: #2779a7;
 $--exit: #fafa;
 
 :root {
@@ -63,7 +63,7 @@ html.is-animating .transition-fade {
 }
 
 .bg-blue-default {
-  background-color: $--blue_default;
+  background-color: $--primary;
 }
 
 // .navbar-left {
@@ -253,9 +253,9 @@ main {
    * Crad
    * ======================================================================== */
 
-.card {
-  @apply overflow-hidden p-5 bg-white shadow-sm;
-}
+// .card {
+//   @apply overflow-hidden p-5 bg-white rounded shadow;
+// }
 
 .card-results {
   background-color: $--primary;

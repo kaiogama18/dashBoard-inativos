@@ -11,7 +11,7 @@ class Navbar extends React.Component {
   render() {
 
     return (
-      <Card className={cx('card', 'navbar')}>
+      <Card className={cx('overflow-hidden p-5 bg-white rounded-md shadow', 'navbar')}>
         <div>
           <Fab size="medium" disabled aria-label="add">
             <AddIcon />

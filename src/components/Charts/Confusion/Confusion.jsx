@@ -18,9 +18,9 @@ class Confusion extends Component {
         datasets: [{
           label: 'My Matrix',
           data: [
-            { x: 0.75, y: 1},
+            { x: 0.75, y: 1 },
             { x: 0.43, y: 0 },
-            { x: 0.25, y: 0},
+            { x: 0.25, y: 0 },
             { x: 0.57, y: 1 },
 
           ],

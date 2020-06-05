@@ -28,7 +28,7 @@ const CropPicker = ({ handleCropChange }) => {
   }, [route])
 
   return (
-    <Card className={cx('card', 'card-picker')}>
+    <Card className={cx('overflow-hidden p-5 bg-white rounded-md shadow', 'card-picker')}>
       <div className="self-center">
         <p className="title">
           {menssage ? menssage : <Skeleton width={300} animation="wave" />}

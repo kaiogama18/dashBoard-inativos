@@ -32,7 +32,7 @@ const ResultCrop = ({ crop }) => {
 
   return (
     <div className="grid grid-cols-1">
-      <Card className={cx('card', 'card-results')}>
+      <Card className={cx('overflow-hidden p-5 bg-white rounded-md shadow', 'card-results')}>
         <div className="flex flex-col items-center">
           <a className="title"> {menssage ? menssage : <Skeleton width={300} animation="wave" />}</a>
           <a className="subtitle"> {data.length ? data[0].rotulo : <Skeleton width={500} animation="wave" />} </a>
