@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import Chart from '../../Chart/Chart';
+import CardChart from '../../CardChart/CardChart';
 import Rota from '../../../Routes/Rota';
 
 function Mixed({ crop }) {
@@ -43,7 +43,9 @@ function Mixed({ crop }) {
             label: 'Taxa de Inadimplência',
             backgroundColor: 'rgba(244, 144, 128, 0.8)',
             data: objs.x_inad,
-            borderDash: [8, 8],
+            // borderDash: [0, 8],
+            lineTension: 0.2,
+            fill: false,
             borderColor: '#de1414',
           },
         ],
@@ -70,7 +72,7 @@ function Mixed({ crop }) {
     />
   )
 
-  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
+  return <CardChart title={menssage} crop={crop}> {Plot} </CardChart>
 
 
 }

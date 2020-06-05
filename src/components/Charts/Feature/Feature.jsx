@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-import Chart from '../../Chart/Chart';
+import CardChart from '../../CardChart/CardChart';
 import Rota from '../../../Routes/Rota';
 
 const Feature = ({ crop }) => {
@@ -80,7 +80,7 @@ const Feature = ({ crop }) => {
     />
   )
 
-  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
+  return <CardChart title={menssage} crop={crop}> {Plot} </CardChart>
 };
 
 export default Feature;

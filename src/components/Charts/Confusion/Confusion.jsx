@@ -1,80 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import Chart from '../../Chart/Chart';
+import React, { useState, useEffect, Component } from 'react';
+
 import Rota from '../../../Routes/Rota';
-import {
-  HeatMapComponent,
-  Inject,
-  Legend,
-  Tooltip,
-  Adaptor,
-} from '@syncfusion/ej2-react-heatmap';
+import useSWR from "swr";
+import "chartjs-chart-matrix"
+import { CardChart } from '../..';
 
-const Confusion = ({ crop }) => {
-  const route = '/home/safras/confusion_matrix';
-  const [menssage, setMenssage] = useState('');
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      const { code, data, menssage } = await Rota({ route, param: { safra: crop } });
-      if (code === 200) {
-        setMenssage(menssage)
-        setData(data)
+class Confusion extends Component {
+  chartRef = React.createRef();
+
+  componentDidMount() {
+    const ctx = this.chartRef.current.getContext("2d");
+
+    new Chart(ctx, {
+      type: 'matrix',
+      data: {
+        datasets: [{
+          label: 'My Matrix',
+          data: [
+            { x: 0.75, y: 1},
+            { x: 0.43, y: 0 },
+            { x: 0.25, y: 0},
+            { x: 0.57, y: 1 },
+
+          ],
+          backgroundColor: function (ctx) {
+            var value = ctx.dataset.data[ctx.dataIndex].v;
+            var alpha = (value - 5) / 40;
+            return Color('green').alpha(alpha).rgbString();
+          },
+          // borderColor: function (ctx) {
+          //   var value = ctx.dataset.data[ctx.dataIndex].v;
+          //   var alpha = (value - 5) / 40;
+          //   return Color('green').alpha(alpha).darken(0.3).rgbString();
+          // },
+          borderWidth: { left: 3, right: 3 },
+          width: function (ctx) {
+            var a = ctx.chart.chartArea;
+            return (a.right - a.left) / 5.5;
+          },
+          height: function (ctx) {
+            var a = ctx.chart.chartArea;
+            return (a.bottom - a.top) / 3.5;
+          }
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            // offset: true,
+            ticks: {
+              display: true,
+              min: 1,
+              max: 0,
+            },
+            gridLines: {
+              display: false
+            }
+          }],
+          yAxes: [{
+            position: 'right',
+            ticks: {
+              source: 'labels',
+              reverse: false,
+              display: true,
+              min: 0,
+              max: 1,
+              stepSize: 1
+            },
+            gridLines: {
+              display: false
+            },
+          }]
+        }
       }
-    }
-    fetchAPI();
-  }, [crop])
 
-
-
-  const Plot = (data.length) ? (
-    <HeatMapComponent
-      xAxis={{
-        // title: { text: 'Etiqueta prevista' },
-        valueType: 'Category',
-        labels: ['0', '1'],
-
-      }}
-      yAxis={{
-        // title: { text: 'Etiqueta verdadeira' },
-        valueType: 'Category',
-        labels: ['1', '0'],
-      }}
-      paletteSettings={{
-        palette: [
-          { color: '#C06C84' },
-          { color: '#6C5B7B' },
-          { color: '#355C7D' },
-        ],
-        type: 'Gradient',
-      }}
-      dataSource={[
-        // [data[0].true_negative, data[0].false_positive],
-        // [data[0].false_negative, data[0].true_positive],
-        [data[0].false_positive, data[0].true_negative,],
-        [data[0].true_positive, data[0].false_negative],
-      ]}
-      cellSettings={{
-        format: '{value}'
-      }}
-    >
-      <Inject services={[Adaptor, Legend, Tooltip]} />
-    </HeatMapComponent>
-
-  ) : <div className=" col-span-3 p-5">
-      <div className=" flex items-center justify-center  text-center flex-col">
-        <img className="w-4/12" src="/no.png" />
-        <p className="subtitle mt-5 text-gray-600">Sem dados no momento</p>
-      </div>
-    </div>
-
-
-
-
-  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
-
-  //  return <Chart title={menssage} crop={crop}> {(data.length) ? data[0].true_positive : "nãoteste"} </Chart>
-
+    });
+  }
+  render() {
+    return (
+      <CardChart title={"menssage"} crop={1555}> <canvas
+        id="myChart"
+        ref={this.chartRef}
+      /> </CardChart>
+    )
+  }
 };
 
 export default Confusion;

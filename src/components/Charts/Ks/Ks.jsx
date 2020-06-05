@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
-import Chart from '../../Chart/Chart';
+import CardChart from '../../CardChart/CardChart';
 import Rota from '../../../Routes/Rota';
 
 
@@ -104,7 +104,7 @@ const Ks = ({ crop }) => {
     />
   )
 
-  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
+  return <CardChart title={menssage} crop={crop}> {Plot} </CardChart>
 };
 
 export default Ks;

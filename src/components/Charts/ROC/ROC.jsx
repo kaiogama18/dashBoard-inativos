@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import Chart from '../../Chart/Chart';
+import CardChart from '../../CardChart/CardChart';
 import Rota from '../../../Routes/Rota';
 
 function ROC({ crop }) {
@@ -125,7 +125,7 @@ function ROC({ crop }) {
       }}
     />
   )
-  return <Chart title={menssage} crop={crop}> {Plot} </Chart>
+  return <CardChart title={menssage} crop={crop}> {Plot} </CardChart>
 }
 
 export default ROC;

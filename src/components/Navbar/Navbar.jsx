@@ -1,5 +1,5 @@
 import { logout } from '../../utils/auth';
-import { Card } from '..';
+import Card from "../Card/Card";
 import cx from 'classnames';
 import { Fab, Tooltip } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';

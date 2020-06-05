@@ -1,6 +1,6 @@
-import { Card } from ".."
 import CountUp from "react-countup";
 import Skeleton from "@material-ui/lab/Skeleton";
+import Card from "../Card/Card";
 
 export default ({ children, crop, title }) => {
   return (

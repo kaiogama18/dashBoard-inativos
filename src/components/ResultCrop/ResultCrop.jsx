@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from '..';
+import Card from "../Card/Card";
 import cx from 'classnames';
 import Rota from '../../Routes/Rota';
 import CountUp from 'react-countup';

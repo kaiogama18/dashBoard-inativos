@@ -12,8 +12,6 @@ class Index extends React.Component {
     loaded: false,
   };
 
-
-
   handleCropChange = async (crop) => {
     this.setState({
       crop: crop,
