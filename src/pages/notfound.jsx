@@ -5,8 +5,6 @@ import Router from 'next/router';
 
 
 export default () => {
-
-
   return (
     <>
       <main  >
