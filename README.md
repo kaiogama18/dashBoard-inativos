@@ -1,4 +1,4 @@
-DashBoard-inativos default starter
+DashBoard-inativos 
 ======================
 
 ### Contributors
@@ -41,7 +41,7 @@ $ yarn start
 
 ## License
 
-**Wedo Market** [MIT licensed](./LICENSE)
+**DashBoard-inativos** [MIT licensed](./LICENSE)
 
 License and is available for free.
 
