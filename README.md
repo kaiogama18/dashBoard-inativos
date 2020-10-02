@@ -13,11 +13,6 @@ This project exists thanks to all the people who contribute.
     <img alt="logo Buritech" style="fill: blue;" src="http://www.buritech.com.br/site/logo.png" width="50%" />
   </a>
 </p>
-<p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Licence MIT">
-  <img src="https://img.shields.io/badge/platform-Responsive%20Web-ff69b4" alt="Platform">
-  <img src="https://img.shields.io/npm/v/react.svg?style=flat" alt="npm version ">
-</p>
 
 ## Background
 
