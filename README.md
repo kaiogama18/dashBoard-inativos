@@ -20,26 +20,8 @@ This project exists thanks to all the people who contribute.
 
 > Por exemplo, se a pessoa jurídica realizou qualquer pagamento ou recebimento de duplicatas ou fornecedores no período, descaracteriza-se a condição de inatividade.
 
-## Installation
-
-This document is for the latest React **^16.13.1**.
-
-- Starts Next.js in development mode
-```bash
-$ yarn dev
-```
-
-- Builds the application for production usage
-```bash
-$ yarn start
-```
-
 ## License
 
 **DashBoard-inativos** [MIT licensed](./LICENSE)
 
 License and is available for free.
-
-## Links
-
-* [Web site](https:buritech.com.br)
