@@ -8,11 +8,7 @@ This project exists thanks to all the people who contribute.
 <a alt="Github" href="https://github.com/kaiogama18"><img src="https://img.shields.io/badge/Github-Kaio%20B.%20Gama-lightgrey?logo=github"/></a>
 
 
-<p align="center">
-  <a href="https://www.buritech.com.br">
-    <img alt="logo Buritech" style="fill: blue;" src="http://www.buritech.com.br/site/logo.png" width="50%" />
-  </a>
-</p>
+
 
 ## Background
 
