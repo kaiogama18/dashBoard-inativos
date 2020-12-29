@@ -14,6 +14,7 @@ This project exists thanks to all the people who contribute.
 
 > Para fins tributários, considera-se pessoa jurídica inativa aquela que não tenha efetuado qualquer atividade operacional, não operacional, patrimonial ou financeira, inclusive aplicação no mercado financeiro ou de capitais, durante todo o ano-calendário.
 
+> Para fins tributários, considera-se pessoa jurídica inativa aquela que não tenha efetuado qualquer atividade operacional, não operacional, patrimonial ou financeira, inclusive aplicação no mercado financeiro ou de capitais, durante todo o ano-calendário.
 > Por exemplo, se a pessoa jurídica realizou qualquer pagamento ou recebimento de duplicatas ou fornecedores no período, descaracteriza-se a condição de inatividade.
 
 ## License
