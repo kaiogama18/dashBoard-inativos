@@ -79,7 +79,7 @@
     "next-cookies": "^2.0.3",
     "next-fonts": "^1.0.3",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "postcss-flexbugs-fixes": "^4.2.0",
     "postcss-preset-env": "^6.7.0",
     "pure-react-carousel": "^1.27.0",
